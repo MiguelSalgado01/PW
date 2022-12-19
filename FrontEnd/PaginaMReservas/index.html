@@ -36,8 +36,7 @@
             </div>
         </header>
        
-        <div class="container" id="table">
-            <div class="table-responsive" >
+        <div class="container table-responsive" id="table">
             <table class="cell-border" id="tabela">
                 <thead>
                     <tr>
@@ -48,38 +47,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>parte1</td>
-                            <td>parte2</td>
-                            <td>parte3</td>
-                            <td>parte4</td>
-                        </tr>
-                        <tr>
-                            <td>parte1</td>
-                            <td>parte2</td>
-                            <td>parte3</td>
-                            <td>parte4</td>
-                        </tr>
-                        <tr>
-                            <td>parte1</td>
-                            <td>parte2</td>
-                            <td>parte3</td>
-                            <td>parte4</td>
-                        </tr>
-                        <tr>
-                            <td>parte1</td>
-                            <td>parte2</td>
-                            <td>parte3</td>
-                            <td>parte4</td>
-                        </tr>
-                        <tr>
-                            <td>parte1</td>
-                            <td>parte2</td>
-                            <td>parte3</td>
-                            <td>parte4</td>
-                        </tr>
-                    </tbody>
-                </div>
+                 </tbody>
             </div>
         </div>
     </body>
@@ -87,8 +55,30 @@
    <script>
         $(document).ready(function (){
             let table = new DataTable('#tabela', {
-                //options
+                //options   
             });
+            //Insert em JS de dados ficticios
+            for(let i= 0;i<10;i++){
+            var rowNode = table
+            .row.add( [ 'Silves', 'Ismat', '10:00 21/10/2022','detalhe' ] )
+            .draw()
+            .node();
+
+            $( rowNode )
+            .css( 'color', 'green' )
+            .animate( { color: 'black' } );
+            }
         })
+        
+           /* Edit Icon
+             // Activate an inline edit on click of a table cell
+    $('#example').on( 'click', 'tbody td.row-edit', function (e) {
+        editor.inline( table.cells(this.parentNode, '*').nodes(), {
+            submitTrigger: this,
+            submitHtml: '<i class="fa fa-play"/>'
+        } );
+    } );
+           */
+          // https://datatables.net/examples/api/row_details.html
     </script>
 </html>
