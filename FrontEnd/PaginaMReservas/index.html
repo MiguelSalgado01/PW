@@ -16,58 +16,76 @@
         <!--DataTables-->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
-
+        
     </head>
     <body>
-        <div class="container">
+        <header class="p-3 bg-info">
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <a style="cursor:pointer"> 
+                        <i class="fa fa-2xl fa-arrow-left text-white"></i>    
+                    </a>              
+                </div>
+                <div class="col-8"> 
+                    <div class="m-2 d-flex justify-content-center ">
+                        <h2 class="my-1 fw-bold text-white">Editar Perfil</h2>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </header>
+       
+        <div class="container" id="table">
             <div class="table-responsive">
-            <table class="table" id="nigga">
+            <table class="cell-border" id="tabela" >
                 <thead>
                     <tr>
                         <th>Origem</th>
                         <th>Destino</th>
                         <th>Data\Hora</th>
                         <th>Detalhes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>parte1</td>
-                        <td>parte2</td>
-                        <td>parte3</td>
-                        <td>parte4</td>
-                    </tr>
-                    <tr>
-                        <td>parte1</td>
-                        <td>parte2</td>
-                        <td>parte3</td>
-                        <td>parte4</td>
-                    </tr>
-                    <tr>
-                        <td>parte1</td>
-                        <td>parte2</td>
-                        <td>parte35</td>
-                        <td>parte4</td>
-                    </tr>
-                    <tr>
-                        <td>parte1</td>
-                        <td>parte2</td>
-                        <td>parte3</td>
-                        <td>parte4</td>
-                    </tr>
-                    <tr>
-                        <td>parte1</td>
-                        <td>parte2</td>
-                        <td>parte3</td>
-                        <td>parte4</td>
-                    </tr>
-                </tbody>
-            </table>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>parte1</td>
+                            <td>parte2</td>
+                            <td>parte3</td>
+                            <td>parte4</td>
+                        </tr>
+                        <tr>
+                            <td>parte1</td>
+                            <td>parte2</td>
+                            <td>parte3</td>
+                            <td>parte4</td>
+                        </tr>
+                        <tr>
+                            <td>parte1</td>
+                            <td>parte2</td>
+                            <td>parte3</td>
+                            <td>parte4</td>
+                        </tr>
+                        <tr>
+                            <td>parte1</td>
+                            <td>parte2</td>
+                            <td>parte3</td>
+                            <td>parte4</td>
+                        </tr>
+                        <tr>
+                            <td>parte1</td>
+                            <td>parte2</td>
+                            <td>parte3</td>
+                            <td>parte4</td>
+                        </tr>
+                    </tbody>
+                </div>
+            </div>
         </div>
     </body>
+    <!--DataTable Creation Script-->
    <script>
         $(document).ready(function (){
-            let table = new DataTable('#nigga', {
+            let table = new DataTable('#tabela', {
                 //options
             });
         })
