@@ -1,8 +1,12 @@
 body {
     /*margin-top: 60px; */
   }
-
+/*tABELA DE DADOS*/
 #table{
   margin-top: 60px;
+  /*color: #11747c;*/
 }
- 
+
+#Editar_Perfil{
+  color: #11747c;
+}
