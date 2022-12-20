@@ -39,7 +39,7 @@
     <div class="container" id="table">
         <div class="table-responsive"> 
         <table class="cell-border" id="tabela">
-            <thead>
+            <thead class="bg-primary text-white">
                 <tr>
                     <th>Origem</th>
                     <th>Destino</th>
@@ -62,7 +62,7 @@
             //Insert em JS de dados ficticios
             for(let i= 0;i<10;i++){
             var rowNode = table
-            .row.add( [ 'Silves', 'Ismat', '10:00 21/10/2022','detalhe' ] )
+            .row.add( [ 'Silves', 'Ismat', '10:00 21/10/2022', '<i class="fa-light fa-memo-circle-info"></i>' ] )
             .draw()
             .node();
 
@@ -71,16 +71,7 @@
             .animate( { color: 'black' } );
             }
         })
-        
-           /* Edit Icon
-             // Activate an inline edit on click of a table cell
-    $('#example').on( 'click', 'tbody td.row-edit', function (e) {
-        editor.inline( table.cells(this.parentNode, '*').nodes(), {
-            submitTrigger: this,
-            submitHtml: '<i class="fa fa-play"/>'
-        } );
-    } );
-           */
           // https://datatables.net/examples/api/row_details.html
+          //https://datatables.net/extensions/responsive/examples/display-types/bootstrap-modal.html
     </script>
 </html>
