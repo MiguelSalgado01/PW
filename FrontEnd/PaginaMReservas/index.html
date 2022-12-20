@@ -18,7 +18,9 @@
         <!--DataTables-->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
-        
+        <!--Responsive DataTable-->
+        <link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
+       
     </head>
     <body>
         <header class="p-3 mb-5 bg-primary" id="mrs">
@@ -38,7 +40,7 @@
     
     <div class="container" id="table">
         <div class="table-responsive"> 
-        <table class="cell-border" id="tabela">
+        <table class="cell-border display nowrap" id="tabela">
             <thead class="bg-primary text-white">
                 <tr>
                     <th>Origem</th>
@@ -48,6 +50,10 @@
                     </tr>
                 </thead>
                     <tbody>
+                        <td>Ismat</td>
+                        <td>Lagoa</td>
+                        <td>14:30 20/10/2000</td>
+                        <td>teste</td>
                 </tbody>
             </div>
         </div>
@@ -59,17 +65,27 @@
             let table = new DataTable('#tabela', {
                 //options   
             });
+            
             //Insert em JS de dados ficticios
             for(let i= 0;i<10;i++){
             var rowNode = table
-            .row.add( [ 'Silves', 'Ismat', '10:00 21/10/2022', '<i class="fa-light fa-memo-circle-info"></i>' ] )
+            .row.add( [ 'Silves', 'Ismat', '10:00 21/10/2022', 'teste',22 ] )
             .draw()
             .node();
-
-            $( rowNode )
-            .css( 'color', 'green' )
-            .animate( { color: 'black' } );
-            }
+            rowNode.DataTable({
+                responsive:{
+                    details:{
+                        display:  $.fn.dataTable.Responsive.display.modal({
+                            Headers: function(row){
+                                var data=row.data();
+                                return 'Detalhes de '+data[0]+''+data[1];
+                            }
+                        }),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+                    }
+                }
+            })
+            }   
         })
           // https://datatables.net/examples/api/row_details.html
           //https://datatables.net/extensions/responsive/examples/display-types/bootstrap-modal.html
