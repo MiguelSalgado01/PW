@@ -79,7 +79,7 @@
                 <div class="my-4">Preferencias
                     <div class="input-group my-1">
                         <span class="input-group-text bg-secondary" id="basic-addon1">                    
-                            <i class="fa fa-file-pen text-white"></i>
+                            <i class="fa fa-file-text text-white"></i>
                         </span>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" 
                             placeholder="ex: Não fumar durante viagem, nem beber"></textarea>
@@ -120,8 +120,8 @@
                     location = lastSelected;
                 }
             }
-            console.log(localStorage);
-            localStorage.clear();
+            // localStorage.clear();
+            localStorage.removeItem('select');
             
         </script>
 </html>
