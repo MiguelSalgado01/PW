@@ -433,13 +433,13 @@
 }
 .switch-label:before {
   content: attr(data-off);
-  right: 12px;
+  right: 15px;
   color: white;
   text-shadow: 0 1px rgba(0, 0, 0, 0.2);
 }
 .switch-label:after {
   content: attr(data-on);
-  left: 12px;
+  left: 15px;
   color: white;
   text-shadow: 0 1px rgba(0, 0, 0, 0.2);
   opacity: 0;
