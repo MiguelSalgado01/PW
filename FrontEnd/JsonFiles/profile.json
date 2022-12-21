@@ -1,0 +1,12 @@
+{
+    "client" : [
+        {
+            "idClient": 1,
+            "Name": "Tiago Caetano",
+            "studentNumb": "a22002128",
+            "contact": "969100451",
+            "password": "minh@PassN0v4",
+            "gender": "Masculino"
+        }
+    ]
+}
