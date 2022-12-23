@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="style.css"> 
     </head>
     <body class="bg-primary">
-        <header class="p-3 bg-primary">
+        <header class=" rounded-4 p-3">
             <div class="row align-items-center">
                 <div class="col-2">
                     <a style="cursor:pointer"> 
@@ -27,7 +27,7 @@
                 <div class="col-1"></div>
             </div>
         </header>
-        <div style="margin-top: 1cm; width: 90%" class="container bg-light rounded-5 p-3 shadow-lg">
+        <div style="margin-top: 10%; width: 90%" class="container bg-light rounded-5 p-3 shadow-lg">
             <div class="container w-100 col-6">
                 <div class="my-4">Nome Utilizador
                     <div class="input-group my-1 ">
@@ -38,7 +38,7 @@
                         </input>
                     </div>
                 </div>
-                <div class="my-4">Numero de Estudante
+                <!-- <div class="my-4">Numero de Estudante
                     <div class="input-group my-1">
                         <span class="input-group-text bg-secondary" id="basic-addon1">                    
                             <i class="fa fa-university text-white"></i>
@@ -46,7 +46,7 @@
                         <input type="text" class="form-control" id="schoolNumber">    
                         </input>
                     </div>
-                </div>
+                </div> -->
                 <div class="my-4">Contacto
                     <div class="input-group my-1">
                         <span class="input-group-text bg-secondary" id="basic-addon1">                    
@@ -78,7 +78,7 @@
                 </div>
                 <div class="container">
                     <div class="row justify-content-center ">
-                        <button class="btn btn-outline-secondary col-6 my-5" type="submit">Guardar Alterações</button>
+                        <button class="btn btn-outline-secondary col-6 my-5" type="submit" id="submitBtn">Guardar Alterações</button>
                     </div>
                 </div>
             </div>
@@ -89,32 +89,91 @@
         <script type="text/javascript" src="../JsonFiles/profile.json"></script>
         <script>
             var userName = document.getElementById("username");
-            var numb = document.getElementById("schoolNumber");
+            // var numb = document.getElementById("schoolNumber");
             var contact = document.getElementById("userContact");
             var pass = document.getElementById("userPassword");
             var gender = document.getElementById("userGender");
-            var array = [];
-
+            var btn = document.getElementById("submitBtn");
+            var array = [], editedBoxes = [];
+            
             $( document ).ready(
                 getData('../JsonFiles/profile.json').then(
                     function(dataFromJson){ //success function
-                        array = dataFromJson.client;
+                        array = dataFromJson.user;
                         userName.placeholder = array[0].Name; 
-                        numb.placeholder = array[0].studentNumb; 
                         contact.placeholder = array[0].contact; 
                         pass.placeholder = array[0].password; 
-                        gender.value = array[0].gender
-                    },
+                        gender.value = array[0].gender;
+                        localStorage.setItem('users', JSON.stringify(array));
+                    },  
                     function(err){ //error function
                         console.log(err.statusText, err.status);
+                        
                     }
-                )
+                ),
+                 btn.addEventListener("click", clicarBotao)
+                 
             );
-
             function getData(path){
                 return $.getJSON(path);
             }
-          
+            function clicarBotao(){
+                let index = 0;
+                array = JSON.parse(localStorage.getItem('users'));
+                determineEditedBoxes();
+                array.forEach(obj => {                
+                    Object.entries(obj).forEach(([key, value]) => {
+                        if(`${key}` !== "idUser" && `${key}` !== "studentNumb"){ 
+                            if (editedBoxes[index] !== ''){
+                                console.log(`${value}`)
+                                console.log(editedBoxes[index]);
+                                console.log(index);
+                                array[0][`${key}`] = editedBoxes[index];
+                                console.log(array[0])
+                            }
+                            index++;
+                        }
+                    });
+                });
+                console.log(JSON.stringify(array[0]))
+                localStorage.setItem('users', JSON.stringify(array));
+
+                userName.placeholder = array[0].Name; 
+                contact.placeholder = array[0].contact; 
+                pass.placeholder = array[0].password; 
+                gender.value = array[0].gender;
+            }
+
+            function determineEditedBoxes() {
+                for (let index = 0; index < 5; index++) {
+                    editedBoxes[index] = '';
+                }
+                if(userName.value !== ''){
+                    editedBoxes[0] = userName.value
+                    userName.value = '';
+                }
+                 if(contact.value !== ''){
+                    editedBoxes[1] = contact.value
+                    contact.value = '';
+                 }
+                if(pass.value !== ''){
+                    editedBoxes[2] = pass.value
+                    pass.value = '';
+                }
+                if(gender.value !== ''){
+                    editedBoxes[3] = gender.value
+                }
+            }
         </script>
     </body>
 </html>
+
+<!-- 
+    editedBoxes
+ -->
+
+<!-- 
+    se id.value = '' localS.value = localS.value
+    se id.value = 'eweg' localS.value = id.value
+
+ -->

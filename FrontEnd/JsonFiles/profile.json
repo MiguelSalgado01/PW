@@ -1,9 +1,9 @@
 {
-    "client" : [
+    "user" : [
         {
-            "idClient": 1,
-            "Name": "Tiago Caetano",
+            "idUser": 1,
             "studentNumb": "a22002128",
+            "Name": "Tiago Caetano",
             "contact": "969100451",
             "password": "minh@PassN0v4",
             "gender": "Masculino"
