@@ -30,12 +30,12 @@
         <div style="margin-top: 10%; width: 90%" class="container bg-light rounded-5 p-3 shadow-lg">
             <div class="container w-100 col-6">
                 <div class="my-4">Matricula
-                    <div class="input-group my-1 ">
+                    <div class="input-group my-1" id="formPlate">
                         <span class="input-group-text bg-secondary" id="basic-addon1">                    
                             <i class="fa fa-car text-white"></i>
                         </span>
                         <input type="text" class="form-control" 
-                                placeholder="ex: 54-DN-75" id="matriculaVeiculo" />
+                                placeholder="ex: 54-DN-75" id="vehiclePlate" maxlength="8" />
                     </div>
                 </div>
                 <div class="my-4">Cor
@@ -44,7 +44,7 @@
                             <i class="fa fa-fill-drip text-white"></i>
                         </span>
                         <input type="text" class="form-control"
-                                placeholder="ex: Vermelho Carmim" id="corVeiculo" />    
+                                placeholder="ex: Vermelho" id="vehicleColor" maxlength="20" />    
                     </div>
                 </div>
                 <div class="my-4 ">Disponiveis Lugares
@@ -52,13 +52,14 @@
                     <label class="input-group-text bg-secondary" for="inputGroupSelect01">
                         <i class="fa fa-people-group text-white"></i>
                     </label>
-                    <select class="form-select" id="inputGroupSelect01">
-                        <option selected value="0">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="1">5</option>
-                        <option value="1">6</option>
+                    <select class="form-select" id="availableSits">
+                        <option disabled selected value="0">Selecinar número de lugares</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
                     </select>
                     </div>  
                 </div>
@@ -68,17 +69,83 @@
                         <span class="input-group-text bg-secondary" id="basic-addon1">                    
                             <i class="fa fa-file-pen text-white"></i>
                         </span>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" 
-                            placeholder="ex: O veiculo é uma mota com cerca de 75km"></textarea>
+                            <textarea class="form-control" id="vehicleSpecs" rows="6" 
+                            placeholder="ex: O veiculo é uma mota com cerca de 75km" maxlength="200"></textarea>
                     </div>
                 </div>
             </div>
             <div class="container">
                 <div class="row justify-content-center ">
-                    <button class="btn btn-outline-secondary col-6 my-5" type="submit">Guardar Registo</button>
+                    <button class="btn btn-outline-secondary col-6 my-5" type="submit" id="submitBtn">Guardar Registo</button>
                 </div>
             </div>
         </div>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <script>
+            var userPlate = document.getElementById("vehiclePlate");
+            var color = document.getElementById("vehicleColor");
+            var sits = document.getElementById("availableSits");
+            var specs = document.getElementById("vehicleSpecs");
+            var btn = document.getElementById("submitBtn");
+            var data = [], vehicle = new Array();
+
+            $( document ).ready(
+                plateFunction,
+                btn.addEventListener("click", clicarBotao)
+            );
+
+            function clicarBotao(){
+                data = JSON.parse(localStorage.getItem('users'))[0];
+                console.log(data.idUser);
+
+                vehicle.push({
+                    "idUser" : data.idUser,
+                    "vehiclePlate" : userPlate.value,
+                    "vehicleColor" : color.value,
+                    "availableSits" : sits.value,
+                    "vehicleSpecs" : specs.value
+                });
+                console.log(vehicle);
+
+                userPlate.value = '';
+                color.value = '';
+                sits.value = 0;
+                specs.value = '';
+                localStorage.setItem('userVehicles', JSON.stringify(vehicle));
+            }
+
+            function plateFunction($, undefined) {
+                "use strict";
+                $(function() {
+                    var $form = $( "#formPlate" );
+                    var $input = $form.find( "input" );
+
+                    $input.on( "keyup", function( event ) {
+                        // When user select text in the document, also abort.
+                        var selection = window.getSelection().toString();
+                        if ( selection !== '' ) {
+                            return;
+                        }
+                        
+                        var $this = $(this);
+                        var input = $this.val();
+                        input = input.replace(/[\W\s\._\-]+/g, '');
+                            
+                        var split = 2;
+                        var chunk = [];
+
+                        for (var i = 0, len = input.length; i < len; i += split) {
+                            split = ( i >= 0 && i <= 2 ) ? 2 : 2;
+                            chunk.push( input.substr( i, split ) );
+                        }
+                        $this.val(function() {
+                            return chunk.join("-").toUpperCase();
+                        });
+                    }); 
+                   
+                });
+                
+            }
+        </script>
     </body>
 </html>
