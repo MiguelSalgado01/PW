@@ -15,7 +15,7 @@
         <header class=" rounded-4 p-3">
             <div class="row align-items-center">
                 <div class="col-2">
-                    <a style="cursor:pointer"> 
+                    <a style="cursor:pointer" onclick=" verPerfilPage()"> 
                         <i class="fa fa-2xl fa-arrow-left text-white"></i>    
                     </a>              
                 </div>
@@ -141,6 +141,8 @@
                 contact.placeholder = array[0].contact; 
                 pass.placeholder = array[0].password; 
                 gender.value = array[0].gender;
+
+                verPerfilPage();
             }
 
             function determineEditedBoxes() {
@@ -163,16 +165,10 @@
                     editedBoxes[3] = gender.value
                 }
             }
+
+            function verPerfilPage(){
+                window.location.href = "http://127.0.0.1:5500/FrontEnd/VerPerfil/verPerfil.html";
+            }  
         </script>
     </body>
 </html>
-
-<!-- 
-    editedBoxes
- -->
-
-<!-- 
-    se id.value = '' localS.value = localS.value
-    se id.value = 'eweg' localS.value = id.value
-
- -->

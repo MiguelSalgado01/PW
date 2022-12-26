@@ -16,8 +16,8 @@
             <div class="row align-items-center">
                 <div class="col-2">
                     <a style="cursor:pointer"> 
-                        <i class="fa fa-2xl fa-arrow-left text-white"></i>    
-                    </a>              
+                        <i class="fa fa-2xl fa-arrow-left text-white" onclick="verPerfilPage()"></i>    
+                    </a>           
                 </div>
                 <div class="col-8"> 
                     <div class="m-2 d-flex justify-content-center ">
@@ -92,7 +92,12 @@
             $( document ).ready(
                 plateFunction,
                 btn.addEventListener("click", clicarBotao)
+                
             );
+
+            function verPerfilPage(){
+                window.location.href = "http://127.0.0.1:5500/FrontEnd/VerPerfil/verPerfil.html";
+            }   
 
             function clicarBotao(){
                 data = JSON.parse(localStorage.getItem('users'))[0];
@@ -112,6 +117,8 @@
                 sits.value = 0;
                 specs.value = '';
                 localStorage.setItem('userVehicles', JSON.stringify(vehicle));
+
+                verPerfilPage();
             }
 
             function plateFunction($, undefined) {

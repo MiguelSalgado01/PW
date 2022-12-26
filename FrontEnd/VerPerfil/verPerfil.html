@@ -18,10 +18,12 @@
 </head>
 <body>
 <div class="container-fluid p-0 w-100 h-100">
-    <div class="position-fixed top w-100 h-25 bg-primary"></div>
-    <div
-            class="d-flex flex-column h-50 justify-content-center align-items-center"
-    >
+    <div class="position-fixed py-3 px-3 top w-100 h-25 bg-primary">
+        <a style="cursor:pointer" onclick=" perfilPage()"> 
+            <i class="fa fa-2xl fa-arrow-left text-white"></i>    
+        </a>     
+    </div>
+    <div class="d-flex flex-column h-50 justify-content-center align-items-center">
         <img
                 style="z-index: 1"
                 src="https://cdn-icons-png.flaticon.com/512/147/147142.png"
@@ -30,34 +32,47 @@
                 width="164px"
                 height="164px"
         />
-        <button class="btn btn-primary mt-2">EDITAR PERFIL</button>
+        <button class="btn btn-primary mt-2" onclick="editarPerfilPage()">EDITAR PERFIL</button>
     </div>
-    <div
-            class="d-flex flex-column justify-content-center align-items-center w-100 h-25"
-    >
+    <div class="d-flex flex-column justify-content-center align-items-center w-100 h-25">
         <div class="row w-100 justify-content-between align-items-center mb-4">
             <div class="col-10">
                 <h5>Definir Caracteristicas</h5>
             </div>
             <div class="col-2">
-                <a href=""><i class="fa-solid fa-arrow-right"></i> </a>
+                <a style="cursor:pointer" onclick=""> 
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a> 
             </div>
         </div>
-        <div
-                class="d-flex flex-column justify-content-center align-items-center w-100 h-25"
-        >
-            <div
-                    class="row w-100 justify-content-between align-items-center mb-6"
-            >
+        <div class="d-flex flex-column justify-content-center align-items-center w-100 h-25">
+            <div class="row w-100 justify-content-between align-items-center mb-6">
                 <div class="col-10">
                     <h5>Associar Veiculo</h5>
                 </div>
                 <div class="col-2">
-                    <a href=""><i class="fa-solid fa-arrow-right"></i> </a>
+                    <a style="cursor:pointer" onclick="registarVeiculoPage()"> 
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a> 
                 </div>
             </div>
         </div>
     </div>
 </div>
 </body>
+<script>
+    function editarPerfilPage(){
+        window.location.href = "http://127.0.0.1:5500/FrontEnd/EditarPerfil/EditorPerfil.html";
+    } 
+    
+    function perfilPage(){
+        window.location.href = "http://127.0.0.1:5500/FrontEnd/perfil/perfil.html";
+    } 
+
+    function registarVeiculoPage(){
+        window.location.href = "http://127.0.0.1:5500/FrontEnd/RegistarVeiculo/RegistarVeiculo.html";
+    }
+    
+    
+</script>
 </html>

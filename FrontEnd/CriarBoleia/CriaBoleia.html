@@ -10,14 +10,13 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
         <link rel="stylesheet" href="style.css"> 
-        <link href="../RegistarVeiculo/RegistarVeiculo.html"/>
 
     </head>
     <body class="bg-primary">
         <header class="p-3 bg-primary">
             <div class="row align-items-center">
                 <div class="col-2">
-                    <a style="cursor:pointer"> 
+                    <a style="cursor:pointer" onclick="perfilPage()"> 
                         <i class="fa fa-2xl fa-arrow-left text-white"></i>    
                     </a>              
                 </div>
@@ -124,12 +123,14 @@
             if(lastSelected) {
                 plate.value = lastSelected; 
             }
+            console.log(window.location)
 
             plate.onchange = function () {
                 lastSelected = plate.options[plate.selectedIndex].value;
                 localStorage.setItem('select', lastSelected);
                 if(lastSelected.includes("http")){
-                    location = lastSelected;
+                    console.log(window.location)
+                    window.location.href = lastSelected;
                 }
             }
             localStorage.removeItem('select');
@@ -185,6 +186,12 @@
             localName.value = '';
             pref.value = '';
             localStorage.setItem('ride', JSON.stringify(ride));
+
+            perfilPage();
+        }
+
+        function perfilPage(){
+            window.location.href = "http://127.0.0.1:5500/FrontEnd/perfil/perfil.html";
         }
 
     </script>
