@@ -247,6 +247,9 @@
   .bg-secondary {
     background-color: rgba(var(--secondary), 1) !important;
   }
+  .bg-smokingWhite {
+    background-color: rgba(var(--cyan_100), 1) !important;
+  }
 
  .btn-primary {
     color: rgba(var(--gray_0), 1);
