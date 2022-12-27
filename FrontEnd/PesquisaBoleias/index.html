@@ -46,7 +46,7 @@
                 </div>
             </div>
         </header>
-    
+    <!--Table-->
     <div class="container" id="table">
         <div class="table-responsive"> 
         <table class="cell-border display nowrap" id="tabela" style="width: 100%;">
@@ -61,18 +61,28 @@
                     </tr>
                 </thead>
                     <tbody>
-                        <td>Jose</td>
-                        <td>Lagoa</td>
-                        <td>Ismat</td>
-                        <td>14:30 20/10/2000</td>
-                        <td>Ferrari</td>
-                        <td>3</td>
+                        <tr>
+                            <td>Jose</td>
+                            <td>Lagoa</td>
+                            <td>Ismat</td>
+                            <td>14:30 20/10/2000</td>
+                            <td>Ferrari</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Diogo</td>
+                            <td>Portimao</td>
+                            <td>Ismat</td>
+                            <td>20:30 25/11/2020</td>
+                            <td>Optimus Prime</td>
+                            <td>2</td>
+                        </tr>
                 </tbody>
             </div>
         </div>
     </div>
     </body>
-    <!--DataTable Creation Script-->
+    <!--DataTable Creation Script // Details-->
    <script>
         $(document).ready(function (){
             let table = new DataTable('#tabela', {
@@ -88,16 +98,9 @@
                     }
                 }  
             });
-            
-            //Insert em JS de dados ficticios
-            
-            //for(let i= 0;i<10;i++){
-            //var rowNode = table.row.add([ 'Silves', 'Ismat', '10:00 21/10/2022', 'teste', 22 ]).draw()
-            //.node()
-            //}  
-            /*.DataTable({
-                
-            }) */
         })
     </script>
 </html>
+
+<!--https://datatables.net/extensions/fixedcolumns/examples/styling/col_filter.html-->
+<!--https://datatables.net/extensions/searchpanes/examples/advanced/columnFilter.html-->
