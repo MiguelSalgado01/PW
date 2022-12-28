@@ -97,7 +97,8 @@
             var array = [], editedBoxes = [];
             
             $( document ).ready(
-                getData('../JsonFiles/profile.json').then(
+                // getData('../JsonFiles/profile.json').then(
+                getData('../JsonFiles/profle.json').then(
                     function(dataFromJson){ //success function
                         array = dataFromJson.user;
                         userName.placeholder = array[0].Name; 
@@ -107,7 +108,16 @@
                         localStorage.setItem('users', JSON.stringify(array));
                     },  
                     function(err){ //error function
+                        var error = [];
+                        error.push({
+                            "idErro" : err.status,
+                            "ErroMessage" : err.statusText
+                        });
+
+                        console.log(err ); 
                         console.log(err.statusText, err.status); 
+                        localStorage.setItem('error', JSON.stringify(error));
+                        errorPage();
                     }
                 ),
                  btn.addEventListener("click", clicarBotao)
@@ -169,6 +179,11 @@
             function verPerfilPage(){
                 window.location.href = "http://127.0.0.1:5500/FrontEnd/VerPerfil/verPerfil.html";
             }  
+
+            function errorPage(){
+                window.location.href = "http://127.0.0.1:5500/FrontEnd/ErrorPage/error.html";
+            } 
+
         </script>
     </body>
 </html>
