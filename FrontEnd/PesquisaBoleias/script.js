@@ -7,15 +7,26 @@ $(document).ready(function() {
 
             }
         },
+        responsive:{
+            details: {
+                display:  $.fn.dataTable.Responsive.display.modal({
+                    Headers: function (row){
+                        var data = row.data();
+                        return 'Detalhes de '+ data[0] + '' + data[1];
+                    }
+                }),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+            }
+        } , 
         buttons: [
             'searchPanes'
         ],
         dom: 'Bfrtip'
     });
 });
-
+//colapse button tirar se for necessario
 //$.fn.dataTable.SearchPanes.defaults.collapse = false;
-$.fn.dataTable.SearchPane.defaults.collapse = false;
+//$.fn.dataTable.SearchPane.defaults.collapse = false;
 
 /*
 
