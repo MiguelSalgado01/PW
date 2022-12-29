@@ -32,14 +32,12 @@
                     </div>
                 </div>
                 <div class="my-4">Numero de Estudante
-                    <div class="input-group my-1 needs-validation">
+                    <div class="input-group my-1 needs-validation" id="groupNumEstud">
                         <span class="input-group-text bg-secondary" id="basic-addon1">                    
                             <i class="fa fa-university text-white"></i>
                         </span>
-                        <input type="text" class="form-control" id="schoolNumber" maxlength="9" placeholder="ex: a21711943" required> 
-                        <div class="invalid-feedback">
-                            Por Favor insira Numero de Estudante
-                        </div>
+                        <input type="text" class="form-control" id="schoolNumber" minlength="9" maxlength="9" placeholder="ex: a21711943" required> 
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="my-4">Contacto
@@ -47,7 +45,7 @@
                         <span class="input-group-text bg-secondary" id="basic-addon1">                    
                             <i class="fa fa-phone text-white"></i>
                         </span>
-                        <input type="text" class="form-control" id="userContact" maxlength="9" placeholder="ex: 919100756" required> 
+                        <input type="text" class="form-control" id="userContact" minlength="9" maxlength="9" placeholder="ex: 919100756" required> 
                         <div class="invalid-feedback">
                             Por Favor insira Contacto
                         </div>
@@ -114,7 +112,6 @@
 
             $( document ).ready(
                 events,
-                // validateConfPassword(),
             );
 
             function events($, undefined) {
@@ -131,7 +128,6 @@
                         var firstChar = input[0];
                         var minusFirst = input.slice(1, input.size);
                         userNumb.value = firstChar.replace(/[0-9\\s\._\-]+/g, '') + minusFirst.replace(/[A-Za-z\\s\._\-]+/g, '');
-                        console.log(input)
                     }); 
                 }); 
             }
@@ -158,34 +154,82 @@
 
                     localStorage.setItem('users', JSON.stringify(user));
                     clearPage();
-                    // verPerfilPage();
+                    LoginPage();
                 }
             }
 
+            function validateNumEstudante(numFaltas) {
+                var thisInvalid = 0;
+                var group = document.getElementById("groupNumEstud")
+                thisInvalid = validateLenght(numFaltas, userNumb);
+                users = JSON.parse(localStorage.getItem('users'));
+
+                if(thisInvalid === 1)
+                group.childNodes[5].innerHTML = "Por Favor insira o Numero de Estudante"
+
+                users.forEach(element => {
+                    if(userNumb.value === element.studentNumb){
+                        group.childNodes[5].innerHTML = "Numero de Estudante já existe"
+                        invalidate(userNumb);
+                        numFaltas++;
+                    }
+                });
+
+                return numFaltas + thisInvalid;
+            }
+            
+            function validateLenght(numFaltas, classNam) {
+                
+                if(classNam.value.length !== classNam.minLength && classNam.value.length !== userPhone.maxLenght){
+                    invalidate(classNam);
+                    numFaltas++;
+                }
+                else
+                    validate(classNam);
+
+                return numFaltas;
+            }
+
             function validateConfPassword() {
-        
                 if(userConfPass.value !== userPass.value){
-                    userConfPass.classList.add("is-invalid");
-                    userConfPass.classList.remove("is-valid");
-                    userConfPass.classList.remove("was-validated");
+                    invalidate(userConfPass);
                     rePassVal = 1;
                 }
-                if (userConfPass.value === userPass.value) {
-                    userConfPass.classList.add("is-valid");
-                    userConfPass.classList.remove("is-invalid")
-                    userConfPass.classList.add("was-validated");
-                    rePassVal = 0;
-                }
+                else
+                    validate(userConfPass);
             }
+
+          
+
+            function invalidate(classNam) {
+                classNam.classList.add("is-invalid");
+                classNam.classList.remove("is-valid");
+                classNam.classList.remove("was-validated");
+            }
+
+            function validate(classNam) {
+                classNam.classList.add("is-valid");
+                classNam.classList.remove("is-invalid")
+                classNam.classList.add("was-validated");
+            }
+
 
             function validateSpaces(numFaltas){
                 validateConfPassword();
 
                 for (let index = 0; index < validationSpaces.length; index++) {
                     const element = validationSpaces[index];
-                    if(element.id !== "rePass")
+                    if(element.id !== "rePass" && element.childNodes[3].id !== "userContact"&& element.childNodes[3].id !== "schoolNumber"){
                         element.classList.add("was-validated");
+                        
+                    }
 
+                    if(element.childNodes[3].id === "userContact")
+                            numFaltas = validateLenght(numFaltas, userPhone);
+
+                    if(element.childNodes[3].id === "schoolNumber")
+                            numFaltas = validateNumEstudante(numFaltas);
+                    
                     if (!element.childNodes[3].validity.valid)
                         numFaltas++;   
                 }
@@ -204,6 +248,11 @@
             }
             userConfPass.classList.remove("is-valid");
         }
+
+        function LoginPage(){
+            window.location.href = "http://127.0.0.1:5500/FrontEnd/Login/LoginPage.html";
+        }   
+        
         </script>
     </body>
 </html>
