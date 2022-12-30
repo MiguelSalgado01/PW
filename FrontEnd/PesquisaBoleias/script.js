@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('#tabela').DataTable({
         language: {
             searchPanes: {
-                clearMessage: 'Delete Select Options',
+                clearMessage: 'Delete',
                 collapse: {0: 'Search Options', _: 'Search Options (%d)'}
 
             }
