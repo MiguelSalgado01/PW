@@ -17,7 +17,7 @@
         <header class="p-3 bg-primary">
             <div class="row align-items-center">
                 <div class="col-2">
-                    <a style="cursor:pointer" onclick="perfilPage()"> 
+                    <a style="cursor:pointer" onclick="HomePage()"> 
                         <i class="fa fa-2xl fa-arrow-left text-white"></i>    
                     </a>              
                 </div>
@@ -186,7 +186,7 @@
             else{
                 localStorage.setItem('ride', JSON.stringify(ride));
                 clearPage();
-                perfilPage();
+                HomePage();
             }
         }
         
@@ -217,8 +217,8 @@
             pref.value = '';
         }
 
-        function perfilPage(){
-            window.location.href = "http://127.0.0.1:5500/FrontEnd/perfil/perfil.html";
+        function HomePage(){
+            window.location.href = "http://127.0.0.1:5500/FrontEnd/dashboard/Home.html";
         }
 
     </script>

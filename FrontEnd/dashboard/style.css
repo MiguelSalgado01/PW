@@ -1,3 +1,51 @@
+.navbar {
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  margin-left: -300px;
+  transition: 0.4s;
+  border-right: black;
+  border-width: medium; 
+}
+
+.nav-link {
+  font-size: 1.25em;
+}
+
+.nav-link:active,
+.nav-link:focus,
+.nav-link:hover {
+  background-color: #ffffff26;
+}
+
+.dropdown-item:active,
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: #ffffff26;
+}
+
+.my-container {
+  transition: 0.4s;
+}
+
+
+/* for navbar */
+
+.active-nav {
+  margin-left: 0;
+}
+
+
+/* for main section */
+
+.active-cont {
+  margin-left: 250px;
+}
+
+#menu-btn:focus {
+  box-shadow: 0 0 0 0.25rem #7952b344;
+}
+
 :root {
     --ismatDark: 17, 117, 124;
     --ismatLight: 106, 201, 204;
