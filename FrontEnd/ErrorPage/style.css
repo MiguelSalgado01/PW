@@ -1,4 +1,3 @@
-
 :root {
     --ismatDark: 17, 117, 124;
     --ismatLight: 106, 201, 204;
@@ -242,6 +241,14 @@
     --dark: rgba(var(--secondary_800), 1);
  }
 
+ .text-primary {
+  color: rgba(var(--ismatDark), 1) !important;
+}
+
+.text-secondary {
+  color: rgba(var(--ismatLight), 1) !important;
+}
+
  .bg-primary {
     background-color: rgba(var(--primary), 1) !important;
   }
@@ -386,7 +393,111 @@
     box-shadow: 0 0 0 0.2rem rgba(var(--ismatLight), 0.5);
   }
 
-  #bordas{
-    border-right:  5px ;
-  }
+  
+.switch {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 96px;
+  height: 36px;
+  padding: 1px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.switch-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.switch-label {
+  position: relative;
+  display: block;
+  height: inherit;
+  font-size: 10px;
+  text-transform: uppercase;
+  background: rgba(var(--ismatLight), 1);
+  border-radius: inherit;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
+  -webkit-transition: 0.15s ease-out;
+  -moz-transition: 0.15s ease-out;
+  -o-transition: 0.15s ease-out;
+  transition: 0.15s ease-out;
+  -webkit-transition-property: opacity background;
+  -moz-transition-property: opacity background;
+  -o-transition-property: opacity background;
+  transition-property: opacity background;
+}
+.switch-label:before, .switch-label:after {
+  position: absolute;
+  top: 50%;
+  margin-top: -.5em;
+  line-height: 1;
+  -webkit-transition: inherit;
+  -moz-transition: inherit;
+  -o-transition: inherit;
+  transition: inherit;
+}
+.switch-label:before {
+  content: attr(data-off);
+  right: 15px;
+  color: white;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+}
+.switch-label:after {
+  content: attr(data-on);
+  left: 15px;
+  color: white;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+}
+.switch-input:checked ~ .switch-label {
+  background: rgba(var(--ismatLight), 1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+.switch-input:checked ~ .switch-label:before {
+  opacity: 0;
+}
+.switch-input:checked ~ .switch-label:after {
+  opacity: 1;
+}
+
+.switch-handle {
+  position: absolute;
+  top: 1px;
+  left: -5px;
+  width: 36px;
+  height: 36px;
+  background: rgba(var(--ismatLight), 1);
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  background-image: -webkit-linear-gradient(top, rgba(var(--primary), 1) 40%,rgba(var(--primary), 1) );
+  background-image: -moz-linear-gradient(top, rgba(var(--primary), 1)40%, rgba(var(--primary), 1));
+  background-image: -o-linear-gradient(top, rgba(var(--primary), 1) 40%, rgba(var(--primary), 1));
+  background-image: linear-gradient(to bottom, rgba(var(--primary), 1) 40%, rgba(var(--primary), 1));
+  -webkit-transition: left 0.15s ease-out;
+  -moz-transition: left 0.15s ease-out;
+  -o-transition: left 0.15s ease-out;
+  transition: left 0.15s ease-out;
+}
+.switch-handle:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -6px 0 0 -6px;
+  width: 12px;
+  height: 12px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+  background-image: -webkit-linear-gradient(top, #eeeeee, white);
+  background-image: -moz-linear-gradient(top, #eeeeee, white);
+  background-image: -o-linear-gradient(top, #eeeeee, white);
+  background-image: linear-gradient(to bottom, #eeeeee, white);
+}
+.switch-input:checked ~ .switch-handle {
+  left: 70px;
+  box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+}
 

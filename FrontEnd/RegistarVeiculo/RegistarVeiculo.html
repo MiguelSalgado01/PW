@@ -30,37 +30,63 @@
         <div style="margin-top: 10%; width: 90%" class="container bg-light rounded-5 p-3 shadow-lg">
             <div class="container w-100 col-6">
                 <div class="my-4">Matricula
-                    <div class="input-group my-1" id="formPlate">
+                    <div class="input-group my-1 needs-validation">
                         <span class="input-group-text bg-secondary" id="basic-addon1">                    
                             <i class="fa fa-car text-white"></i>
                         </span>
                         <input type="text" class="form-control" 
-                                placeholder="ex: 54-DN-75" id="vehiclePlate" maxlength="8" />
+                                placeholder="ex: 54-DN-75" id="vehiclePlate" maxlength="8" required />
+                        <div class="invalid-feedback">
+                            Por Favor insira Matricula
+                        </div>
                     </div>
                 </div>
                 <div class="my-4">Cor
-                    <div class="input-group my-1">
+                    <div class="input-group my-1 needs-validation" >
                         <span class="input-group-text bg-secondary" id="basic-addon1">                    
                             <i class="fa fa-fill-drip text-white"></i>
                         </span>
                         <input type="text" class="form-control"
-                                placeholder="ex: Vermelho" id="vehicleColor" maxlength="20" />    
+                                placeholder="ex: Vermelho" id="vehicleColor" maxlength="20" required />
+                        <div class="invalid-feedback">
+                            Por Favor insira a cor
+                        </div>    
                     </div>
                 </div>
-                <div class="my-4 ">Disponiveis Lugares
+                <!-- <div class="my-4  needs-validation" id="selectNumbSits">Disponiveis Lugares
                     <div class="input-group my-1">
-                    <label class="input-group-text bg-secondary" for="inputGroupSelect01">
-                        <i class="fa fa-people-group text-white"></i>
-                    </label>
-                    <select class="form-select" id="availableSits">
-                        <option disabled selected value="0">Selecinar número de lugares</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
+                        <label class="input-group-text bg-secondary" for="inputGroupSelect01">
+                            <i class="fa fa-people-group text-white"></i>
+                        </label>
+                        <select class="form-select" required>
+                            <option class="is-invalid" disabled selected value="0">Selecinar número de lugares</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>  
+                </div> -->
+
+                <div class="my-4 needs-validation">Disponiveis Lugares
+                    <div class="input-group my-1">
+                        <label class="input-group-text bg-secondary" for="inputGroupSelect01">
+                            <i class="fa fa-people-group text-white"></i>
+                        </label>
+                        <select id="availableSits" class="form-select" required>
+                            <option disabled selected value="">Selecinar Capacidade</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Por Favor insira o número de lugares
+                        </div>
                     </div>  
                 </div>
 
@@ -82,12 +108,16 @@
         </div>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <script>
+            var validationSpaces = document.getElementsByClassName("needs-validation"); 
             var userPlate = document.getElementById("vehiclePlate");
             var color = document.getElementById("vehicleColor");
             var sits = document.getElementById("availableSits");
             var specs = document.getElementById("vehicleSpecs");
             var btn = document.getElementById("submitBtn");
             var data = [], vehicle = new Array();
+            
+            clearPage();
+            console.log(validationSpaces)
 
             $( document ).ready(
                 plateFunction,
@@ -100,6 +130,7 @@
             }   
 
             function clicarBotao(){
+                var numFaltas = 0;
                 data = JSON.parse(localStorage.getItem('users'))[0];
                 console.log(data.idUser);
 
@@ -112,22 +143,28 @@
                 });
                 console.log(vehicle);
 
+                numFaltas = validateSpaces(numFaltas);
+            
+                if(numFaltas >= 1)
+                    console.log("não pode ir mais")
+                else{
+                    localStorage.setItem('userVehicles', JSON.stringify(vehicle));
+                    clearPage();
+                    verPerfilPage();
+                }
+            }
+
+            function clearPage(){
                 userPlate.value = '';
                 color.value = '';
-                sits.value = 0;
+                sits.value = "";
                 specs.value = '';
-                localStorage.setItem('userVehicles', JSON.stringify(vehicle));
-
-                verPerfilPage();
             }
 
             function plateFunction($, undefined) {
                 "use strict";
                 $(function() {
-                    var $form = $( "#formPlate" );
-                    var $input = $form.find( "input" );
-
-                    $input.on( "keyup", function( event ) {
+                    userPlate.addEventListener( "keyup", function( event ) {
                         // When user select text in the document, also abort.
                         var selection = window.getSelection().toString();
                         if ( selection !== '' ) {
@@ -152,6 +189,29 @@
                    
                 });
                 
+            }
+
+            function validateSpaces(numFaltas){
+                for (let index = 0; index < validationSpaces.length; index++) {
+                    const element = validationSpaces[index];
+                    element.classList.add("was-validated");
+                    
+                    console.log(element)
+                    if(index === 2){
+                        if (!element.childNodes[1].childNodes[3].validity.valid)
+                            numFaltas++;
+                    }
+                    else{
+                        console.log(element)
+                        console.log(element.childNodes[3])
+                        console.log(element.childNodes[3].validity.valid)
+                        if (!element.childNodes[3].validity.valid)
+                            numFaltas++;
+                    }
+                }
+                
+                console.log(numFaltas)
+                return numFaltas;
             }
         </script>
     </body>
