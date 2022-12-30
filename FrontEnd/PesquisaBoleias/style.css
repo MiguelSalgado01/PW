@@ -3,14 +3,28 @@ body {
 }
 /*tABELA DE DADOS*/
 #table{
-/*margin-top: 60px;
+margin-top: auto;
 /*color: #11747c;*/
 }
 /*Seta */
 #seta{
 cursor:pointer;
 }
-
+div.dtsp-panesContainer button.dtsp-collapseAll{
+  border-color: rgba(var(--ismatDark), 0.5);
+  background-color: rgba(var(--ismatLight), 0.5);
+  font-size: small;
+}
+div.dtsp-panesContainer button.dtsp-showAll{
+  border-color: rgba(var(--ismatDark), 0.5);
+  background-color: rgba(var(--ismatLight), 0.5);
+  font-size: small;
+}
+div.dtsp-panesContainer button.dtsp-clearAll{
+  border-color: rgba(var(--ismatDark), 0.5);
+  background-color: rgba(var(--ismatLight), 0.5);
+  font-size: small;
+}
 
 :root {
 --ismatDark: 17, 117, 124;

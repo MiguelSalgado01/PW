@@ -1,12 +1,12 @@
-$(document).ready(function() {
-    $('#tabela').DataTable({
-        language: {
-            searchPanes: {
-                clearMessage: 'Delete Select Options',
-                collapse: {0: 'Search Options', _: 'Search Options (%d)'}
+//https://datatables.net/extensions/searchpanes/examples/customisation/buttonText.html
+//colapse button tirar se for necessario
+//$.fn.dataTable.SearchPanes.defaults.collapse = false;
+//$.fn.dataTable.SearchPane.defaults.collapse = false;
 
-            }
-        },
+/*
+
+$(document).ready(function (){
+    let table = new DataTable('#tabela', {
         responsive:{
             details: {
                 display:  $.fn.dataTable.Responsive.display.modal({
@@ -17,12 +17,8 @@ $(document).ready(function() {
                 }),
                 renderer: $.fn.dataTable.Responsive.renderer.tableAll()
             }
-        } , 
-        buttons: [      
-            'searchPanes'
-        ],
-        dom: 'Bfrtip'
+        }  
     });
-});
-
-
+    
+})
+*/
