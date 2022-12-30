@@ -26,3 +26,4 @@ $(document).ready(function() {
 });
 
 
+//https://datatables.net/examples/ajax/null_data_source.html
