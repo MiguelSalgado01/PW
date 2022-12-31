@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  lang="en">
+<html lang="en">
 <head>
 
     <meta charset="UTF-8" />
@@ -19,35 +19,26 @@
     <title>Document</title>
 </head>
 <body>
-<div class="container-fluid p-0 w-100 h-100">
-    <div class="position-fixed py-3 px-3 top w-100 h-25 bg-primary">
-        <a style="cursor:pointer" onclick=" perfilPage()"> 
+<div class="container-fluid p-0 w-100">
+    <div class="bg-primary p-3">
+        <a style="cursor:pointer;" onclick="perfilPage()"> 
             <i class="fa fa-2xl fa-arrow-left text-white"></i>    
-        </a>     
+        </a>   
     </div>
-    <div class="d-flex flex-column h-50 justify-content-center align-items-center p-1">
+    <div class="bg-primary" style="padding-top: 20%"></div>
+    <div class="d-flex flex-column align-items-center">
         <img
-                style="z-index: 1"
+                style="z-index: 1; margin-top: -20%;"
                 src="https://cdn-icons-png.flaticon.com/512/147/147142.png"
                 alt=""
-                class="rounded-circle border border-3 my-5"
+                class="rounded-circle border border-3 align-items-center"
                 width="164px"
                 height="164px"
-
+                display = "block";
         />
         <button class="btn btn-primary mt-4 my-0" onclick="editarPerfilPage()">EDITAR PERFIL</button>
     </div>
     <div class="d-flex flex-column justify-content-center align-items-center my-5 p-4 w-100 h-25">
-        <div class="row w-100 justify-content-between align-items-center mb-4">
-            <div class="col-10">
-                <h5>Definir Caracteristicas</h5>
-            </div>
-            <div class="col-2">
-                <a style="cursor:pointer" onclick=""> 
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a> 
-            </div>
-        </div>
         <div class="d-flex flex-column justify-content-center align-items-center w-100 h-25">
             <div class="row w-100 justify-content-between align-items-center mb-6">
                 <div class="col-10">

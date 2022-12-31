@@ -39,12 +39,13 @@
 /* for main section */
 
 .active-cont {
-  margin-left: 250px;
+  padding-top: 0%;
 }
 
 #menu-btn:focus {
   box-shadow: 0 0 0 0.25rem #7952b344;
 }
+
 
 :root {
     --ismatDark: 17, 117, 124;
