@@ -38,15 +38,6 @@
                         </input>
                     </div>
                 </div>
-                <!-- <div class="my-4">Numero de Estudante
-                    <div class="input-group my-1">
-                        <span class="input-group-text bg-secondary" id="basic-addon1">                    
-                            <i class="fa fa-university text-white"></i>
-                        </span>
-                        <input type="text" class="form-control" id="schoolNumber">    
-                        </input>
-                    </div>
-                </div> -->
                 <div class="my-4">Contacto
                     <div class="input-group my-1">
                         <span class="input-group-text bg-secondary" id="basic-addon1">                    
@@ -89,7 +80,6 @@
         <script type="text/javascript" src="../JsonFiles/profile.json"></script>
         <script>
             var userName = document.getElementById("username");
-            // var numb = document.getElementById("schoolNumber");
             var contact = document.getElementById("userContact");
             var pass = document.getElementById("userPassword");
             var gender = document.getElementById("userGender");
@@ -97,8 +87,7 @@
             var array = [], editedBoxes = [];
             
             $( document ).ready(
-                // getData('../JsonFiles/profile.json').then(
-                getData('../JsonFiles/profle.json').then(
+                getData('../JsonFiles/profile.json').then(
                     function(dataFromJson){ //success function
                         array = dataFromJson.user;
                         userName.placeholder = array[0].Name; 
