@@ -27,3 +27,4 @@ $(document).ready(function() {
 
 
 //https://datatables.net/examples/ajax/null_data_source.html
+//https://datatables.net/examples/api/select_single_row.html
