@@ -1,0 +1,266 @@
+<html lang="en">
+    <head>
+        <title>Registar</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <!--JQUERY-->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js" integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+         <!--BootStrap 5.2-->
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+        <link rel="stylesheet" href="style.css"> 
+    </head>
+    <body class="bg-secondary">
+        
+        <h1 class="py-4 text-white text-center fw-bold">Registar Utilizador</h1>
+        <div class="position-absolute start-50 translate-middle" style="top: 18%; z-index: 1;">
+            <div class="d-flex justify-content-center">
+                <img
+                        src="../../Logo.png"
+                        alt=""
+                        class="border border-2 rounded-circle"
+                        width="160px"
+                        height="160px"
+                />
+            </div>
+        </div>
+        <div style="margin-top: 20%; width: 90%; padding-top: 15%; padding-bottom: 5%;" class="container bg-light rounded-5 shadow-lg">
+            <div class=" w-100 col-6">
+                <div class="my-4">Nome Utilizador
+                    <div class="input-group my-1 needs-validation">
+                        <span class="input-group-text bg-secondary" id="basic-addon1">                    
+                            <i class="fa fa-user text-white"></i>
+                        </span>
+                        <input type="text" class="form-control" id="username" placeholder="ex: Nikola Tesla" maxlength="50" required>
+                        <div class="invalid-feedback">Por Favor insira o Nome Utilizador</div>
+                    </div>
+                </div>
+                <div class="my-4">Numero de Estudante
+                    <div class="input-group my-1 needs-validation" id="groupNumEstud">
+                        <span class="input-group-text bg-secondary" id="basic-addon1">                    
+                            <i class="fa fa-university text-white"></i>
+                        </span>
+                        <input type="text" class="form-control" id="schoolNumber" minlength="9" maxlength="9" placeholder="ex: a21711943" required> 
+                        <div class="invalid-feedback">Por Favor insira o Numero de Estudante</div>
+                    </div>
+                </div>
+                <div class="my-4">Contacto
+                    <div class="input-group my-1 needs-validation">
+                        <span class="input-group-text bg-secondary" id="basic-addon1">                    
+                            <i class="fa fa-phone text-white"></i>
+                        </span>
+                        <input type="text" class="form-control" id="userContact" minlength="9" maxlength="9" placeholder="ex: 919100756" required> 
+                        <div class="invalid-feedback">
+                            Por Favor insira Contacto
+                        </div>
+                    </div>
+                </div>
+                <div class="my-4">Password
+                    <div class="input-group my-1 needs-validation">
+                        <span class="input-group-text bg-secondary" id="basic-addon1">                    
+                            <i class="fa fa-key text-white"></i>
+                        </span>
+                        <input type="text" class="form-control" id="userPassword" placeholder="ex: Bobin@D3Te5L@" required> 
+                        <div class="invalid-feedback">
+                            Por Favor insira Password
+                        </div>
+                    </div>
+                </div>
+                <div class="my-4">Confirmar Password
+                    <div class="input-group my-1 needs-validation" id="rePass">
+                        <span class="input-group-text bg-secondary" id="basic-addon1">                    
+                            <i class="fa fa-key text-white"></i>
+                        </span>
+                        <input type="text" class="form-control" id="confPassword" 
+                            placeholder="ex: Bobin@D3Te5L@" required> 
+                        <div class="invalid-feedback">
+                            Por Favor insira a mesma Password
+                        </div>
+                    </div>
+                </div>
+                <div class="my-4">Genero
+                    <div class="input-group my-1 needs-validation">
+                        <label class="input-group-text bg-secondary" for="userGender">
+                            <i class="fa fa-venus-mars text-white"></i>
+                        </label>
+                        <select class="form-select" id="userGender" required>
+                            <option disabled selected value="">Selecione o seu Genero</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Masculino">Masculino</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Por Favor insira Genero
+                        </div>
+                    </div>  
+                </div>
+                <div class="container">
+                    <div class="container">
+                        <div class="row"> 
+                            <button class="btn btn-primary col-5 my-2" type="submit" id="RegistBtn" onclick="clicarBotao()">Registar</button> 
+                            <div class="col-2"></div>
+                            <button class="btn btn-outline-primary col-5 my-2" type="submit" id="LogBtn" onclick="LoginPage()">Tenho Conta</button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+</script>
+<script>
+    var validationSpaces = document.getElementsByClassName("needs-validation"); 
+    var userName = document.getElementById("username");
+    var userNumb = document.getElementById("schoolNumber");
+    var userPhone = document.getElementById("userContact");
+    var userPass = document.getElementById("userPassword");
+    var userConfPass = document.getElementById("confPassword");
+    var userGen = document.getElementById("userGender");
+    var buttonSubmit = document.getElementById("RegistBtn");
+    var rePassVal = 0, user = new Array();
+
+    $( document ).ready(
+        events,
+    );
+
+    function events($, undefined) {
+        "use strict";
+        $(function() {
+            userPhone.addEventListener( "keyup", function( event ) {
+                var $this = $(this);
+                var input = $this.val();
+                userPhone.value = input.replace(/[A-Za-z\W\s\._\-]/g, '');
+            }); 
+            userNumb.addEventListener( "keyup", function( event ) {
+                var $this = $(this);
+                var input = $this.val();
+                var firstChar = input[0];
+                var minusFirst = input.slice(1, input.size);
+                userNumb.value = firstChar.replace(/[0-9\\s\._\-]+/g, '') + minusFirst.replace(/[A-Za-z\\s\._\-]+/g, '');
+            }); 
+        }); 
+    }
+
+    function clicarBotao(){
+        var numFaltas = 0, idUser = 1, users =  [];
+
+        numFaltas = validateSpaces(numFaltas);
+        users = JSON.parse(localStorage.getItem('users'));
+
+        if(users !== null)
+            idUser++;
+
+        if(numFaltas === 0){
+            user.push({
+                "idUser" : idUser,
+                "studentNumb" : userNumb.value,
+                "Name" : userName.value,
+                "contact" : userPhone.value,
+                "password" : userPass.value,
+                "gender": userGen.value
+            });
+            console.log(users);
+
+            localStorage.setItem('users', JSON.stringify(user));
+            clearPage();
+            LoginPage();
+        }
+    }
+
+    function validateNumEstudante(numFaltas) {
+        var thisInvalid = 0;
+        var group = document.getElementById("groupNumEstud")
+        thisInvalid = validateLenght(numFaltas, userNumb);
+        users = JSON.parse(localStorage.getItem('users'));
+
+        if(thisInvalid === 1)
+        group.childNodes[5].innerHTML = "Por Favor insira o Numero de Estudante"
+
+        users.forEach(element => {
+            if(userNumb.value === element.studentNumb){
+                group.childNodes[5].innerHTML = "Numero de Estudante já existe"
+                invalidate(userNumb);
+                numFaltas++;
+            }
+        });
+
+        return numFaltas + thisInvalid;
+    }
+    
+    function validateLenght(numFaltas, classNam) {
+        
+        if(classNam.value.length !== classNam.minLength && classNam.value.length !== userPhone.maxLenght){
+            invalidate(classNam);
+            numFaltas++;
+        }
+        else
+            validate(classNam);
+
+        return numFaltas;
+    }
+
+    function validateConfPassword() {
+        if(userConfPass.value !== userPass.value){
+            invalidate(userConfPass);
+            rePassVal = 1;
+        }
+        else
+            validate(userConfPass);
+    }
+
+  
+
+    function invalidate(classNam) {
+        classNam.classList.add("is-invalid");
+        classNam.classList.remove("is-valid");
+        classNam.classList.remove("was-validated");
+    }
+
+    function validate(classNam) {
+        classNam.classList.add("is-valid");
+        classNam.classList.remove("is-invalid")
+        classNam.classList.add("was-validated");
+    }
+
+
+    function validateSpaces(numFaltas){
+        validateConfPassword();
+
+        for (let index = 0; index < validationSpaces.length; index++) {
+            const element = validationSpaces[index];
+            if(element.id !== "rePass" && element.childNodes[3].id !== "userContact"&& element.childNodes[3].id !== "schoolNumber"){
+                element.classList.add("was-validated");
+                
+            }
+
+            if(element.childNodes[3].id === "userContact")
+                    numFaltas = validateLenght(numFaltas, userPhone);
+
+            if(element.childNodes[3].id === "schoolNumber")
+                    numFaltas = validateNumEstudante(numFaltas);
+            
+            if (!element.childNodes[3].validity.valid)
+                numFaltas++;   
+        }
+        numFaltas += rePassVal; 
+
+        console.log(numFaltas)
+        return numFaltas;
+    }
+
+    function clearPage(){
+
+    for (let index = 0; index < validationSpaces.length; index++) {
+            const element = validationSpaces[index];
+            element.childNodes[3].value = ''
+            element.classList.remove("was-validated");
+    }
+    userConfPass.classList.remove("is-valid");
+}
+
+function LoginPage(){
+    window.location.href = "http://127.0.0.1:5500/FrontEnd/Login/LogIn.html";
+}   
+
+</script>
+</html>
