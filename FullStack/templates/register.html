@@ -96,9 +96,9 @@
                 <div class="container">
                     <div class="container">
                         <div class="row"> 
-                            <button class="btn btn-primary col-5 my-2" type="submit" id="RegistBtn" onclick="clicarBotao()">Registar</button> 
+                            <button class="btn btn-primary col-5 my-2" type="submit" id="RegistBtn" >Registar</button> <!--onclick="clicarBotao()"--> 
                             <div class="col-2"></div>
-                            <button class="btn btn-outline-primary col-5 my-2" type="submit" id="LogBtn" onclick="LoginPage()">Tenho Conta</button> 
+                            <button class="btn btn-outline-primary col-5 my-2" type="submit" id="LogBtn" >Tenho Conta</button> <!--onclick="LoginPage()"-->
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
 
             localStorage.setItem('users', JSON.stringify(user));
             clearPage();
-            LoginPage();
+            // LoginPage();
         }
     }
 

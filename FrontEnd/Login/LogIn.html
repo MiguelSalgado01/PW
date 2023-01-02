@@ -42,7 +42,7 @@
                             <span class="input-group-text bg-secondary" id="basic-addon1">                    
                                 <i class="fa fa-key text-white"></i>
                             </span>
-                            <input type="text" class="form-control" id="userPassword" placeholder="ex: Bobin@D3Te5L@" required> 
+                            <input type="password" class="form-control" id="userPassword" placeholder="ex: Bobin@D3Te5L@" required> 
                             <div class="invalid-feedback">
                                 Por Favor insira Password
                             </div>
@@ -74,6 +74,7 @@
         var rePassVal = 0, user = new Array();
 
         function clicarBotao(){
+            console.log(userPass.value)
             var numFaltas = 0, idUser = 1, users =  [];
 
             numFaltas = validateSpaces(numFaltas);
@@ -173,10 +174,6 @@
 
 
         function validateSpaces(numFaltas){
-            // for (let index = 0; index < validationSpaces.length; index++) {
-            //         const element = validationSpaces[index];
-            //     }
-
             numFaltas = validateNameAndNumb(numFaltas)
 
             numFaltas += rePassVal; 

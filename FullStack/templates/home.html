@@ -18,7 +18,7 @@
         <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-pie.min.js"></script>
         <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}"> 
         <title>Home</title>
     </head>
     <body>
@@ -86,9 +86,8 @@
             </div>
         </nav>
         <div class="container position-absolute" style="top: 10%; height: 75%;">
-            <div class="row justify-content-center">
-                <div class="col-6 col-sm-3 text-center">
-                    <h4>Reservas</h4>
+           <div class="row justify-content-center" >
+                <div class="col-9">
                     <div class="container bg-light border border-dark  p-1 my-1 rounded-2">
                         <div class="row align-items-center">
                             <div class="col-9 text-start">
@@ -102,142 +101,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-sm-3 text-center">
-                    <h4>Boleias</h4>
-                    <div class="container bg-light border border-dark  p-1 my-1 rounded-2">
-                    <div class="row align-items-center">
-                        <div class="col-9 text-start">
-                                <h7 >User Boleia </h7>
-                        </div>
-                        <div class="col-3 ">
-                            <a style="cursor:pointer" onclick="">
-                                <i class="fa fa-arrow-right "></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="row 2 justify-content-center">
-                <div class="col-6 col-sm-3">
-                    <div class="container bg-light border border-dark  p-1 my-1 rounded-2">
-                        <div class="row align-items-center">
-                            <div class="col-9 text-start">
-                                <h7 >User Reserva </h7>
-                            </div>
-                            <div class="col-3 ">
-                                <a style="cursor:pointer" onclick="">
-                                    <i class="fa fa-arrow-right "></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-3">
-                    <div class="container bg-light border border-dark  p-1 my-1 rounded-2">
-                        <div class="row align-items-center">
-                            <div class="col-9 text-start">
-                                <h7 >User Boleia </h7>
-                            </div>
-                            <div class="col-3 ">
-                                <a style="cursor:pointer" onclick="">
-                                    <i class="fa fa-arrow-right "></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-6 col-sm-3">
-                    <div class="container bg-light border border-dark  p-1 my-1 rounded-2">
-                        <div class="row align-items-center">
-                            <div class="col-9 text-start">
-                                <h7 >User Reserva </h7>
-                            </div>
-                            <div class="col-3 ">
-                                <a style="cursor:pointer" onclick="">
-                                    <i class="fa fa-arrow-right "></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-3">
-
-                    <div class="container bg-light border border-dark  p-1 my-1  rounded-2">
-                        <div class="row align-items-center">
-                            <div class="col-9 text-start">
-                                <h7 >User Boleia </h7>
-                            </div>
-                            <div class="col-3 ">
-                                <a style="cursor:pointer" onclick="">
-                                    <i class="fa fa-arrow-right "></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center" >
-                <div class="col-6 col-sm-3">
-                    <div class="container bg-light border border-dark  p-1 my-1 rounded-2">
-                        <div class="row align-items-center">
-                            <div class="col-9 text-start">
-                                <h7 >User Reserva </h7>
-                            </div>
-                            <div class="col-3 ">
-                                <a style="cursor:pointer" onclick="">
-                                    <i class="fa fa-arrow-right "></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-3">
-                    <div class="container bg-light border border-dark  p-1 my-1 rounded-2">
-                        <div class="row align-items-center">
-                            <div class="col-9 text-start">
-                                <h7 >User Boleia </h7>
-                            </div>
-                            <div class="col-3 ">
-                                <a style="cursor:pointer" onclick="">
-                                    <i class="fa fa-arrow-right "></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center" >
-                <div class="col-6 col-sm-3">
-                    <div class="container bg-light border border-dark  p-1 my-1 rounded-2">
-                        <div class="row align-items-center">
-                            <div class="col-9 text-start">
-                                <h7 >User Reserva </h7>
-                            </div>
-                            <div class="col-3 ">
-                                <a style="cursor:pointer" onclick="">
-                                    <i class="fa fa-arrow-right "></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-3">
-                    <div class="container bg-light border border-dark  p-1 my-1 rounded-2">
-                        <div class="row align-items-center">
-                            <div class="col-9 text-start">
-                                <h7 >User Boleia </h7>
-                            </div>
-                            <div class="col-3 ">
-                                <a style="cursor:pointer" onclick="">
-                                    <i class="fa fa-arrow-right "></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
         <div class="position-absolute start-50 translate-middle" style="top:70%; width: 75%">

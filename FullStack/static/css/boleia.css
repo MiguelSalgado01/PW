@@ -13,20 +13,20 @@ cursor:pointer;
 div.dtsp-panesContainer button.dtsp-collapseAll{
   border-color: rgba(var(--ismatDark), 0.5);
   background-color: rgba(var(--ismatLight), 0.5);
-  font-size: 8px;
+  font-size: 11px;
   width: auto;
   
 }
 div.dtsp-panesContainer button.dtsp-showAll{
   border-color: rgba(var(--ismatDark), 0.5);
   background-color: rgba(var(--ismatLight), 0.5);
-  font-size: 8px;
+  font-size: 11px;
   width: auto; 
 }
 div.dtsp-panesContainer button.dtsp-clearAll{
   border-color: rgba(var(--ismatDark), 0.5);
   background-color: rgba(var(--ismatLight), 0.5);
-  font-size: 8px;
+  font-size: 11px;
   width: auto;
 }
 

@@ -15,7 +15,7 @@
         <header class=" rounded-4 p-3">
             <div class="row align-items-center">
                 <div class="col-2">
-                    <a style="cursor:pointer" onclick=" verPerfilPage()"> 
+                    <a style="cursor:pointer" > <!--onclick=" verPerfilPage()"-->
                         <i class="fa fa-2xl fa-arrow-left text-white"></i>    
                     </a>              
                 </div>
@@ -87,28 +87,28 @@
             var array = [], editedBoxes = [];
             
             $( document ).ready(
-                getData('../JsonFiles/profile.json').then(
-                    function(dataFromJson){ //success function
-                        array = dataFromJson.user;
-                        userName.placeholder = array[0].Name; 
-                        contact.placeholder = array[0].contact; 
-                        pass.placeholder = array[0].password; 
-                        gender.value = array[0].gender;
-                        localStorage.setItem('users', JSON.stringify(array));
-                    },  
-                    function(err){ //error function
-                        var error = [];
-                        error.push({
-                            "idErro" : err.status,
-                            "ErroMessage" : err.statusText
-                        });
+                // getData('../JsonFiles/profile.json').then(
+                //     function(dataFromJson){ //success function
+                //         array = dataFromJson.user;
+                //         userName.placeholder = array[0].Name; 
+                //         contact.placeholder = array[0].contact; 
+                //         pass.placeholder = array[0].password; 
+                //         gender.value = array[0].gender;
+                //         localStorage.setItem('users', JSON.stringify(array));
+                //     },  
+                //     function(err){ //error function
+                //         var error = [];
+                //         error.push({
+                //             "idErro" : err.status,
+                //             "ErroMessage" : err.statusText
+                //         });
 
-                        console.log(err ); 
-                        console.log(err.statusText, err.status); 
-                        localStorage.setItem('error', JSON.stringify(error));
-                        errorPage();
-                    }
-                ),
+                //         console.log(err ); 
+                //         console.log(err.statusText, err.status); 
+                //         localStorage.setItem('error', JSON.stringify(error));
+                //         errorPage();
+                //     }
+                // ),
                  btn.addEventListener("click", clicarBotao)
             );
 
@@ -141,7 +141,7 @@
                 pass.placeholder = array[0].password; 
                 gender.value = array[0].gender;
 
-                verPerfilPage();
+                // verPerfilPage();
             }
 
             function determineEditedBoxes() {
