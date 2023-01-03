@@ -1,11 +1,27 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, jsonify, render_template, request, redirect, url_for
+from models import UserRideRole
+
 
 app = Flask(__name__)
 
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///rides.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db = SQLAlchemy()
+
 @app.route('/')
 def index():
-    return render_template("LogIn.html")
+    useRideRole1 = UserRideRole('1', 'Condutor')
+    useRideRole2 = UserRideRole('2', 'Passageiro')
+
+    try:
+        db.session.add(useRideRole1)
+        db.session.add(useRideRole2)
+        db.session.commit()
+    except:
+        render_template("error.html")
+
     
 @app.route('/criarBoleia')
 def criarBoleia():
@@ -54,3 +70,6 @@ def pesquisarBoleias():
 
 if __name__ == "__main__":
     app.run(debug=True) 
+
+    # users = db.query.all()
+    # print(jsonify(users))
