@@ -35,14 +35,33 @@ def registarUser(nomeUtilizador="",numeroEstudante="",contactoUtilizador="",pass
             try:
                 # new_user = User(name=nomeUtilizador,student_number=numeroEstudante,phone_number=contactoUtilizador,password=passEstudante,gender=genderEstudante)
                 # print(User.query.filter_by(name=nomeUtilizador))
-                # print(User.query.filter_by(student_number=numeroEstudante))
-                userQuery = db.one_or_404(db.select(User).filter_by(name=nomeUtilizador))
-                db.session.add(new_user)
-                db.session.commit()
-                return userQuery
+                # print(User.query.filter_by(student_number=numeroEstudante)) 
+                # db.session.add(new_user)
+                # db.session.commit()
+
+                # userQuery = db.one_or_404(db.select(User).filter_by(name=nomeUtilizador)) # 
+
+                queryP1 = db.session.query(User).filter(User.name == nomeUtilizador).first()
+
+                # se username já existe queryP1 = db.session.query(User).filter(User.name == nomeUtilizador).first()
+                # manda mensagem pro front
+
+                # se studentNumb já existe queryP1 = db.session.query(User).filter(User.student_number == numeroEstudante).first()
+                # manda mensagem pro front
+
+                # se algum do campos não tiver preenchido 
+                # manda mensagem pro front
+
+                # sql = 'select * from user where user.name =' + nomeUtilizador
+                # queryP1 = db.session.execute(sql).first()
+                print(queryP1)
+
+                
+                return 'userQuery'
             except:
                 return 'error'
-        return redirect('/login')
+
+    return redirect('/login')
         
     
 if __name__ == "__main__":

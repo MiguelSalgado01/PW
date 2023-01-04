@@ -2,9 +2,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from datetime import datetime
 
-# app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///rides.db'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///rides.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy()
 	
@@ -19,11 +19,11 @@ class UserRideRole(db.Model):
 class User(db.Model):
 	__tablename__ = 'user' 
 	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(80))
-	student_number = db.Column(db.Integer(), unique=True)
-	phone_number = db.Column(db.Integer(), unique=True)
-	password = db.Column(db.Unicode(30))
-	gender = db.Column(db.String(10))
+	name = db.Column(db.String(80), unique=True, nullable=False)
+	student_number = db.Column(db.Integer(), unique=True, nullable=False)
+	phone_number = db.Column(db.Integer(), nullable=False)
+	password = db.Column(db.Unicode(30), nullable=False)
+	gender = db.Column(db.String(10), nullable=False)
 	registration_date = db.Column(db.DateTime, default=datetime.now)
 	last_login_date = db.Column(db.DateTime, default=datetime.now)
 	active = db.Column(db.Boolean())  
@@ -35,12 +35,12 @@ class User(db.Model):
 class Vehicle(db.Model): 
 	__tablename__ = 'vehicle' 
 	id = db.Column(db.Integer, primary_key=True)
-	owner_id = db.Column('owner_id', db.ForeignKey('user.id')) 
+	owner_id = db.Column('owner_id', db.ForeignKey('user.id'), nullable=False) 
 	owner = db.relationship('User', backref='vehicle')
-	license_plate = db.Column(db.String(8), unique=True)
-	color = db.Column(db.String(20))
-	number_of_seats = db.Column(db.Integer())
-	vehicle_specs = db.Column(db.String(200))
+	license_plate = db.Column(db.String(8), unique=True, nullable=False)
+	color = db.Column(db.String(20), nullable=False)
+	number_of_seats = db.Column(db.Integer(), nullable=False)
+	vehicle_specs = db.Column(db.String(200), nullable=True)
 	is_deleted = db.Column(db.Boolean, default=False)
 	createdAt = db.Column(db.DateTime, default=datetime.now)
 	updatedAt = db.Column(db.DateTime, default=datetime.now)
@@ -52,15 +52,15 @@ class Ride(db.Model):
 	__tablename__ = 'ride' 
 	__table_args__ = (db.UniqueConstraint('user_id', 'vehicle_id', 'ride_date'),)
 	id = db.Column(db.Integer, primary_key=True)
-	user_id = db.Column('user_id', db.ForeignKey('user.id')) 
+	user_id = db.Column('user_id', db.ForeignKey('user.id'), nullable=False) 
 	user = db.relationship('User', backref='ride')
-	vehicle_id = db.Column('vehicle_id', db.ForeignKey('vehicle.id'))
-	user = db.relationship('Vehicle', backref='ride')
-	ride_date = db.Column(db.DateTime)
-	ride_scheduled_time = db.Column(db.DateTime)
-	local_destiny = db.Column(db.String(40))
-	local_origin = db.Column(db.String(40))
-	number_of_available_seats = db.Column(db.Integer())	
+	vehicle_id = db.Column('vehicle_id', db.ForeignKey('vehicle.id'), nullable=False)
+	vehicle = db.relationship('Vehicle', backref='ride')
+	ride_date = db.Column(db.DateTime, nullable=False)
+	ride_scheduled_time = db.Column(db.DateTime, nullable=False)
+	local_destiny = db.Column(db.String(40), nullable=False)
+	local_origin = db.Column(db.String(40), nullable=False)
+	number_of_available_seats = db.Column(db.Integer(), nullable=False)	
 	createdAt = db.Column(db.DateTime, default=datetime.now)
 	updatedAt = db.Column(db.DateTime, default=datetime.now)
 
@@ -70,7 +70,7 @@ class Ride(db.Model):
 class ReservationState(db.Model): 
 	__tablename__ = 'reservation_state' 
 	id =  db.Column(db.Integer, primary_key=True)
-	state = db.Column(db.String(20)) #se boleia esta em progresso, espera, cancelada
+	state = db.Column(db.String(20), nullable=False) #se boleia esta em progresso, espera, cancelada
 	
 	
 	
@@ -78,11 +78,11 @@ class Reservation(db.Model):
 	__tablename__ = 'reservation' 
 	__table_args__ = (db.UniqueConstraint('passenger_id', 'ride_id'),)
 	id = db.Column(db.Integer, primary_key=True)
-	passenger_id = db.Column('passenger_id', db.ForeignKey('user.id'))
+	passenger_id = db.Column('passenger_id', db.ForeignKey('user.id'), nullable=False)
 	passenger = db.relationship('User', backref='reservation')
-	ride_id = db.Column('ride_id', db.ForeignKey('ride.id'))
+	ride_id = db.Column('ride_id', db.ForeignKey('ride.id'), nullable=False)
 	ride = db.relationship('Ride', backref='reservation')
-	reservation_state_id = db.Column('reservation_state_id', db.ForeignKey('reservation_state.id'), default=1)
+	reservation_state_id = db.Column('reservation_state_id', db.ForeignKey('reservation_state.id'), default=1, nullable=False)
 	reservation_state = db.relationship('ReservationState', backref='reservation')
 	createdAt = db.Column(db.DateTime, default=datetime.now)
 	updatedAt = db.Column(db.DateTime, default=datetime.now)
