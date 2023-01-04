@@ -33,13 +33,13 @@ def registarUser(nomeUtilizador="",numeroEstudante="",contactoUtilizador="",pass
         
         with app.app_context():
             try:
-                new_user = User(name=nomeUtilizador,student_number=numeroEstudante,phone_number=contactoUtilizador,password=passEstudante,gender=genderEstudante)
+                # new_user = User(name=nomeUtilizador,student_number=numeroEstudante,phone_number=contactoUtilizador,password=passEstudante,gender=genderEstudante)
                 # print(User.query.filter_by(name=nomeUtilizador))
                 # print(User.query.filter_by(student_number=numeroEstudante))
                 userQuery = db.one_or_404(db.select(User).filter_by(name=nomeUtilizador))
                 db.session.add(new_user)
-                print(userQuery)
                 db.session.commit()
+                return userQuery
             except:
                 return 'error'
         return redirect('/login')
