@@ -2,11 +2,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from datetime import datetime
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///rides.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///rides.db'
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 	
 class UserRideRole(db.Model):
 	__tablename__ = 'user_ride_role'
@@ -17,6 +17,7 @@ class UserRideRole(db.Model):
 		return f"UserRole('{self.name}')"
 	
 class User(db.Model):
+	__tablename__ = 'user' 
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(80))
 	student_number = db.Column(db.Integer(), unique=True)
@@ -92,13 +93,13 @@ class Reservation(db.Model):
 if __name__ == "__main__":
 	with app.app_context():
 		db.create_all()
-
 		# db.drop_all()
 
 		# UserRideRole.query.filter_by(name='Condutor').delete() #delete a row
-		
+		############################################
 		# useRideRole1 = UserRideRole(name='Condut')
 		# db.session.add(useRideRole1) # add a row
-		
+		############################################
+
 		db.session.commit()
 
