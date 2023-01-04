@@ -12,15 +12,7 @@ db = SQLAlchemy()
 
 @app.route('/')
 def index():
-    useRideRole1 = UserRideRole('1', 'Condutor')
-    useRideRole2 = UserRideRole('2', 'Passageiro')
-
-    try:
-        db.session.add(useRideRole1)
-        db.session.add(useRideRole2)
-        db.session.commit()
-    except:
-        render_template("error.html")
+   return render_template("error.html")
 
     
 @app.route('/criarBoleia')
