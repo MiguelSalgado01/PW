@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask import redirect, render_template, url_for
 from forms import UserRegisterForm
+from models import User, db
 
 modulo2 = Blueprint('modulo2', __name__)
 
@@ -9,13 +10,20 @@ def register():
     form = UserRegisterForm()
 
     if form.validate_on_submit():
-        return redirect('/login')
+        try:
+                new_user = User(name=form.username.data,student_number=form.student_number.data,phone_number=form.phone_number.data,password=form.password.data,gender=form.password.data)
+                db.session.add(new_user)
+                db.session.commit()
+                return redirect('/login')
+        except:
+            return 'error'
         
     return render_template("registarUser.html", title="Registar User", form=form)
 
 
 
-###################################################33
+
+###################################################
 
  # print(db.session.query(User).filter_by(User.student_number == "a2434235245").first())
     # user = db.one_or_404(db.select(User).filter_by(name="a2434235245"))
