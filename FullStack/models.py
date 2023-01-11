@@ -86,8 +86,8 @@ class Reservation(db.Model):
 		return '<User %r>' % self.id
 
 
-class Admin (db.Model):
-	email = db.Column (('user_id'))
+# class Admin (db.Model):
+# 	email = db.Column (('user_id'))
 # if __name__ == "__main__":
 # 	with app.app_context():
 # 		print("few")
