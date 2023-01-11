@@ -3,6 +3,7 @@ from models import db
 
 from modulo1 import modulo1
 from modulo2 import modulo2
+from modulo3 import modulo3
 
 def create_app(config_filename):
 	app = Flask(__name__)
@@ -15,6 +16,7 @@ def create_app(config_filename):
 	
 	app.register_blueprint(modulo1)
 	app.register_blueprint(modulo2)
+	app.register_blueprint(modulo3)
 	
 	return app
 
