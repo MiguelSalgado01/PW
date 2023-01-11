@@ -28,22 +28,22 @@
                 </div>
             </div>
             <form class=" w-100 col-6" method="POST" action="" novalidate>
-                {{form.hidden_tag()}}
+                {{formFront.hidden_tag()}}
                 <fieldset class="my-4">
                     <div class="from-group">
-                        {{form.username.label(class="form-control-label")}}
+                        {{formFront.username.label(class="form-control-label")}}
                         <div class="input-group my-1">
                             <span class="input-group-text bg-secondary" id="basic-addon1">                    
                                 <i class="fa fa-user text-white"></i>
                             </span>
-                            {% if form.username.errors %}
-                                {{form.username(class="form-control is-invalid", id="username", placeholder="ex: Nikola Tesla")}}
+                            {% if formFront.username.errors %}
+                                {{formFront.username(class="form-control is-invalid", id="username", placeholder="ex: Nikola Tesla")}}
                                 {% else %}
-                                {{form.username(class="form-control", id="username", placeholder="ex: Nikola Tesla")}}
+                                {{formFront.username(class="form-control", id="username", placeholder="ex: Nikola Tesla")}}
                             {% endif %}
                         </div>
-                        {% if form.username.errors %}
-                        {% for error in form.username.errors %}
+                        {% if formFront.username.errors %}
+                        {% for error in formFront.username.errors %}
                             <span>{{error}}</span>
                         {% endfor %}
                         {% else %}
@@ -52,19 +52,19 @@
                 </fieldset>
                 <fieldset class="my-4">
                     <div class="from-group">
-                        {{form.student_number.label(class="form-control-label")}}
+                        {{formFront.student_number.label(class="form-control-label")}}
                         <div class="input-group my-1">
                             <span class="input-group-text bg-secondary" id="basic-addon1">                    
                                 <i class="fa fa-university text-white"></i>
                             </span>
-                            {% if form.student_number.errors %}
-                                {{form.student_number(class="form-control is-invalid", id="schoolNumber", placeholder="ex: a21711943")}}
+                            {% if formFront.student_number.errors %}
+                                {{formFront.student_number(class="form-control is-invalid", id="schoolNumber", placeholder="ex: a21711943")}}
                                 {% else %}
-                                {{form.student_number(class="form-control", id="schoolNumber", placeholder="ex: a21711943")}}
+                                {{formFront.student_number(class="form-control", id="schoolNumber", placeholder="ex: a21711943")}}
                             {% endif %}
                         </div>
-                        {% if form.student_number.errors %}
-                        {% for error in form.student_number.errors %}
+                        {% if formFront.student_number.errors %}
+                        {% for error in formFront.student_number.errors %}
                             <span>{{error}}</span>
                         {% endfor %}
                         {% else %}
@@ -73,19 +73,19 @@
                 </fieldset>
                 <fieldset class="my-4">
                     <div class="from-group">
-                        {{form.phone_number.label(class="form-control-label")}}
+                        {{formFront.phone_number.label(class="form-control-label")}}
                         <div class="input-group my-1">
                             <span class="input-group-text bg-secondary" id="basic-addon1">                    
                                  <i class="fa fa-phone text-white"></i>
                             </span>
-                            {% if form.phone_number.errors %}
-                                {{form.phone_number(class="form-control is-invalid", id="userContact", placeholder="ex: 919100756")}}
+                            {% if formFront.phone_number.errors %}
+                                {{formFront.phone_number(class="form-control is-invalid", id="userContact", placeholder="ex: 919100756")}}
                                 {% else %}
-                                {{form.phone_number(class="form-control", id="userContact", placeholder="ex: 919100756")}}
+                                {{formFront.phone_number(class="form-control", id="userContact", placeholder="ex: 919100756")}}
                             {% endif %}
                         </div>
-                        {% if form.phone_number.errors %}
-                        {% for error in form.phone_number.errors %}
+                        {% if formFront.phone_number.errors %}
+                        {% for error in formFront.phone_number.errors %}
                             <span>{{error}}</span>
                         {% endfor %}
                         {% else %}
@@ -94,19 +94,19 @@
                 </fieldset>
                 <fieldset class="my-4">
                     <div class="from-group">
-                        {{form.password.label(class="form-control-label")}}
+                        {{formFront.password.label(class="form-control-label")}}
                         <div class="input-group my-1">
                             <span class="input-group-text bg-secondary" id="basic-addon1">                    
                                 <i class="fa fa-key text-white"></i>
                             </span>
-                            {% if form.password.errors %}
-                                {{form.password(class="form-control is-invalid", id="userPassword", placeholder="ex: Bobin@D3Te5L@")}}
+                            {% if formFront.password.errors %}
+                                {{formFront.password(class="form-control is-invalid", id="userPassword", placeholder="ex: Bobin@D3Te5L@")}}
                                 {% else %}
-                                {{form.password(class="form-control", id="userPassword", placeholder="ex: Bobin@D3Te5L@")}}
+                                {{formFront.password(class="form-control", id="userPassword", placeholder="ex: Bobin@D3Te5L@")}}
                             {% endif %}
                         </div>
-                        {% if form.password.errors %}
-                        {% for error in form.password.errors %}
+                        {% if formFront.password.errors %}
+                        {% for error in formFront.password.errors %}
                             <span>{{error}}</span>
                         {% endfor %}
                         {% else %}
@@ -115,19 +115,19 @@
                 </fieldset>
                 <fieldset class="my-4">
                     <div class="from-group">
-                        {{form.confirm_password.label(class="form-control-label")}}
+                        {{formFront.confirm_password.label(class="form-control-label")}}
                         <div class="input-group my-1">
                             <span class="input-group-text bg-secondary" id="basic-addon1">                    
                                 <i class="fa fa-key text-white"></i>
                             </span>
-                            {% if form.confirm_password.errors %}
-                                {{form.confirm_password(class="form-control is-invalid", id="confPassword", placeholder="ex: Bobin@D3Te5L@")}}
+                            {% if formFront.confirm_password.errors %}
+                                {{formFront.confirm_password(class="form-control is-invalid", id="confPassword", placeholder="ex: Bobin@D3Te5L@")}}
                                 {% else %}
-                                {{form.confirm_password(class="form-control", id="confPassword", placeholder="ex: Bobin@D3Te5L@")}}
+                                {{formFront.confirm_password(class="form-control", id="confPassword", placeholder="ex: Bobin@D3Te5L@")}}
                             {% endif %}
                         </div>
-                        {% if form.confirm_password.errors %}
-                        {% for error in form.confirm_password.errors %}
+                        {% if formFront.confirm_password.errors %}
+                        {% for error in formFront.confirm_password.errors %}
                             <span>{{error}}</span>
                         {% endfor %}
                         {% else %}
@@ -137,19 +137,19 @@
                 
                 <fieldset class="my-4">
                     <div class="from-group">
-                        {{form.user_gender.label(class="form-control-label")}}
+                        {{formFront.user_gender.label(class="form-control-label")}}
                         <div class="input-group my-1">
                             <span class="input-group-text bg-secondary" id="basic-addon1">                    
                                 <i class="fa fa-venus-mars text-white"></i>
                             </span>
-                            {% if form.user_gender.errors %}
-                                {{form.user_gender(class="form-select is-invalid", id="userGender")}}
+                            {% if formFront.user_gender.errors %}
+                                {{formFront.user_gender(class="form-select is-invalid", id="userGender")}}
                                 {% else %}
-                                {{form.user_gender(class="form-select", id="userGender")}}
+                                {{formFront.user_gender(class="form-select", id="userGender")}}
                             {% endif %}
                         </div>
-                        {% if form.user_gender.errors %}
-                        {% for error in form.user_gender.errors %}
+                        {% if formFront.user_gender.errors %}
+                        {% for error in formFront.user_gender.errors %}
                             <span>{{error}}</span>
                         {% endfor %}
                         {% else %}
@@ -159,9 +159,9 @@
                 <div class="container">
                     <div class="container">
                         <div class="row"> 
-                            {{form.submitRegist(class="btn btn-primary col-5 my-2", id="RegistBtn")}}
+                            {{formFront.submitRegist(class="btn btn-primary col-5 my-2", id="RegistBtn")}}
                             <div class="col-2"></div>
-                            <button class="btn btn-outline-primary col-5 my-2" type="button" id="LogBtn" name="LogBtn">Tenho Conta</button> 
+                            {{formFront.login(class="btn btn-primary col-5 my-2", id="LogBtn")}}
                         </div>
                     </div>
                 </div>

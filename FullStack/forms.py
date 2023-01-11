@@ -10,6 +10,7 @@ class UserRegisterForm(FlaskForm):
     confirm_password = PasswordField(label="Confirmar Password", validators=[InputRequired(), EqualTo("password")])
     user_gender =  SelectField(label="Genero", validators=[DataRequired()], choices=[(" ","Selecionar Genero"), ("0","Feminino"), ("1","Masculino")])
     submitRegist = SubmitField(label="Registar")
+    login = SubmitField(label="Tenho Conta")
 
 class UserLoginForm(FlaskForm):
     student_number = StringField(label="Numero Estudante", validators=[InputRequired(), Length(min=9, max=9)])

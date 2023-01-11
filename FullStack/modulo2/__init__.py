@@ -8,9 +8,12 @@ modulo2 = Blueprint('modulo2', __name__)
 @modulo2.route('/registar', methods=['GET', 'POST'])
 def register():
     form = UserRegisterForm()
-
+    
     if request.method == 'POST':
-        if form.validate_on_submit():
+        print(form.submitRegist.data)
+        print(form.login.data)
+
+        if form.validate_on_submit() and form.submitRegist.data == True:
             verifyStudentNumb = db.session.query(User).filter(User.student_number == form.student_number.data).first()
             verifyUsername = db.session.query(User).filter(User.name == form.username.data).first()
             if(verifyStudentNumb == None and verifyUsername == None):
@@ -30,12 +33,25 @@ def register():
             elif(verifyUsername != None):
                 form.username.errors.append("Username number already exists")
         
-        elif request.form['LogBtn'] == 'Tenho Conta':
+        elif form.login.data == True:
             return redirect('/login')
        
     elif request.method == 'GET': 
-        return render_template("registarUser.html", title="Registar User", form=form)
+        return render_template("registarUser.html", title="Registar User", formFront=form)
        
+    return render_template("registarUser.html", title="Registar User", formFront=form)
+
+
+
+
+
+
+
+
+
+
+
+
 
     # queryP1 = db.session.query(User).filter(User.student_number == "a32432155").first()
     # print(queryP1)
