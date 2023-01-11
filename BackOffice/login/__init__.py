@@ -6,5 +6,5 @@ login = Blueprint('login', __name__)
 
 @login.route('/')
 def index():
-    return render_template("/adminkit/static/pages-sign-in.html")
+    return render_template("static/pages-sign-in.html")
 
