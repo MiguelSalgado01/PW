@@ -34,36 +34,61 @@
 							</p>
 						</div>
 
-						<div class="card">
-							<div class="card-body">
-								<div class="m-sm-4">
-									<div class="text-center">
-										<img src="{{url_for('static', filename='img/avatars/avatar.jpg')}}" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
+						<form class=" w-100 col-6" method="POST" action="" novalidate>
+							{{formFront.hidden_tag()}}
+								<fieldset class="my-4">
+									<div class="from-group">
+										{{formFront.student_number.label(class="form-control-label")}}
+										<div class="input-group my-1" id="groupNumb">
+											<span class="input-group-text bg-secondary" id="basic-addon1">                    
+												<i class="fa fa-user text-white"></i>
+											</span>
+											{% if formFront.student_number.errors %}
+												{{formFront.student_number(class="form-control is-invalid", id="studentNumber", placeholder="ex: a35465575")}}
+												{% else %}
+												{{formFront.student_number(class="form-control", id="studentNumber",  placeholder="ex: a35465575")}}
+											{% endif %}
+										</div>
+										{% if formFront.student_number.errors %}
+										{% for error in formFront.student_number.errors %}
+											<span>{{error}}</span>
+										{% endfor %}
+										{% else %}
+										{% endif %}
 									</div>
-									<form>
-										<div class="mb-3">
-											<label class="form-label">Email</label>
-											<input class="form-control form-control-lg" type="email" name="email"  id="email" placeholder="Enter your email" />
+								</fieldset>
+			
+								<fieldset class="my-4">
+									<div class="from-group">
+										{{formFront.password.label(class="form-control-label")}}
+										<div class="input-group my-1" id="groupPass">
+											<span class="input-group-text bg-secondary" id="basic-addon1">                    
+												<i class="fa fa-user text-white"></i>
+											</span>
+											{% if formFront.password.errors %}
+												{{formFront.password(class="form-control is-invalid", type="password", id="userPassword", placeholder="ex: Bobin@D3Te5L@")}}
+												{% else %}
+												{{formFront.password(class="form-control", type="password", id="userPassword",  placeholder="ex: Bobin@D3Te5L@")}}
+											{% endif %}
 										</div>
-										<div class="mb-3">
-											<label class="form-label">Password</label>
-											<input class="form-control form-control-lg" type="password" name="password" id ="pass" placeholder="Enter your password" />
-											<small>
-            <a href="index.html">Forgot password?</a>
-          </small>
-										</div>
-										<div>
-											<label class="form-check">
-            <input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked>
-            <span class="form-check-label">
-              Remember me next time
-            </span>
-          </label>
-										</div>
-										<div class="text-center mt-3">
-											<a href="index.html" id = "bt" class="btn btn-lg btn-primary">Sign in</a>
-											<!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
-										</div>
+										{% if formFront.password.errors %}
+										{% for error in formFront.password.errors %}
+											<span>{{error}}</span>
+										{% endfor %}
+										{% else %}
+										{% endif %}
+									</div>
+									<a href="http://127.0.0.1:5500/FrontEnd/ForgotPass/ForgotPass.html">
+										<h6><dt> Esqueces-te a Password ?</dt></h6>
+									</a>
+								</fieldset>
+								<div class="container">
+									<div class="container">
+										<div class="row"> 
+											<div class="col-1"></div>
+											{{formFront.login(class="btn btn-primary col-10 my-2", id="LogBtn")}}
+											<div class="col-1"></div>
+											<div class="col-1"></div>
 									</form>
 								</div>
 							</div>
