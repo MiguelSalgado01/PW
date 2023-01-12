@@ -9,6 +9,7 @@ homeModule = Blueprint('homeModule', __name__)
 @homeModule.route('/homePage', methods=['GET', 'POST'])
 def home():
    homeForm = HomeForm()
+   activeUser = current_user
    if current_user.is_authenticated:
       print("Noice")
    else:
@@ -16,10 +17,22 @@ def home():
 
    if request.method == 'POST':
       print(1)
+      if homeForm.data['verPerfil']:
+         print(2)
+         return redirect('logout')
       if homeForm.data['criarBoleia']:
+         print(2)
+         return redirect('logout')
+      if homeForm.data['pesquisar']:
+         print(2)
+         return redirect('logout')
+      if homeForm.data['reservas']:
+         print(2)
+         return redirect('logout')
+      if homeForm.data['endSession']:
          print(2)
          return redirect('logout')
       else:
          return render_template("home.html", title="Home")
 
-   return render_template("home.html", title="Home", frontHomeForm = homeForm)
+   return render_template("home.html", title="Home", frontHomeForm = homeForm, activeUser=activeUser)

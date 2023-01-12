@@ -40,8 +40,8 @@
                             />
                         </div>
                         <div class="row mt-3">
-                            <h4 class="px-3">Diogo Marcelino</h4>
-                            <h5 class="px-3">a22006969</h5>
+                            <h4 class="px-3">{{activeUser.name}}</h4>
+                            <h5 class="px-3">{{activeUser.student_number}}</h5>
                         </div>
                         <div class="px-3" tyle="padding-top: 30%;">
                             {{frontHomeForm.verPerfil(class="btn btn-primary btn-sm w-100", id="verProf")}}
@@ -60,29 +60,25 @@
                     </li>
                     <li class="row nav-item px-3" style="padding-top: 15%;">
                         <div class="col-9 text-light">
-                            <h5>PESQUISAR BOLEIA</h5>
+                            <h5>{{frontHomeForm.pesquisar.label()}}</h5>
                         </div>
                         <div class="col-3" style="cursor:pointer">
-                            <i class="fa-solid fa-arrow-right text-light" name="action" value="pesquisar" onclick="pesquisasPage()"></i>
+                            {{frontHomeForm.hidden_tag()}}
+                            <button class="fa-solid fa-arrow-right text-light" type="submit" name="pesquisar" value="searchRide" style=" background-color: transparent; border: none;"></button>
                         </div>
                     </li>
                     <li class="row nav-item px-3" style="padding-top: 15%;">
                         <div class="col-9 text-light">
-                            <h5>MINHAS RESERVAS</h5>
+                            <h5>{{frontHomeForm.reservas.label()}}</h5>
                         </div>
                         <div class="col-3"  style="cursor:pointer">
-                            <i class="fa-solid fa-arrow-right text-light" name="action" value="reversas" onclick="reservasPage()"></i>
+                            {{frontHomeForm.hidden_tag()}}
+                            <button class="fa-solid fa-arrow-right text-light" type="submit" name="reservas" value="reserveRide" style=" background-color: transparent; border: none;"></button>
                         </div>
                     </li>
                 </ul>
                 <div class="position-absolute start-50 translate-middle" style="bottom: 2%;">
-                    <div class="col-12 d-flex justify-content-center">
-                        <button class="btn btn-primary"  name="action" value="endSession">
-                            <a> 
-                                TERMINAR SESSÃO 
-                            </a> 
-                        </button>
-                    </div>
+                    {{frontHomeForm.endSession(class="col-12 d-flex justify-content-center btn btn-primary", id="endSessionBtn")}}
                 </div>
             </nav>
             <div class="container position-absolute" style="top: 10%; height: 75%;">
