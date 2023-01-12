@@ -11,13 +11,15 @@ def adicionarVeiculo():
    vehicleForm = VehicleForm()
 
    activeUser = current_user
-   if current_user.is_authenticated:
+   userId = activeUser.id
+   print(userId)
+   if activeUser.is_authenticated:
       print("Noice")
    else:
       print("Not Noice")
 
-   if request.method == 'POST':
-      print(1)
+   if request.method == 'POST' and activeUser.is_authenticated:
+      print(userId)
       if vehicleForm.data['goBack']:
          print(2)
          return redirect('verPerfilPage')
@@ -25,16 +27,19 @@ def adicionarVeiculo():
       if vehicleForm.validate_on_submit() and vehicleForm.regist.data == True:
          vehicle = db.session.query(Vehicle).filter(Vehicle.license_plate == vehicleForm.plate.data).first()
          print(vehicle)
-         # if(vehicle == None):
-         #    try:
-         #       new_user = User(name=form.username.data,student_number=form.student_number.data,phone_number=form.phone_number.data,password=form.password.data,gender=form.user_gender.data)
-         #       db.session.add(new_user)
-         #       db.session.commit()
-         #       return redirect('/login')
-         #    except:
-         #       return 'error'
+         if(vehicle == None):
+            try:
+               new_vehicle = Vehicle(owner_id = activeUser.id, license_plate=vehicleForm.plate.data, 
+                  color=vehicleForm.color.data,number_of_seats=vehicleForm.sits.data,
+                  vehicle_specs = vehicleForm.Specs.data)
+               db.session.add(new_vehicle)
+               db.session.commit()
+               return redirect('verPerfilPage')
 
-         # elif(vehicle != None):
-         #    vehicleForm.plate.errors.append("Plate already exists")
+            except:
+               return 'error'
+
+         elif(vehicle != None):
+            vehicleForm.plate.errors.append("Plate already exists")
 
    return render_template("registarVeiculo.html", title="Associar Veiculo", frontVehicleForm = vehicleForm)
