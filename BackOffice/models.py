@@ -91,6 +91,7 @@ class Reservation(db.Model):
 class Admin (db.Model,UserMixin):
     __tablename__= 'Admin'
     id =  db.Column(db.Integer, primary_key=True)
+    student_number = db.Column(db.String(9), unique=True, nullable=False)
     user_id = db.Column('user_id', db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', backref='Admin')
     

@@ -29,6 +29,7 @@ class RideForm(FlaskForm):
 
 
 class AdminForm(FlaskForm):
-    student_number = StringField(id = "email", validators=[InputRequired(), Length(min=9, max=9)])
-    password = PasswordField(label="pass", validators=[InputRequired(),  Length(min=8, max=20)])
-    login = StringField(id="bt")
+    email = StringField(label ="email", validators=[InputRequired(), Length(min=9, max=255)])
+    student_number = StringField(label="Numero Estudante", validators=[InputRequired(), Length(min=9, max=9)])
+    password = PasswordField(label="pass", validators=[InputRequired(),  Length(min=8, max=255)])
+    login = SubmitField(id="bt")
