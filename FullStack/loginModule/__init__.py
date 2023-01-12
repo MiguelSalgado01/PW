@@ -43,6 +43,6 @@ def doLogin():
    return render_template("login.html", title="Login", formFront=form)
 
 @loginModule.route('/logout')
-def logout():
+def logOut():
    logout_user()
    return redirect('login')

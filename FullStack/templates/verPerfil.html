@@ -1,71 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"
-    />
-    <script
-            src="https://kit.fontawesome.com/86102a7658.js"
-            crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/comum.css')}}"> 
-    <title>Document</title>
-</head>
-<body>
-<div class="container-fluid p-0 w-100">
-    <div class="bg-primary p-3">
-        <a style="cursor:pointer;" onclick="perfilPage()"> 
-            <i class="fa fa-2xl fa-arrow-left text-white"></i>    
-        </a>   
-    </div>
-    <div class="bg-primary" style="padding-top: 20%"></div>
-    <div class="d-flex flex-column align-items-center">
-        <img
-                style="z-index: 1; margin-top: -20%;"
-                src="https://cdn-icons-png.flaticon.com/512/147/147142.png"
-                alt=""
-                class="rounded-circle border border-3 align-items-center"
-                width="164px"
-                height="164px"
-                display = "block";
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+                href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+                rel="stylesheet"
+                integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+                crossorigin="anonymous"
         />
-        <button class="btn btn-primary mt-4 my-0" onclick="editarPerfilPage()">EDITAR PERFIL</button>
-    </div>
-    <div class="d-flex flex-column justify-content-center align-items-center my-5 p-4 w-100 h-25">
-        <div class="d-flex flex-column justify-content-center align-items-center w-100 h-25">
-            <div class="row w-100 justify-content-between align-items-center mb-6">
-                <div class="col-10">
-                    <h5>Associar Veiculo</h5>
-                </div>
-                <div class="col-2">
-                    <a style="cursor:pointer" onclick="registarVeiculoPage()"> 
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a> 
+        <script src="https://kit.fontawesome.com/86102a7658.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/comum.css')}}"> 
+        <title>Document</title>
+    </head>
+    <body>
+        {{frontProfileForm.hidden_tag()}}
+        <form class="container-fluid p-0 w-100" method="POST">
+            <div class="bg-primary p-3">
+                <a style="cursor:pointer"> 
+                    {{frontProfileForm.hidden_tag()}} 
+                    <button class="fa fa-2xl fa-arrow-left text-white" type="submit" name="goBack" value="EcraPrevio" style=" background-color: transparent; border: none;"></button> 
+                </a>   
+            </div>
+            <div class="bg-primary" style="padding-top: 20%"></div>
+            <div class="d-flex flex-column align-items-center">
+                <img
+                        style="z-index: 1; margin-top: -20%;"
+                        src="https://cdn-icons-png.flaticon.com/512/147/147142.png"
+                        alt=""
+                        class="rounded-circle border border-3 align-items-center"
+                        width="164px"
+                        height="164px"
+                        display = "block";
+                />
+                
+                {{frontProfileForm.editarPerfil(class="btn btn-primary btn-sm", id="editProf")}}
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center my-5 p-4 w-100 h-25">
+                <div class="d-flex flex-column justify-content-center align-items-center w-100 h-25">
+                    <div class="row w-100 justify-content-between align-items-center mb-6">
+                        <div class="col-10">
+                            <h5>{{frontProfileForm.adicionarVeiculo.label()}}</h5>
+                        </div>
+                        <div class="col-2">
+                            <a style="cursor:pointer" onclick="registarVeiculoPage()"> 
+                                {{frontProfileForm.hidden_tag()}} 
+                                <button class="fa fa-arrow-right" type="submit" name="adicionarVeiculo" value="EcraPrevio" style=" background-color: transparent; border: none;"></button> 
+                            </a> 
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-</body>
-<script>
-    function editarPerfilPage(){
-        window.location.href = "http://127.0.0.1:5500/FrontEnd/EditarPerfil/EditorPerfil.html";
-    } 
-    
-    function perfilPage(){
-        window.location.href = "http://127.0.0.1:5500/FrontEnd/dashboard/Home.html";
-    } 
+        </form>
+    </body>
+    <script>
+        function editarPerfilPage(){
+            window.location.href = "http://127.0.0.1:5500/FrontEnd/EditarPerfil/EditorPerfil.html";
+        } 
+        
+        function perfilPage(){
+            window.location.href = "http://127.0.0.1:5500/FrontEnd/dashboard/Home.html";
+        } 
 
-    function registarVeiculoPage(){
-        window.location.href = "http://127.0.0.1:5500/FrontEnd/RegistarVeiculo/RegistarVeiculo.html";
-    }
+        function registarVeiculoPage(){
+            window.location.href = "http://127.0.0.1:5500/FrontEnd/RegistarVeiculo/RegistarVeiculo.html";
+        }
 
-</script>
+    </script>
 </html>
