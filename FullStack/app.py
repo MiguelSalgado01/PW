@@ -4,7 +4,7 @@ from models import db
 
 from loginModule import loginModule
 from registerModule import registerModule
-from modulo3 import modulo3
+from rideandreservation import rideandreservation
 from homeModule import homeModule
 
 from models import User
@@ -28,7 +28,7 @@ def create_app(config_filename):
 	
 	app.register_blueprint(loginModule)
 	app.register_blueprint(registerModule)
-	app.register_blueprint(modulo3)
+	app.register_blueprint(rideandreservation)
 	app.register_blueprint(homeModule)
 	
 	return app
