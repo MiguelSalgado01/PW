@@ -7,7 +7,7 @@ login = Blueprint('login', __name__)
 
 @login.route('/')
 def index():
-    return render_template("pages-sign-in.html")
+    return redirect('/pages-sign-in')
 
   #add_admin('1')
     #admin =  db.session.query(Admin).filter(Admin.id == '1').first()
