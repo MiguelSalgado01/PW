@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "./FullStack",
+        "./FullStack",
+        "./FullStack"
+    ]
+}

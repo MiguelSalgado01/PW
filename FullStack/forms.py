@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, SelectField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length, EqualTo, InputRequired
 
 class UserRegisterForm(FlaskForm):
@@ -18,6 +18,26 @@ class UserLoginForm(FlaskForm):
     login = SubmitField(label="Login")
     toRegist = SubmitField(label="Cria Conta")
 
+class HomeForm(FlaskForm):
+    verPerfil = SubmitField(label="Ver Perfil")
+    criarBoleia = SubmitField(label="Criar Boleia")
+    pesquisar = SubmitField(label="Pesquisar Boleia")
+    reservas = SubmitField(label="Minhas Reservas")
+    endSession = SubmitField(label="Terminar Sessão")
+
+class ProfileForm(FlaskForm):
+    goBack = SubmitField(label="Ecrã Prévio")
+    editarPerfil = SubmitField(label="Editar Perfil")
+    adicionarVeiculo = SubmitField(label="Associar Veiculo")
+
+class VehicleForm(FlaskForm):
+    plate = StringField(label="Matricula", validators=[InputRequired(), Length(min=8, max=8)])
+    color = StringField(label="Cor", validators=[InputRequired(),  Length(min=2, max=20)])
+    sits = SelectField(label="Lugares Disponiveis", validators=[DataRequired()], choices=[(" ","Selecionar Capacidade"), ("1","1"), ("2","2"), ("3","3"), ("4","4"), ("5","5"), ("6","6")])
+    Specs = TextAreaField(label="Especificações", validators=[Length(max=200)])
+    regist = SubmitField(label="Guardar Veiculo")
+    goBack = SubmitField(label="Ecrã Prévio")
+    
     
 class RideForm(FlaskForm):
     vehicle = StringField(label="veiculo", validators=[InputRequired(), Length(min=9, max=9)])
@@ -27,11 +47,3 @@ class RideForm(FlaskForm):
     comGo = StringField(label="comeGo", validators=[InputRequired(),  Length(min=8, max=20)])
     comGo = StringField(label="comeGo", validators=[Length(min=8, max=20)])
     toRegist = SubmitField(label="Add Veiculo")
-
-class HomeForm(FlaskForm):
-    verPerfil = SubmitField(label="Ver Perfil")
-    criarBoleia = SubmitField(label="Criar Boleia")
-    pesquisar = SubmitField(label="Pesquisar Boleia")
-    reservas = SubmitField(label="Minhas Reservas")
-    endSession = SubmitField(label="Terminar Sessão")
-
