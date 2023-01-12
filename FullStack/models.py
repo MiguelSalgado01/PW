@@ -1,7 +1,9 @@
+from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
+	
 db = SQLAlchemy()
+
 	
 class UserRideRole(db.Model):
 	__tablename__ = 'user_ride_role'
@@ -11,7 +13,7 @@ class UserRideRole(db.Model):
 	def __repr__(self) -> str:
 		return f"UserRole('{self.name}')"
 	
-class User(db.Model):
+class User(db.Model, UserMixin):
 	__tablename__ = 'user' 
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(80), unique=True, nullable=False)
@@ -84,6 +86,9 @@ class Reservation(db.Model):
 
 	def __repr__(self) -> str:
 		return '<User %r>' % self.id
+
+
+
 
 
 # class Admin (db.Model):

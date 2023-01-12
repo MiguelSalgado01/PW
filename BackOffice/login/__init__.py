@@ -7,6 +7,9 @@ login = Blueprint('login', __name__)
 
 @login.route('/')
 def index():
+<<<<<<< HEAD
+    return render_template("pages-sign-in.html")
+=======
     #add_admin('1')
     #admin =  db.session.query(Admin).filter(Admin.id == '1').first()
     #db.session.delete(admin)
@@ -41,4 +44,5 @@ def add_admin(id_user):
     db.session.commit()   
 
 
+>>>>>>> c6536eeca5c410a2fa59ab63b0974dd3a76d9458
 
