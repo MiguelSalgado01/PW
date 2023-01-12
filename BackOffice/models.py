@@ -1,5 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_login import UserMixin , login_user, LoginManager, login_required,logout_user,current_user
+
 
 db = SQLAlchemy()
 	
@@ -86,7 +88,16 @@ class Reservation(db.Model):
 		return '<User %r>' % self.id
 
 
-# class Admin (db.Model):
+class Admin (db.Model,UserMixin):
+    __tablename__= 'Admin'
+    id =  db.Column(db.Integer, primary_key=True)
+    user_id = db.Column('user_id', db.ForeignKey('user.id'), nullable=False)
+    user = db.relationship('User', backref='Admin')
+    
+    
+    def __repr__(self) -> str:
+        return '<Admin %r>' % self.id  
+     
 # if __name__ == "__main__":
 # 	with app.app_context():
 # 		print("few")
