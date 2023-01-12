@@ -31,13 +31,13 @@ $(document).ready(function() {
         $(".reservar").click(function(e){
             e.preventDefault();
 
-            let formData={
+            let DadosReserva={
                 id: $(this).attr("id")
             }
             $.ajax({
                 url: '/reserva',
                 type: 'POST',
-                data: formData,
+                data: DadosReserva,
                 async: false,
                 success: function(data){
                     alert(data);
