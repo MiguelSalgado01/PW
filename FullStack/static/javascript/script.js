@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    $('#tabela').DataTable({
+    var events = $('#events');
+   var table = $('#tabela').DataTable({
         language: {
             searchPanes: {
                 clearMessage: 'Delete',
@@ -23,22 +24,18 @@ $(document).ready(function() {
         ],
         dom: 'Bfrtip',
         
+        select: true,
+        
     });
-
-    $('#tabela tbody').on('click', 'tr', function () {
-        if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected');
-        } else {
-            $('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-        }
-    });
-        var data = $('#tabela').DataTable().row('.selected').data();
-        console.log(data);
-    // $('#button').click(function () {
-    //     table.row('.selected').remove().draw(false);
-    // });
-   
+    table
+        .on( 'select', function ( e, dt, type, indexes ) {
+            var rowData = table.rows( indexes ).data().toArray();
+            events.prepend( '<div><b>'+type+' selection</b> - '+JSON.stringify( rowData )+'</div>' );
+        } )
+        .on( 'deselect', function ( e, dt, type, indexes ) {
+            var rowData = table.rows( indexes ).data().toArray();
+            events.prepend( '<div><b>'+type+' <i>de</i>selection</b> - '+JSON.stringify( rowData )+'</div>' );
+        } );
 });
 
 //https://datatables.net/examples/ajax/null_data_source.html
