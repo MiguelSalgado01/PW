@@ -68,113 +68,25 @@
                     <th>Data\Hora</th>
                     <th>Veiculo</th>
                     <th>NºdeLugares</th>
+                    <th>teste2</th>
+                    <th>teste3</th>
+                    <th>teste4</th>
                     </tr>
                 </thead>
                     <tbody>
-                        <tr>
-                            <td>Jose</td>
-                            <td>Lagoa</td>
-                            <td>Ismat</td>
-                            <td>14:30 20/10/2000</td>
-                            <td>Ferrari</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>Diogo</td>
-                            <td>Portimao</td>
-                            <td>Ismat</td>
-                            <td>20:30 25/11/2020</td>
-                            <td>Optimus Prime</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>Digo</td>
-                            <td>Porimao</td>
-                            <td>Ismat</td>
-                            <td>20:20 25/11/2020</td>
-                            <td>Optimus Prime</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>Miguel</td>
-                            <td>PSilves</td>
-                            <td>Ismat</td>
-                            <td>20:30 25/11/2020</td>
-                            <td>Op Prime</td>
-                            <td>21</td>
-                        </tr>
-                        <tr>
-                            <td>Dogo</td>
-                            <td>ortimao</td>
-                            <td>Imat</td>
-                            <td>22:30 25/11/2020</td>
-                            <td>timus Prime</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>Dio</td>
-                            <td>Pomao</td>
-                            <td>Iat</td>
-                            <td>20:50 2/11/2020</td>
-                            <td>Prime</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Ricardo</td>
-                            <td>Lagoa</td>
-                            <td>silves</td>
-                            <td>20:30 25/11/2020</td>
-                            <td>ime</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>Ricardo</td>
-                            <td>Lagoa</td>
-                            <td>silves</td>
-                            <td>20:30 25/11/2020</td>
-                            <td>ime</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>Rica</td>
-                            <td>Loa</td>
-                            <td>sives</td>
-                            <td>12:30 25/11/2020</td>
-                            <td>ime</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>Ricardo</td>
-                            <td>Ismat</td>
-                            <td>silves</td>
-                            <td>20:30 25/11/2020</td>
-                            <td>renault</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>Joao</td>
-                            <td>Lagoa</td>
-                            <td>silves</td>
-                            <td>20:30 25/11/2020</td>
-                            <td>ime</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>filipe</td>
-                            <td>Lagoa</td>
-                            <td>silves</td>
-                            <td>20:30 25/11/2020</td>
-                            <td>ime</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>vasco</td>
-                            <td>Lagoa</td>
-                            <td>silves</td>
-                            <td>20:30 25/11/2020</td>
-                            <td>ime</td>
-                            <td>5</td>
-                        </tr>
+                        {% for User in getUserData%}
+                       <tr>
+                            <td>{{User.id}}</td>
+                            <td>{{User.name}}</td>
+                            <td>{{User.student_number}}</td>
+                            <td>{{User.phone_number}}</td>
+                            <td>{{User.password}}</td>
+                            <td>{{User.gender}}</td>
+                            <td>{{User.registration_date}}</td>
+                            <td>{{User.last_login_date}}</td>
+                            <td>{{User.active}}</td>
+                       </tr>
+                       {% endfor %}
                 </tbody>
             </div>
         </div>
