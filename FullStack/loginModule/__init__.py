@@ -4,16 +4,18 @@ from forms import UserLoginForm
 from models import User, db
 from flask_login import login_user, logout_user, current_user
 
-modulo1 = Blueprint('modulo1', __name__)
+loginModule = Blueprint('loginModule', __name__)
 
-@modulo1.route('/')
+@loginModule.route('/')
 def index():
    return redirect('/login')
 
-@modulo1.route('/login', methods=['GET', 'POST'])
+@loginModule.route('/login', methods=['GET', 'POST'])
 def doLogin():
    if current_user.is_authenticated:
       print("Noice")
+   else:
+      print("Not Noice")
 
    form = UserLoginForm()
    
@@ -40,7 +42,7 @@ def doLogin():
    
    return render_template("login.html", title="Login", formFront=form)
 
-@modulo1.route('/logout')
+@loginModule.route('/logout')
 def logout():
    logout_user()
-   return redirect(url_for('doLogin')) 
+   return redirect('login')

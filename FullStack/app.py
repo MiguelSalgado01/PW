@@ -2,8 +2,8 @@ from flask import Flask
 from flask_login import LoginManager
 from models import db
 
-from modulo1 import modulo1
-from modulo2 import modulo2
+from loginModule import loginModule
+from registerModule import registerModule
 from modulo3 import modulo3
 from homeModule import homeModule
 
@@ -26,11 +26,10 @@ def create_app(config_filename):
 	def load_user(user_id):
 		return User.query.get(int(user_id))
 	
-	app.register_blueprint(modulo1)
-	app.register_blueprint(modulo2)
+	app.register_blueprint(loginModule)
+	app.register_blueprint(registerModule)
 	app.register_blueprint(modulo3)
 	app.register_blueprint(homeModule)
-
 	
 	return app
 

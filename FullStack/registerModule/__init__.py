@@ -4,9 +4,9 @@ from forms import UserRegisterForm
 from models import User, db
 from flask_login import login_user, logout_user, current_user
 
-modulo2 = Blueprint('modulo2', __name__)
+registerModule = Blueprint('registerModule', __name__)
 
-@modulo2.route('/registar', methods=['GET', 'POST'])
+@registerModule.route('/registar', methods=['GET', 'POST'])
 def register():
 
     form = UserRegisterForm()
