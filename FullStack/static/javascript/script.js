@@ -27,15 +27,28 @@ $(document).ready(function() {
         select: true,
         
     });
-    table
-        .on( 'select', function ( e, dt, type, indexes ) {
-            var rowData = table.rows( indexes ).data().toArray();
-            events.prepend( '<div><b>'+type+' selection</b> - '+JSON.stringify( rowData )+'</div>' );
-        } )
-        .on( 'deselect', function ( e, dt, type, indexes ) {
-            var rowData = table.rows( indexes ).data().toArray();
-            events.prepend( '<div><b>'+type+' <i>de</i>selection</b> - '+JSON.stringify( rowData )+'</div>' );
-        } );
+     
+        $(".reservar").click(function(e){
+            e.preventDefault();
+
+            let formData={
+                id: $(this).attr("id")
+            }
+            $.ajax({
+                url: '/reserva',
+                type: 'POST',
+                data: formData,
+                async: false,
+                success: function(data){
+                    alert(data);
+                    //validar status code 201 e 404 ajax
+                },
+                error: function(data){
+                    alert(data);
+                }
+            })
+        })
+      
 });
 
 //https://datatables.net/examples/ajax/null_data_source.html
