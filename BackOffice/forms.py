@@ -26,3 +26,9 @@ class RideForm(FlaskForm):
     comGo = StringField(label="comeGo", validators=[InputRequired(),  Length(min=8, max=20)])
     comGo = StringField(label="comeGo", validators=[Length(min=8, max=20)])
     toRegist = SubmitField(label="Add Veiculo")
+
+
+class AdminForm(FlaskForm):
+    student_number = StringField(id = "email", validators=[InputRequired(), Length(min=9, max=9)])
+    password = PasswordField(label="pass", validators=[InputRequired(),  Length(min=8, max=20)])
+    login = StringField(id="bt")

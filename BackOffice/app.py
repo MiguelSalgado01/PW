@@ -1,5 +1,6 @@
 from flask import Flask
-from models import db
+from flask_login import LoginManager
+from models import db,Admin
 
 from login import login
 
