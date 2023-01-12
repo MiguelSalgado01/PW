@@ -27,3 +27,11 @@ class RideForm(FlaskForm):
     comGo = StringField(label="comeGo", validators=[InputRequired(),  Length(min=8, max=20)])
     comGo = StringField(label="comeGo", validators=[Length(min=8, max=20)])
     toRegist = SubmitField(label="Add Veiculo")
+
+class HomeForm(FlaskForm):
+    verPerfil = SubmitField(label="Ver Perfil")
+    criarBoleia = SubmitField(label="Criar Boleia")
+    pesquisar = SubmitField(label="Pesquisar Boleia")
+    reservas = SubmitField(label="Minhas Reservas")
+    endSession = SubmitField(label="Terminar Sessão")
+

@@ -22,93 +22,89 @@
         <title>Home</title>
     </head>
     <body>
+        {{frontHomeForm.hidden_tag()}}
         <header class="bg-primary px-2">
             <button class="btn btn-secondary my-3" id="menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
         </header>
-        <nav class="navbar navbar-expand d-flex flex-column align-item-start bg-dark my-container" id="sidebar" style="padding-top: 0%; height: 95%;z-index: 1;">
-            <div href="#" class="navbar-brand text-light w-75">
-                <div class="row justify-content-center align-items-center ">
-                    <div class="row">
-                        <img
-                                src="https://cdn-icons-png.flaticon.com/512/147/147142.png"
-                                class="rounded"
-                                alt="avatar"
-                        />
-                    </div>
-                    <div class="row mt-3">
-                        <h4 class="px-3">Diogo Marcelino</h4>
-                        <h5 class="px-3">a22006969</h5>
-                    </div>
-                    <div class="px-3" tyle="padding-top: 30%;">
-                        <button class="btn btn-primary btn-sm w-100" onclick="verPerfilPage()">
-                            VER PERFIL
-                        </button>
+        <form method="POST">
+            <nav class="navbar navbar-expand d-flex flex-column align-item-start bg-dark my-container" id="sidebar" style="padding-top: 0%; height: 95%;z-index: 1;">
+                <div href="#" class="navbar-brand text-light w-75">
+                    <div class="row justify-content-center align-items-center ">
+                        <div class="row">
+                            <img
+                                    src="https://cdn-icons-png.flaticon.com/512/147/147142.png"
+                                    class="rounded"
+                                    alt="avatar"
+                            />
+                        </div>
+                        <div class="row mt-3">
+                            <h4 class="px-3">{{activeUser.name}}</h4>
+                            <h5 class="px-3">{{activeUser.student_number}}</h5>
+                        </div>
+                        <div class="px-3" tyle="padding-top: 30%;">
+                            {{frontHomeForm.verPerfil(class="btn btn-primary btn-sm w-100", id="verProf")}}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <ul class="position-absolute navbar-nav d-flex flex-column w-100" style="top: 45%;">
-                <li class="row nav-item px-3" style="padding-top: 15%;">
-                    <div class="col-9 text-light">
-                        <h5>CRIAR BOLEIA</h5>
-                    </div> 
-                    <div class="col-3"  style="cursor:pointer">
-                        <i class="fa-solid fa-arrow-right text-light" onclick="criarBoleiaPage()"></i>
-                    </div>
-                </li>
-                <li class="row nav-item px-3" style="padding-top: 15%;">
-                    <div class="col-9 text-light">
-                        <h5>PESQUISAR BOLEIA</h5>
-                    </div>
-                    <div class="col-3" style="cursor:pointer">
-                        <i class="fa-solid fa-arrow-right text-light" onclick="pesquisasPage()"></i>
-                    </div>
-                </li>
-                <li class="row nav-item px-3" style="padding-top: 15%;">
-                    <div class="col-9 text-light">
-                        <h5>MINHAS RESERVAS</h5>
-                    </div>
-                    <div class="col-3"  style="cursor:pointer">
-                        <i class="fa-solid fa-arrow-right text-light" onclick="reservasPage()"></i>
-                    </div>
-                </li>
-            </ul>
-            <div class="position-absolute start-50 translate-middle" style="bottom: 2%;">
-                <!-- <div class=" align-items-center justify-content-center px-3"> -->
-                    <div class="col-12 d-flex justify-content-center">
-                        <button class="btn btn-primary" onclick="LoginPage()">
-                            <a> 
-                                TERMINAR SESSÃO 
-                            </a> 
-                        </button>
-                    </div>
-            </div>
-        </nav>
-        <div class="container position-absolute" style="top: 10%; height: 75%;">
-           <div class="row justify-content-center" >
-                <div class="col-9">
-                    <h2  class="text-center">Reserva</h2>
-                    <div class="container bg-light border border-dark  p-1 my-1 rounded-2">
-                        <div class="row align-items-center">
-                            <div class="col-10 text-start">
-                                <h7 >User Reserva </h7>
-                            </div>
-                            <div class="col-2 ">
-                                <a style="cursor:pointer" onclick="">
-                                    <i class="fa fa-arrow-right "></i>
-                                </a>
+                <ul class="position-absolute navbar-nav d-flex flex-column w-100" style="top: 45%;">
+                    <li class="row nav-item px-3" style="padding-top: 15%;">
+                        <div class="col-9 text-light">
+                            <h5>{{frontHomeForm.criarBoleia.label()}}</h5>
+                        </div> 
+                        <div class="col-3"  style="cursor:pointer">
+                            {{frontHomeForm.hidden_tag()}}
+                            <button class="fa-solid fa-arrow-right text-light" type="submit" name="criarBoleia" value="criarRide" style=" background-color: transparent; border: none;"></button>
+                        </div>
+                    </li>
+                    <li class="row nav-item px-3" style="padding-top: 15%;">
+                        <div class="col-9 text-light">
+                            <h5>{{frontHomeForm.pesquisar.label()}}</h5>
+                        </div>
+                        <div class="col-3" style="cursor:pointer">
+                            {{frontHomeForm.hidden_tag()}}
+                            <button class="fa-solid fa-arrow-right text-light" type="submit" name="pesquisar" value="searchRide" style=" background-color: transparent; border: none;"></button>
+                        </div>
+                    </li>
+                    <li class="row nav-item px-3" style="padding-top: 15%;">
+                        <div class="col-9 text-light">
+                            <h5>{{frontHomeForm.reservas.label()}}</h5>
+                        </div>
+                        <div class="col-3"  style="cursor:pointer">
+                            {{frontHomeForm.hidden_tag()}}
+                            <button class="fa-solid fa-arrow-right text-light" type="submit" name="reservas" value="reserveRide" style=" background-color: transparent; border: none;"></button>
+                        </div>
+                    </li>
+                </ul>
+                <div class="position-absolute start-50 translate-middle" style="bottom: 2%;">
+                    {{frontHomeForm.endSession(class="col-12 d-flex justify-content-center btn btn-primary", id="endSessionBtn")}}
+                </div>
+            </nav>
+            <div class="container position-absolute" style="top: 10%; height: 75%;">
+                <div class="row justify-content-center" >
+                    <div class="col-9">
+                        <h2  class="text-center">Reserva</h2>
+                        <div class="container bg-light border border-dark  p-1 my-1 rounded-2">
+                            <div class="row align-items-center">
+                                <div class="col-10 text-start">
+                                    <h7 >User Reserva </h7>
+                                </div>
+                                <div class="col-2 ">
+                                    <a style="cursor:pointer" onclick="">
+                                        <i class="fa fa-arrow-right "></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
-        </div>
-        <div class="position-absolute start-50 translate-middle" style="top:70%; width: 75%">
-            <h4 class="text-center">Mais Selecionados por Si</h4>
-            <canvas id="myChart"></canvas>
-        </div>
+            <div class="position-absolute start-50 translate-middle" style="top:70%; width: 75%">
+                <h4 class="text-center">Mais Selecionados por Si</h4>
+                <canvas id="myChart"></canvas>
+            </div>
+        </form>
     </body> 
     <!--Start-->
    
