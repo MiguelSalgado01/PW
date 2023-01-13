@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    $('#tabela').DataTable({
+    var events = $('#events');
+   var table = $('#tabela').DataTable({
         language: {
             searchPanes: {
                 clearMessage: 'Delete',
@@ -21,10 +22,35 @@ $(document).ready(function() {
         buttons: [      
             'searchPanes'
         ],
-        dom: 'Bfrtip'
+        dom: 'Bfrtip',
+        
+        select: true,
+        
     });
-});
+     
+        $(".reservar").click(function(e){
+            e.preventDefault();
 
+            let DadosReserva={
+                id: $(this).attr("id")
+            }
+            $.ajax({
+                url: '/reserva',
+                type: 'POST',
+                data: DadosReserva,
+                async: false,
+                success: function(data){
+                    alert(data);
+                    //validar status code 201 e 404 ajax
+                },
+                error: function(data){
+                    alert(data);
+                }
+            })
+        })
+      
+});
 
 //https://datatables.net/examples/ajax/null_data_source.html
 //https://datatables.net/examples/api/select_single_row.html
+//https://datatables.net/extensions/select/examples/api/events.html

@@ -19,7 +19,7 @@ def home():
       print(1)
       if homeForm.data['verPerfil']:
          print(2)
-         return redirect('logout')
+         return redirect('verPerfilPage')
       if homeForm.data['criarBoleia']:
          print(2)
          return redirect('logout')

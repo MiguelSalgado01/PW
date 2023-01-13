@@ -46,5 +46,5 @@ def register():
             return redirect('/login')
        
     elif request.method == 'GET': 
-        return render_template("registarUser.html", title="Registar User", form=form)
+        return render_template("registarUser.html", title="Criar Boleia", form=form)
   

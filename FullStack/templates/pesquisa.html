@@ -71,6 +71,7 @@
                     <th>teste2</th>
                     <th>teste3</th>
                     <th>teste4</th>
+                    <th>teste5</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -85,6 +86,7 @@
                             <td>{{User.registration_date}}</td>
                             <td>{{User.last_login_date}}</td>
                             <td>{{User.active}}</td>
+                            <td><button class="reservar" id="{{User.id}}">reservar</button></td>
                        </tr>
                        {% endfor %}
                 </tbody>
