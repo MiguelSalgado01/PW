@@ -11,15 +11,14 @@ def reservation():
         return render_template("reservas.html")
     if request.method =='POST':
         id = request.form.get("id")
-        testebuscarid = db.session.query(User).filter(User.id==id).first()
-        return testebuscarid.name, 201
+        buscarid = db.session.query(Ride).filter(Ride.id==id).first()
+        return str(buscarid.id), 201
 
 @rideandreservation.route('/boleia', methods=['GET', 'POST'])
 def ride():
     ridelist = []
     getRideData = db.session.query(Ride).all()
     for ride in getRideData:
-        print (ride.vehicle_id)
         vehicle = db.session.query(Vehicle).filter(Vehicle.id == ride.vehicle_id).first()
         user = db.session.query(User).filter(User.id == ride.user_id).first()
         ridelist.append([(ride.id),(user.name),(vehicle.license_plate),(ride.ride_date),(ride.ride_scheduled_time),(ride.local_destiny),(ride.local_origin),(ride.number_of_available_seats)])
