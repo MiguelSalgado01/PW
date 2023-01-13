@@ -40,8 +40,16 @@ $(document).ready(function() {
                 data: DadosReserva,
                 async: false,
                 success: function(data){
-                    alert(data);
-                    //validar status code 201 e 404 ajax
+                    //alert(data);
+                    //validar status code 201 e 404 ajax amanha e ver modal tirar botao resevar tentar pesquisar depois
+                    // if(data[1]===201){
+                    //     alert("Parabens sabes Registar")
+                    // }
+                    // else
+                    // {
+                    //     alert("Erro es um merdas")
+                    // }
+                    console.log(data)
                 },
                 error: function(data){
                     alert(data);
