@@ -32,3 +32,7 @@ class AdminForm(FlaskForm):
     student_number = StringField(label="Numero Estudante", validators=[InputRequired(), Length(min=9, max=9)])
     password = PasswordField(label="pass", validators=[InputRequired(),  Length(min=8, max=255)])
     login = SubmitField(id="bt")
+    
+    
+
+
