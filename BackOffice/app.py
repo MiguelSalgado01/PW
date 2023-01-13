@@ -1,10 +1,10 @@
 from flask import Flask
 from flask_login import LoginManager
-from models import db,Admin
+from models import db, Admin
 
 from login import login
 
-
+   
 def create_app(config_filename):
     run = Flask(__name__)
     run.config.from_object(config_filename)
@@ -13,6 +13,7 @@ def create_app(config_filename):
 
     with run.app_context():
         db.create_all()
+        
 
     run.register_blueprint(login)
 
