@@ -9,17 +9,15 @@ login = Blueprint('login', __name__)
 def index():
     return redirect('/pages-sign-in')
 
-  #add_admin('1')
-    #admin =  db.session.query(Admin).filter(Admin.id == '1').first()
-    #db.session.delete(admin)
-    #db.session.commit()
-    #print(admin)
-
-
 @login.route('/pages-sign-in', methods=['GET', 'POST'])
 def doLogin():
     form = AdminForm()
     
+    
+    admin =  db.session.query(Admin).filter(Admin.student_number == 'a22007528').first()
+    db.session.commit()
+    print(admin)
+         
     if request.method == 'POST':
       print(form.login.data)
       
@@ -33,13 +31,20 @@ def doLogin():
            
         else:
             form.password.errors.append("Incorrenct Password")
+    
       
 
     return render_template("pages-sign-in.html", title="Login", formFront=form)
+  
+  
 
+  
+  
+'''
 def add_admin(id_user):
     new_admin = Admin(user_id = id_user)
     db.session.add(new_admin)
     db.session.commit()   
+'''
 
 

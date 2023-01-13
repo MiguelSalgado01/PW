@@ -88,30 +88,32 @@ class Reservation(db.Model):
 		return '<User %r>' % self.id
 
 
-class Admin (db.Model,UserMixin):
+class Admin (db.Model,UserMixin ):
     __tablename__= 'Admin'
     id =  db.Column(db.Integer, primary_key=True)
     student_number = db.Column(db.String(9), unique=True, nullable=False)
     user_id = db.Column('user_id', db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', backref='Admin')
+    password = db.Column(db.Unicode(30), nullable=False)
     
     
     def __repr__(self) -> str:
         return '<Admin %r>' % self.id  
      
+     	
 # if __name__ == "__main__":
 # 	with app.app_context():
 # 		print("few")
 # 		print(db.session.query(User).filter_by(student_number = "a2434235245").first())
 	
-		# db.create_all()
-		# db.drop_all()
+# 		db.create_all()
+# 		db.drop_all()
 
-	# 	# UserRideRole.query.filter_by(name='Condutor').delete() #delete a row
-	# 	############################################
-		# useRideRole1 = UserRideRole(name='Condut')
-		# db.session.add(useRideRole1) # add a row
-	# 	############################################
+# 		# UserRideRole.query.filter_by(name='Condutor').delete() #delete a row
+# 		############################################
+# 		useRideRole1 = UserRideRole(name='Condut')
+# 		db.session.add(useRideRole1) # add a row
+# 		############################################
 
-	# 	db.session.commit()
+# 		db.session.commit()
 
