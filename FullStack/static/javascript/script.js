@@ -40,13 +40,14 @@ $('#tabela').DataTable({
             let DadosReserva={
                 id: $(this).attr("id")
             }
+            console.log(DadosReserva);
             $.ajax({
                 url: '/reserva',
                 type: 'POST',
                 data: DadosReserva,
                 async: false,
                 success: function(data){
-                    //alert(data);
+                    alert(data);
                     //validar status code 201 e 404 ajax amanha e ver modal tirar botao resevar tentar pesquisar depois
                     // if(data[1]===201){
                     //     alert("Parabens sabes Registar")
