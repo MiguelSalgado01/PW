@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, SelectField, IntegerField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, SelectField, IntegerField, TextAreaField, DateField, TimeField
 from wtforms.validators import DataRequired, Length, EqualTo, InputRequired
 
 class UserRegisterForm(FlaskForm):
@@ -40,10 +40,11 @@ class VehicleForm(FlaskForm):
     
     
 class RideForm(FlaskForm):
-    vehicle = StringField(label="veiculo", validators=[InputRequired(), Length(min=9, max=9)])
-    data = StringField(label="data", validators=[InputRequired(),  Length(min=8, max=20)])
-    hora = StringField(label="hora", validators=[InputRequired(),  Length(min=8, max=20)])
-    place = StringField(label="local", validators=[InputRequired(),  Length(min=8, max=20)])
-    comGo = StringField(label="comeGo", validators=[InputRequired(),  Length(min=8, max=20)])
-    comGo = StringField(label="comeGo", validators=[Length(min=8, max=20)])
-    toRegist = SubmitField(label="Add Veiculo")
+    vehicle = SelectField('Veiculo', coerce=str, validators=[InputRequired()])
+    date = DateField(label="Data", validators=[InputRequired()])
+    hora = TimeField(label="Hora", validators=[InputRequired()])
+    place = StringField(label="Local", validators=[InputRequired(),  Length(min=3, max=20)])
+    destOrig = StringField(label="DestOrig")
+    pref = TextAreaField(label="Preferências", validators=[Length(max=120)])
+    createRide = SubmitField(label="Criar Boleia")
+    goBack = SubmitField(label="Ecrã Prévio")

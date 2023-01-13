@@ -16,21 +16,15 @@ def home():
       print("Not Noice")
 
    if request.method == 'POST':
-      print(1)
       if homeForm.data['verPerfil']:
-         print(2)
          return redirect('verPerfilPage')
-      if homeForm.data['criarBoleia']:
-         print(2)
+      elif homeForm.data['criarBoleia']:
+         return redirect('makeRides')
+      elif homeForm.data['pesquisar']:
          return redirect('logout')
-      if homeForm.data['pesquisar']:
-         print(2)
+      elif homeForm.data['reservas']:
          return redirect('logout')
-      if homeForm.data['reservas']:
-         print(2)
-         return redirect('logout')
-      if homeForm.data['endSession']:
-         print(2)
+      elif homeForm.data['endSession']:
          return redirect('logout')
       else:
          return render_template("home.html", title="Home")

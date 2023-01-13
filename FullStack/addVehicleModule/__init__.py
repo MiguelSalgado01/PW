@@ -12,9 +12,9 @@ def adicionarVeiculo():
 
    activeUser = current_user
    userId = activeUser.id
-   print(userId)
+   # print(userId)
    if activeUser.is_authenticated:
-      print("Noice")
+      print("Noice in add Vehicle")
    else:
       print("Not Noice")
 

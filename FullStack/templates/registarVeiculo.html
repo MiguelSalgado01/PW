@@ -135,14 +135,13 @@
             
             $( document ).ready(
                 plateFunction,
-                sits[0].setAttribute("disabled","selected")
+                console.log(sits),
             );
 
             function plateFunction($, undefined) {
                 "use strict";
                 $(function() {
                     userPlate.addEventListener( "keyup", function( event ) {
-                        // When user select text in the document, also abort.
                         var selection = window.getSelection().toString();
                         if ( selection !== '' ) {
                             return;

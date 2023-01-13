@@ -53,8 +53,8 @@ class Ride(db.Model):
 	user = db.relationship('User', backref='ride')
 	vehicle_id = db.Column('vehicle_id', db.ForeignKey('vehicle.id'), nullable=False)
 	vehicle = db.relationship('Vehicle', backref='ride')
-	ride_date = db.Column(db.DateTime, nullable=False)
-	ride_scheduled_time = db.Column(db.DateTime, nullable=False)
+	ride_date = db.Column(db.String(9), nullable=False)
+	ride_scheduled_time = db.Column(db.String(5), nullable=False)
 	local_destiny = db.Column(db.String(40), nullable=False)
 	local_origin = db.Column(db.String(40), nullable=False)
 	number_of_available_seats = db.Column(db.Integer(), nullable=False)	
@@ -62,7 +62,7 @@ class Ride(db.Model):
 	updatedAt = db.Column(db.DateTime, default=datetime.now)
 
 	def __repr__(self) -> str:
-		return '<User %r>' % self.id
+		return f"Ride('{self.user_id}','{self.vehicle_id}','{self.ride_date}',{self.ride_scheduled_time}','{self.local_destiny}','{self.local_origin}','{self.number_of_available_seats}')"
 
 class ReservationState(db.Model): 
 	__tablename__ = 'reservation_state' 
