@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, jsonify, request
 from flask import redirect, render_template, url_for
 from forms import RideForm
 from models import Vehicle, Ride, db, ReservationState
@@ -10,6 +10,7 @@ rides = Blueprint('rides', __name__)
 def toMakeRides():
     rideForm = RideForm()
     activeUser = current_user
+    switch = ''
 
     if current_user.is_authenticated:
         vehicle = db.session.query(Vehicle).filter(Vehicle.owner_id == activeUser.id).all()
@@ -21,7 +22,12 @@ def toMakeRides():
 
         rideForm.vehicle.choices = presets_group_list
 
+
         if(request.method == 'POST'):
+
+            defineComeAndGo()
+        
+
             if(rideForm.vehicle.data == '0'):
                 return redirect('addVehicle')
             
@@ -58,7 +64,13 @@ def toMakeRides():
     
     return render_template("criaBoleia.html", title="Criar Boleia", frontRideForm=rideForm)
 
+def defineComeAndGo():
+    jsonData = request.get_json()
+    print (jsonData['switch'])
+    comeGo_list=[("origem", ''), ("destino", '')]
 
+    if(jsonData['switch'] == 'Destino'):
+        print(comeGo_list[0][1])
 # from flask import Blueprint
 # from flask import redirect, render_template, url_for
 # from forms import UserRegisterForm

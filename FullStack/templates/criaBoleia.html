@@ -114,10 +114,10 @@
                                     {% else %}
                                     {{frontRideForm.place(class="form-control", id="town", placeholder="ex: Lagoa")}}
                                 {% endif %}
-                                <label class="switch" id="switchDetermineOrder" onchange="determineSwithPosition()">
-                                    <input type="checkbox" class="switch-input"></input>
-                                    <span class="switch-label"  data-on="Origem" data-off="Destino"></span>
-                                    <span class="switch-handle" id="determineOrder" value=""></span>
+                                <label class="switch" id="switchDetermineOrder"  onchange="determineSwithPosition()">
+                                    <input type="checkbox" class="switch-input" ></input>
+                                    <span class="switch-label"  data-on="Origem" data-off="Destino" ></span>
+                                    <span class="switch-handle" id="determineOrder"></span>
                                 </label>
                             </div>
                             {% if frontRideForm.place.errors %}
@@ -155,7 +155,7 @@
                     </fieldset>
                     <div class="container">
                         <div class="row justify-content-center ">
-                            {{frontRideForm.createRide(class="btn btn-outline-secondary col-6 my-4", id="submitBtn")}}
+                            {{frontRideForm.createRide(class="btn btn-outline-secondary col-6 my-4 submitButton", id="submitBtn")}}
                         </div>
                     </div>
                 </div>
@@ -173,19 +173,20 @@
         var vehicle = [], data = [], user, ride = [];
 
         $( document ).ready(
-            plate[0].setAttribute("disabled","selected")
+            plate[0].setAttribute("disabled","selected"),
+            detOrder.value = "Destino"
         );
 
         function determineSwithPosition() {
+            console.log(detOrder)
             if(detOrder.offsetLeft === -5){
                 swithValue = "Origem"
                 detOrder.value = "Origem"
-                console.log(detOrder.value)
+                
             }
-            else{
+            else if(detOrder.offsetLeft === 70){
                 swithValue = "Destino"
                 detOrder.value = "Destino"
-                console.log(detOrder.value)
             }
         }
 
@@ -198,5 +199,22 @@
             }
         }
 
+        $(".submitButton").click(function(e){
+            e.preventDefault();
+
+            let DadosReserva={
+                id: $(detOrder).data(detOrder)
+            }
+
+            var dataSwitch = {"switch":DadosReserva.id[0].value};
+
+            $.ajax({
+                url: '/makeRides',
+                type: 'POST',
+                dataType : 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(dataSwitch)
+            })
+        })
     </script>
 </html>
