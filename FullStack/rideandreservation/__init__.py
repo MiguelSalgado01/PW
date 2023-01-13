@@ -8,19 +8,30 @@ rideandreservation = Blueprint('rideandreservation', __name__)
 
 @rideandreservation.route('/reserva', methods=['GET', 'POST'])
 def reservation():
-    activeuser = current_user
+    activeUser = current_user
+    if activeUser.is_authenticated:
+        print("Noice")
+    else:
+        print("Not Noice")
+
     if request.method == 'GET':
         return render_template("reservas.html")
     if request.method =='POST':
         id = request.form.get("id")
         buscarid = db.session.query(Ride).filter(Ride.id==id).first()
-        criarReserva = db.session.query(User).filter(User.id==activeuser.id).first()
+        criarReserva = db.session.query(User).filter(User.id==activeUser.id).first()
         print(str(criarReserva.id))
         # return str(buscarid.local_destiny)
         return criarReserva.id
        
 @rideandreservation.route('/boleia', methods=['GET', 'POST'])
 def ride():
+    activeUser = current_user
+    if activeUser.is_authenticated:
+        print("Noice")
+    else:
+        print("Not Noice")
+    print()
     ridelist = []
     getRideData = db.session.query(Ride).all()
     for ride in getRideData:

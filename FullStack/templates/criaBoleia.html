@@ -114,10 +114,10 @@
                                     {% else %}
                                     {{frontRideForm.place(class="form-control", id="town", placeholder="ex: Lagoa")}}
                                 {% endif %}
-                                <label class="switch" id="switchDetermineOrder"  onchange="determineSwithPosition()">
+                                <label class="switch" id="switchDetermineOrder" value="Destino" onchange="determineSwithPosition()">
                                     <input type="checkbox" class="switch-input" ></input>
                                     <span class="switch-label"  data-on="Origem" data-off="Destino" ></span>
-                                    <span class="switch-handle" id="determineOrder"></span>
+                                    <span class="switch-handle" id="determineOrder" value="Destino"></span>
                                 </label>
                             </div>
                             {% if frontRideForm.place.errors %}
@@ -167,6 +167,8 @@
     </body>
     <script>
         var detOrder = document.getElementById("determineOrder");
+        var detOrderGroup = document.getElementById("switchDetermineOrder");
+        
         var plate = document.getElementById("selectVehicle");
         var btn = document.getElementById("submitBtn");
         
@@ -178,16 +180,38 @@
         );
 
         function determineSwithPosition() {
+            
+            console.log(detOrderGroup)
             console.log(detOrder)
             if(detOrder.offsetLeft === -5){
-                swithValue = "Origem"
                 detOrder.value = "Origem"
-                
             }
             else if(detOrder.offsetLeft === 70){
-                swithValue = "Destino"
                 detOrder.value = "Destino"
             }
+            console.log(detOrder)
+            console.log(detOrderGroup)
+
+
+            // $(".submitButton").click(function(e){
+            // e.preventDefault();
+
+            let DadosReserva={
+                id: $(detOrder).data(detOrder)
+            }
+
+            // var dataSwitch = {"switch":DadosReserva.id[0].value};
+            // console.log(dataSwitch)
+
+            $.ajax({
+                url: '/makeRides',
+                type: 'POST',
+                dataType : 'text',
+                contentType: 'application',
+                data: DadosReserva.id[0].value
+                // data: JSON.stringify(dataSwitch)
+            })
+        // })
         }
 
         function changedSelect() {
@@ -197,24 +221,13 @@
                 btn.classList.remove("btn-outline-secondary")
                 btn.classList.add("btn-danger")
             }
+            else{
+                btn.classList.remove("btn-danger")
+                btn.classList.add("btn-outline-secondary")
+                btn.value = "Criar Boleia"
+            }
         }
 
-        $(".submitButton").click(function(e){
-            e.preventDefault();
-
-            let DadosReserva={
-                id: $(detOrder).data(detOrder)
-            }
-
-            var dataSwitch = {"switch":DadosReserva.id[0].value};
-
-            $.ajax({
-                url: '/makeRides',
-                type: 'POST',
-                dataType : 'json',
-                contentType: 'application/json',
-                data: JSON.stringify(dataSwitch)
-            })
-        })
+        
     </script>
 </html>
