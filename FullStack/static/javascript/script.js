@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    var events = $('#events');
-   var table = $('#tabela').DataTable({
+   
+$('#tabela').DataTable({
         language: {
             searchPanes: {
                 clearMessage: 'Delete',
@@ -22,9 +22,15 @@ $(document).ready(function() {
         buttons: [      
             'searchPanes'
         ],
+        columnDefs: [
+            {
+                target: 0,
+                visible: false,
+            }],
         dom: 'Bfrtip',
         
         select: true,
+        
         
     });
      
