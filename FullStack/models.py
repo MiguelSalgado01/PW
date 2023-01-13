@@ -68,7 +68,9 @@ class ReservationState(db.Model):
 	__tablename__ = 'reservation_state' 
 	id =  db.Column(db.Integer, primary_key=True)
 	state = db.Column(db.String(20), nullable=False) #se boleia esta em progresso, espera, cancelada
-	
+	def __repr__(self) -> str:
+		return f"State('{self.id}','{self.state}')"
+
 	
 	
 class Reservation(db.Model):

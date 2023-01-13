@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask import redirect, render_template, url_for
 from forms import RideForm
-from models import Vehicle, Ride, db
+from models import Vehicle, Ride, db, ReservationState
 from flask_login import login_user, logout_user, current_user
 
 rides = Blueprint('rides', __name__)
@@ -9,7 +9,6 @@ rides = Blueprint('rides', __name__)
 @rides.route('/makeRides', methods=['GET', 'POST'])
 def toMakeRides():
     rideForm = RideForm()
-    ride = Ride()
     activeUser = current_user
 
     if current_user.is_authenticated:

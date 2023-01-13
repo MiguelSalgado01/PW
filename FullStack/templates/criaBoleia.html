@@ -110,9 +110,9 @@
                                         <i class="fa fa-map-location-dot text-white"></i>
                                     </span>
                                     {% if frontRideForm.place.errors %}
-                                    {{frontRideForm.place(class="form-control is-invalid", id="town")}}
+                                    {{frontRideForm.place(class="form-control is-invalid", id="town", placeholder="ex: Lagoa")}}
                                     {% else %}
-                                    {{frontRideForm.place(class="form-control", id="town")}}
+                                    {{frontRideForm.place(class="form-control", id="town", placeholder="ex: Lagoa")}}
                                 {% endif %}
                                 <label class="switch" id="switchDetermineOrder" onchange="determineSwithPosition()">
                                     <input type="checkbox" class="switch-input"></input>
