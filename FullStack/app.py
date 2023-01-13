@@ -9,6 +9,7 @@ from homeModule import homeModule
 from verPerfilModule import verPerfilModule
 from editProfileModule import editProfileModule
 from addVehicleModule import addVehicleModule
+from rides import rides
 
 from models import User
 
@@ -36,6 +37,7 @@ def create_app(config_filename):
 	app.register_blueprint(verPerfilModule)
 	app.register_blueprint(editProfileModule)
 	app.register_blueprint(addVehicleModule)
+	app.register_blueprint(rides)
 	
 	return app
 

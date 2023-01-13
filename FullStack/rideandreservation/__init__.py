@@ -12,7 +12,7 @@ def reservation():
     if request.method =='POST':
         id = request.form.get("id")
         testebuscarid = db.session.query(User).filter(User.id==id).first()
-        return testebuscarid.name
+        return testebuscarid.name, 201
 
 @rideandreservation.route('/boleia', methods=['GET', 'POST'])
 def ride():
