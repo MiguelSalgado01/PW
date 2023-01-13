@@ -1,5 +1,6 @@
 from flask import Blueprint
 from flask import redirect, render_template, url_for,request
+from flask_login import current_user
 from models import Reservation,Ride,db,User,Vehicle
 
 rideandreservation = Blueprint('rideandreservation', __name__)
@@ -7,13 +8,17 @@ rideandreservation = Blueprint('rideandreservation', __name__)
 
 @rideandreservation.route('/reserva', methods=['GET', 'POST'])
 def reservation():
+    activeuser = current_user
     if request.method == 'GET':
         return render_template("reservas.html")
     if request.method =='POST':
         id = request.form.get("id")
         buscarid = db.session.query(Ride).filter(Ride.id==id).first()
-        return str(buscarid.id), 201
-
+        criarReserva = db.session.query(User).filter(User.id==activeuser.id).first()
+        print(str(criarReserva.id))
+        # return str(buscarid.local_destiny)
+        return criarReserva.id
+       
 @rideandreservation.route('/boleia', methods=['GET', 'POST'])
 def ride():
     ridelist = []

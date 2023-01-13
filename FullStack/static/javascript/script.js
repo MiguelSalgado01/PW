@@ -57,6 +57,7 @@ $('#tabela').DataTable({
                     //     alert("Erro es um merdas")
                     // }
                     console.log(data)
+                    
                 },
                 error: function(data){
                     alert(data);
