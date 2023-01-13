@@ -2,7 +2,7 @@ from flask import Flask
 from flask_login import LoginManager
 from models import db, Admin
 
-from login import login
+from login import login_module
 
    
 def create_app(config_filename):
@@ -13,9 +13,9 @@ def create_app(config_filename):
 
     with run.app_context():
         db.create_all()
-        
+        #Admin.__table__.drop()
 
-    run.register_blueprint(login)
+    run.register_blueprint(login_module)
 
     return run
 
