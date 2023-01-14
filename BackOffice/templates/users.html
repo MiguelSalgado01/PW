@@ -1,5 +1,25 @@
 {% extends 'index.html'%}
 
+{% block navOptions %}
+    <ul class="sidebar-nav">
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{url_for('homeModule.toHomePage')}}">
+                <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Home</span>
+            </a>
+        </li>
+        <li class="sidebar-item  active">
+            <a class="sidebar-link" href="{{url_for('userModule.toUsersPage')}}">
+                <i class="align-middle" data-feather="user"></i> <span class="align-middle">Utilzadores</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="pages-blank.html">
+                <i class="align-middle" data-feather="book"></i> <span class="align-middle">Boleias</span>
+            </a>
+        </li>
+    </ul>
+{% endblock navOptions %}
+
 {% block content %}
 <div class="container-md" id="table">
     <div class="table-responsive"> 
