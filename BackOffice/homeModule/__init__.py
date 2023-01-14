@@ -11,7 +11,7 @@ homeModule = Blueprint('homeModule', __name__)
 def toHomePage():
     get_Users = db.session.query(User).all()
     form = AdminForm()
-    return render_template("index.html", title="Login", get_Users = get_Users)
+    return render_template("home.html", title="Login", get_Users = get_Users)
 
 
 

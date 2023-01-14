@@ -31,7 +31,7 @@ def doLogin():
                         user.active = True
                         user.last_login_date = datetime.now()
                         db.session.commit()
-                        return redirect('homePage')
+                        return redirect('usersPage')
                     #except:
                         # return 'error'
                  else:

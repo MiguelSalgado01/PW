@@ -209,35 +209,8 @@
 				</div>
 			</nav>
 			<main class="content">
-				<div class="container-md" id="table">
-					<div class="table-responsive"> 
-						<table class="table display nowrap" id="tabela">
-							<thead class="bg-primary text-white">
-								<tr>
-									<th>Id</th>
-									<th>Student Name</th>
-									<th>Student Number</th>
-									<th>Password</th>
-									<th>Active</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<!-- GetUsers vem do teu init  -->
-								{% for user in get_Users %}
-								<tr>
-								<td>{{user.id}}</td>
-								<td>{{user.name}}</td>
-								<td>{{user.student_number}}</td>
-								<td>{{user.password}}</td>
-								<td>{{user.active}}</td>
-								<td><button class="Apagar btn btn-primary" id="{{user.id}}">Apagar User</button></td>
-							</tr>
-							{% endfor %}
-							</tbody>
-							<script type="text/javascript" src="{{url_for('static', filename='js/dt.js')}}"></script>
-					</div>
-				</div>
+				{% block content %}
+				{% endblock content %}
 			</main>
 			<footer class="footer">
 				<div class="container-fluid ">
@@ -340,7 +313,7 @@
 				}
 			});
 		});
-	</script>
+	</script>get_Users
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
 			// Pie chart
