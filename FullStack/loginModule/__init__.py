@@ -25,15 +25,18 @@ def doLogin():
 
       if form.validate_on_submit() and form.login.data == True:
          user = db.session.query(User).filter(User.student_number == form.student_number.data).first()
-         if(user.password == form.password.data):
-            try:
-               login_user(user)
-               return redirect('/homePage')
-            except:
-               return 'error'
-               
+         if(user==None):
+            form.student_number.errors.append("Incorrect Student Number")
          else:
-            form.password.errors.append("Incorrenct Password")
+            if(user.password == form.password.data):
+               try:
+                  login_user(user)
+                  return redirect('/homePage')
+               except:
+                     return 'error'
+               
+            else:
+               form.password.errors.append("Incorrect Password")
       
 
       elif form.toRegist.data == True:
