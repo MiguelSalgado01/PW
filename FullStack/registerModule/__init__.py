@@ -20,7 +20,7 @@ def register():
             verifyUsername = db.session.query(User).filter(User.name == form.username.data).first()
             if(verifyStudentNumb == None and verifyUsername == None):
                 try:
-                    new_user = User(name=form.username.data,student_number=form.student_number.data,phone_number=form.phone_number.data,password=form.password.data,gender=form.user_gender.data)
+                    new_user = User(name=form.username.data,student_number=form.student_number.data,phone_number=form.phone_number.data,password=form.password.data,gender=form.user_gender.data, active=True)
                     db.session.add(new_user)
                     db.session.commit()
                     return redirect('/login')

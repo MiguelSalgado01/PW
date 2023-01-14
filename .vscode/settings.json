@@ -3,5 +3,6 @@
         "./FullStack",
         "./FullStack",
         "./FullStack"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }

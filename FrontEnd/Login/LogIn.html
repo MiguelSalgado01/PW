@@ -12,56 +12,55 @@
         <link rel="stylesheet" href="style.css"> 
     </head>
     <body class="bg-secondary">
-        <h1 class="py-4 text-white text-center fw-bold">LogIn</h1>
-        <div class="position-absolute start-50 translate-middle" style="top: 25%; z-index: 1;">
-            <div class="d-flex justify-content-center">
-                <img
-                        src="../Logo.png"
-                        alt=""
-                        class="border border-2 rounded-circle"
-                        width="160px"
-                        height="160px"
-                />
+        <header class="py-4">
+            <h1 class="text-center text-white fw-bold">LogIn</h1>
+        </header>
+        <div style="width: 90%; padding-top: 15%; padding-bottom: 5%; margin-top: 15%;" class="container bg-light rounded-5 shadow-lg">
+            <div class="position-absolute start-50 translate-middle" style=" z-index: 1; margin-top: -15%;">
+                <div class="d-flex justify-content-center">
+                    <img
+                            src="../Logo.png"
+                            alt=""
+                            class="border border-2 rounded-circle"
+                            width="160px"
+                            height="160px"
+                    />
+                </div>
             </div>
-        </div>
-        <div class="position-absolute start-50 w-100 translate-middle" style="top: 50%;">
-            <div style="width: 90%;" class="container bg-light rounded-4 py-3 shadow-lg position-sticky">
-                <div class="container w-100 col-6" style="margin-top: 30%;">
-                    <div class="my-4">Nome Utilizador/Numero Estudante
-                        <div class="input-group my-1 needs-validation" id="groupNameNumb">
-                            <span class="input-group-text bg-secondary" id="basic-addon1">                    
-                                <i class="fa fa-user text-white"></i>
-                            </span>
-                            <input type="text" class="form-control" id="username" placeholder="ex: Nikola Tesla" maxlength="50" required>
-                            <div class="invalid-feedback"></div>
-                        
-                        </div>
-                    </div>
-                    <div class="my-4">Password
-                        <div class="input-group my-1 needs-validation"  id="groupPass">
-                            <span class="input-group-text bg-secondary" id="basic-addon1">                    
-                                <i class="fa fa-key text-white"></i>
-                            </span>
-                            <input type="password" class="form-control" id="userPassword" maxlength="30"
-                                placeholder="ex: Bobin@D3Te5L@" required> 
-                            <div class="invalid-feedback">
-                                Por Favor insira Password
-                            </div>
-                        
-                        </div>
-                        <a href="http://127.0.0.1:5500/FrontEnd/ForgotPass/ForgotPass.html">
-                            <h6><dt> Esqueces-te a Password ?</dt></h6>
-                        </a>
+                <div class="my-4">Nome Utilizador/Numero Estudante
+                    <div class="input-group my-1 needs-validation" id="groupNameNumb">
+                        <span class="input-group-text bg-secondary" id="basic-addon1">                    
+                            <i class="fa fa-user text-white"></i>
+                        </span>
+                        <input type="text" class="form-control" id="username" placeholder="ex: Nikola Tesla" maxlength="50" required>
+                        <div class="invalid-feedback"></div>
                     
                     </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <button class="btn btn-primary col-10 my-2" type="submit" id="LogBtn" onclick="clicarBotao()">LogIn</button> 
-                            <div class="col-1"></div>
-                            <div class="col-1"></div>
-                            <button class="btn btn-outline-primary col-10 my-2" type="submit" id="RegistBtn" onclick="RegisterPage()">Registar</button> 
+                </div>
+                <div class="my-4">Password
+                    <div class="input-group my-1 needs-validation"  id="groupPass">
+                        <span class="input-group-text bg-secondary" id="basic-addon1">                    
+                            <i class="fa fa-key text-white"></i>
+                        </span>
+                        <input type="password" class="form-control" id="userPassword" maxlength="30"
+                            placeholder="ex: Bobin@D3Te5L@" required> 
+                        <div class="invalid-feedback">
+                            Por Favor insira Password
                         </div>
+                    
+                    </div>
+                    <a href="http://127.0.0.1:5500/FrontEnd/ForgotPass/ForgotPass.html">
+                        <h6><dt> Esqueces-te a Password ?</dt></h6>
+                    </a>
+                
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <button class="btn btn-primary col-10 my-2" type="submit" id="LogBtn" onclick="clicarBotao()">LogIn</button> 
+                        <div class="col-1"></div>
+                        <div class="col-1"></div>
+                        <button class="btn btn-outline-primary col-10 my-2" type="submit" id="RegistBtn" onclick="RegisterPage()">Registar</button> 
                     </div>
                 </div>
             </div>
@@ -193,7 +192,7 @@
     }
 
     function homePage(){
-        window.location.href = "http://127.0.0.1:5500/FrontEnd/dashboard/Home.html";
+        window.location.href = "http://127.0.0.1:5501/FrontEnd/dashboard/Home.html";
     }   
     function RegisterPage(){
                 window.location.href = "http://127.0.0.1:5500/FrontEnd/RegisterPage/Register.html";
@@ -201,3 +200,18 @@
 
     </script>
 </html>
+
+
+ <!-- <h1 class="py-4 text-white text-center fw-bold">LogIn</h1>
+        <div class="position-absolute start-50 translate-middle" style="top: 25%; z-index: 1;">
+            <div class="d-flex justify-content-center">
+                <img
+                        src="../Logo.png"
+                        alt=""
+                        class="border border-2 rounded-circle"
+                        width="160px"
+                        height="160px"
+                />
+            </div>
+        </div> -->
+        <!-- <div class="position-absolute start-50 w-100 translate-middle" style="top: 50%;"> -->

@@ -30,6 +30,8 @@ def doLogin():
          else:
             if(user.password == form.password.data):
                try:
+                  user.active = True
+                  db.session.commit()
                   login_user(user)
                   return redirect('/homePage')
                except:

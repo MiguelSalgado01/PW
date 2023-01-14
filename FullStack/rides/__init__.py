@@ -1,9 +1,8 @@
 import json
-from flask import Blueprint, jsonify, request
-from flask import redirect, render_template, url_for
+from flask import Blueprint, request, redirect, render_template
 from forms import RideForm
-from models import Vehicle, Ride, db, ReservationState
-from flask_login import login_user, logout_user, current_user
+from models import Vehicle, Ride, db
+from flask_login import current_user
 
 rides = Blueprint('rides', __name__)
 

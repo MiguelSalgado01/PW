@@ -14,7 +14,7 @@ class UserRegisterForm(FlaskForm):
 
 class UserLoginForm(FlaskForm):
     student_number = StringField(label="Numero Estudante", validators=[InputRequired(), Length(min=9, max=9)])
-    password = PasswordField(label="Password", validators=[InputRequired(),  Length(min=8, max=20)])
+    password = PasswordField(label="Password", validators=[InputRequired()])
     login = SubmitField(label="Login")
     toRegist = SubmitField(label="Cria Conta")
 
@@ -47,4 +47,14 @@ class RideForm(FlaskForm):
     destOrig = StringField(label="DestOrig")
     pref = TextAreaField(label="Preferências", validators=[Length(max=120)])
     createRide = SubmitField(label="Criar Boleia")
+    goBack = SubmitField(label="Ecrã Prévio")
+
+class EditUserForm(FlaskForm):
+    username = StringField(label="Nome Utilizador", validators=[DataRequired(), Length(min=6, max=30)])
+    phone_number = StringField(label="Contacto", validators=[DataRequired(), Length(min=9, max=9)])
+    currentPsassword = PasswordField(label="Password Atual")
+    password = PasswordField(label="Password Nova")
+    confirm_password = PasswordField(label="Confirmar Password", validators=[EqualTo("password")])
+    user_gender =  SelectField(label="Genero",  validators=[InputRequired()], choices=[("0","Feminino"), ("1","Masculino")])
+    saveChanges = SubmitField(label="Guardar Alterações")
     goBack = SubmitField(label="Ecrã Prévio")
