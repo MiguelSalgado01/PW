@@ -8,7 +8,11 @@
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-
+	<style>
+		
+		.footer { position: absolute; bottom:0; width: 81%; }
+		
+	</style>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="{{url_for('static', filename='img/icons/icon-48x48.png')}}"> 
 
@@ -205,10 +209,11 @@
 			</nav>
 
 		<main class="content">
-			<div class = "container-fluid p-0">
-				<div class = "row">
-					<table class="content table">
-				 		<thead>
+			<div class="container-md" id="table">
+        		<div class="table-responsive"> 
+        			<table class="table display nowrap" id="tabela">
+            			<thead class="bg-primary text-white">
+				 		
 							<tr>
 								<th>Id</th>
 								<th>Student Number</th>
@@ -222,37 +227,30 @@
 						<tbody>
 							{% for user in User %}
 							<tr>
-								<td> {{user.id}} </td>
-								<td> {{user.student_number}}</td>
-								<td> {{user.password}} </td>
-								<td> {% if user.active==True %}
-									<span >{{ admin.active }}</span>
+								<td class = "C1"> {{user.id}} </td>
+								<td class = "C2"> {{user.student_number}}</td>
+								<td class = "C3">{{user.password}} </td>
+								<td class = "C4"> {% if user.active==True %}
+									<span >{{ user.active }}</span>
 									{% else %}
-									<span>{{ admin.active }}</span>
+									<span>{{ user.active }}</span>
 									{% endif %}
-								</td> 
-									<buttom><a name="{{user.id}}" onclick = "getDeleteUser(this.name)">  
-									</a></buttom>
-								<td>
-
-								</td> 	
-
+								</td class = "C5"> 
+								<td><button class="reservar btn btn-primary" id="{{user.id}}" onclick="getDelete(this.name)">Delete</button></td>
+								<td>	
 							</tr>
 							{% endfor %}
 						</tbody>		
 				</div>
 			</div>
 			</table>
-		<main>
-
-
-	
-			<footer class="footer">
-				<div class="container-fluid">
+	<main>
+		<footer class="footer">
+				<div class="container-fluid ">
 					<div class="row text-muted">
 						<div class="col-6 text-start">
 							<p class="mb-0">
-								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> - <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Bootstrap Admin Template</strong></a>								&copy;
+								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Admin</strong></a> - <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Dashboard Boleias Ismat</strong></a>								&copy;
 							</p>
 						</div>
 						<div class="col-6 text-end">
