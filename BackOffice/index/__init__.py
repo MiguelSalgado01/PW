@@ -13,6 +13,7 @@ def toIndex():
     # Query para Buscar all users
     get_Users = db.session.query(User).all()
     form = AdminForm()
+    print("teste")
        
     
     return render_template("index.html", title="Login", formFront=form)
