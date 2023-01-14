@@ -59,12 +59,12 @@
                 </div>
             </form>
         </header>
-    <!--Table-->
-    <div class="container-md" id="table">
-        <div class="table-responsive"> 
-        <table class="table display nowrap" id="tabela">
-            <thead class="bg-primary text-white">
-                <tr>
+        <!--Table-->    
+        <div class="container-md" id="table">
+            <div class="table-responsive"> 
+                <table class="table display nowrap" id="tabela">
+                    <thead class="bg-primary text-white">
+                        <tr>
                             <td>id</td>
                             <td>user</td>
                             <td>vehicle</td>
@@ -73,29 +73,29 @@
                             <td>destiny</td>
                             <td>origin</td>
                             <td>seats</td>
-                    <th class="all">Selecionar</th>
-                    </tr>
-                </thead>
+                            <th class="all">Selecionar</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         {% for ride in getRideData %}
-                        {% if ride[7]!=0  %}
-                       <tr>
-                            <td>{{ride[0]}}</td>
-                            <td>{{ride[1]}}</td>
-                            <td>{{ride[2]}}</td>
-                            <td>{{ride[3]}}</td>
-                            <td>{{ride[4]}}</td>
-                            <td>{{ride[5]}}</td>
-                            <td>{{ride[6]}}</td>
-                            <td>{{ride[7]}}</td>
-                            <td><button class="reservar btn btn-primary" id="{{ride[0]}}">reservar</button></td>
-                       </tr>
-                       {% endif %}
-                       {% endfor %}
-                </tbody>
+                            {% if ride[7]!=0  %}
+                                <tr>
+                                    <td>{{ride[0]}}</td>
+                                    <td>{{ride[1]}}</td>
+                                    <td>{{ride[2]}}</td>
+                                    <td>{{ride[3]}}</td>
+                                    <td>{{ride[4]}}</td>
+                                    <td>{{ride[5]}}</td>
+                                    <td>{{ride[6]}}</td>
+                                    <td>{{ride[7]}}</td>
+                                    <td><button class="reservar btn btn-primary" id="{{ride[0]}}">reservar</button></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
     </body>
     <!--DataTable Creation Script // Details-->
     <script type="text/javascript" src="{{url_for('static', filename='javascript/script.js')}}"></script>
