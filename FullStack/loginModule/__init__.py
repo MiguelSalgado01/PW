@@ -3,6 +3,7 @@ from flask import redirect, render_template, url_for
 from forms import UserLoginForm
 from models import User, db
 from flask_login import login_user, logout_user, current_user
+from datetime import datetime
 
 loginModule = Blueprint('loginModule', __name__)
 
@@ -31,6 +32,7 @@ def doLogin():
             if(user.password == form.password.data):
                try:
                   user.active = True
+                  user.last_login_date = datetime.now()
                   db.session.commit()
                   login_user(user)
                   return redirect('/homePage')
