@@ -57,7 +57,7 @@
             </div>
         </header>
     <!--Table-->
-    <div class="container-md" id="table" method="POST">
+    <div class="container-md" id="table">
         <div class="table-responsive"> 
         <table class="table display nowrap" id="tabela">
             <thead class="bg-primary text-white">
@@ -84,7 +84,7 @@
                             <td>{{ride[5]}}</td>
                             <td>{{ride[6]}}</td>
                             <td>{{ride[7]}}</td>
-                            <td><button class="reservar" id="{{ride[0]}}">reservar</button></td>
+                            <td><button class="reservar btn btn-primary" id="{{ride[0]}}">reservar</button></td>
                        </tr>
                        {% endfor %}
                 </tbody>
