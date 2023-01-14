@@ -19,29 +19,30 @@ def doLogin():
     form = AdminForm()
        
     if request.method == 'POST':
-      print(form.login.data)
-      
-          
-    if form.validate_on_submit() and form.login.data == True:
-       
-        verifyStudentNumb = db.session.query(Admin).filter(Admin.student_number == form.student_number.data).first()
-        user = db.session.query(User).filter(User.student_number == verifyStudentNumb.student_number).first()
-        print(user)
+        if form.validate_on_submit() and form.login.data == True:
+            print(form.student_number.data)
+            print(form.password.data)
+            
+            user = db.session.query(User).filter(User.student_number == form.student_number.data).first()
+            admin_id = db.session.query(Admin).filter(Admin.user_id == user.id).first()
         
-        if (verifyStudentNumb == None):
-            form.student_number.errors.append("Incorrect Student Number")
-        else:
-            if(verifyStudentNumb.password == form.password.data):
-                try:
-                    user.active = True
-                    user.last_login_date = datetime.now()
-                    db.session.commit()
-                    return render_template ('index.html',get_Users=get_Users)
-                except:
-                    return 'error'
+            print(user)
+            print(admin_id)
            
-            else:
-                form.password.errors.append("Incorrect Password")
+            # if (admin_id == None):
+            #     form.student_number.errors.append("Incorrect Student Number")
+            # else:
+            #     if(admin_id.password == form.password.data):
+            #         try:
+            #             user.active = True
+            #             user.last_login_date = datetime.now()
+            #             db.session.commit()
+            #             return render_template ('index.html',get_Users=get_Users)
+            #         except:
+            #             return 'error'
+            
+            #     else:
+            #         form.password.errors.append("Incorrect Password")
     
     return render_template("pages-sign-in.html", title="Login", formFront=form)
 
