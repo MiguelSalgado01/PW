@@ -26,8 +26,6 @@ def reservation():
         searchRide.number_of_available_seats -=1
         db.session.add(new_Reservation)
         db.session.commit()
-        
-        # return str(buscarid.local_destiny)
         print (new_Reservation)
         return jsonify(message="Adicionado com Suckcess",status=201)
        
