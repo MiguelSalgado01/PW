@@ -1,7 +1,8 @@
 from flask import Blueprint
-from flask import redirect, render_template, url_for,request,jsonify
+from flask import redirect, render_template, url_for, request, jsonify
 from flask_login import current_user
 from models import Reservation,Ride,db,User,Vehicle,ReservationState
+from forms import BackButton
 
 rideandreservation = Blueprint('rideandreservation', __name__)
 
@@ -9,14 +10,19 @@ rideandreservation = Blueprint('rideandreservation', __name__)
 @rideandreservation.route('/reserva', methods=['GET', 'POST'])
 def reservation():
     activeUser = current_user
+    goBack = BackButton()
     if activeUser.is_authenticated:
         print("Noice")
     else:
         print("Not Noice")
 
     if request.method == 'GET':
-        return render_template("reservas.html")
-    if request.method =='POST':
+        return render_template("reservas.html", goBack = goBack)
+
+    elif request.method =='POST':
+        if goBack.data['goBack']:
+            return redirect('homePage')
+
         id = request.form.get("id")
         searchRide = db.session.query(Ride).filter(Ride.id==id).first()
         userIdActive = db.session.query(User).filter(User.id==activeUser.id).first()
@@ -28,6 +34,8 @@ def reservation():
         db.session.commit()
         print (new_Reservation)
         return jsonify(message="Adicionado com Suckcess",status=201)
+    
+    return render_template("reservas.html", goBack = goBack)
        
 @rideandreservation.route('/boleia', methods=['GET', 'POST'])
 def ride():
@@ -36,14 +44,19 @@ def ride():
         print("Noice")
     else:
         print("Not Noice")
-    print()
+        
+    goBack = BackButton()
     ridelist = []
     getRideData = db.session.query(Ride).all()
+
+    if goBack.data['goBack']:
+        return redirect('homePage')
+
     for ride in getRideData:
         vehicle = db.session.query(Vehicle).filter(Vehicle.id == ride.vehicle_id).first()
         user = db.session.query(User).filter(User.id == ride.user_id).first()
         ridelist.append([(ride.id),(user.name),(vehicle.license_plate),(ride.ride_date),(ride.ride_scheduled_time),(ride.local_destiny),(ride.local_origin),(ride.number_of_available_seats)])
-    return render_template("pesquisa.html",getRideData=ridelist)
+    return render_template("pesquisa.html",getRideData=ridelist, goBack=goBack)
     
     
 

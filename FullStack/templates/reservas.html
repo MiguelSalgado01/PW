@@ -33,18 +33,21 @@
     </head>
     <body>
         <header class="p-3 mb-5 bg-primary" id="mrs">
-            <div class="row align-items-center">
-                <div class="col-2" >     
-                    <div class="col-2" id="seta" style="cursor:pointer">
-                        <i class="fa fa-2xl fa-arrow-left text-white" onclick="HomePage()()"></i>
+            <form action="" method="POST">
+            {{goBack.hidden_tag()}}
+                <div class="row align-items-center" >
+                    <div class="col-2">
+                        <a style="cursor:pointer">
+                            <button class="fa fa-2xl fa-arrow-left text-white" type="submit" name="goBack" value="EcraPrevio" style=" background-color: transparent; border: none;"></button> 
+                        </a>           
+                    </div>
+                    <div class="col-8" > 
+                        <div class="m-2 d-flex justify-content-center " >
+                            <h2 class="my-1 fw-bold text-white">Minhas Reservas</h2>
+                        </div>
                     </div>
                 </div>
-                <div class="col-8" > 
-                    <div class="m-2 d-flex justify-content-center " >
-                        <h2 class="my-1 fw-bold text-white">Minhas Reservas</h2>
-                    </div>
-                </div>
-            </div>
+            </form>
         </header>
     
     <div class="container" id="table">

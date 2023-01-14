@@ -58,3 +58,6 @@ class EditUserForm(FlaskForm):
     user_gender =  SelectField(label="Genero",  validators=[InputRequired()], choices=[("0","Feminino"), ("1","Masculino")])
     saveChanges = SubmitField(label="Guardar Alterações")
     goBack = SubmitField(label="Ecrã Prévio")
+
+class BackButton(FlaskForm):
+    goBack = SubmitField(label="Ecrã Prévio")
