@@ -10,7 +10,9 @@ body {
 #seta{
   cursor:pointer;
 }
-
+#reservar{
+  color:  rgba(var(--ismatDark), 0.5);
+}
 :root {
   --ismatDark: 17, 117, 124;
   --ismatLight: 106, 201, 204;

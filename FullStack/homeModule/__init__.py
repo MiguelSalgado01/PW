@@ -18,12 +18,16 @@ def home():
    if request.method == 'POST':
       if homeForm.data['verPerfil']:
          return redirect('verPerfilPage')
+
       elif homeForm.data['criarBoleia']:
          return redirect('makeRides')
+
       elif homeForm.data['pesquisar']:
-         return redirect('logout')
+         return redirect('boleia')
+
       elif homeForm.data['reservas']:
-         return redirect('logout')
+         return redirect('reserva')
+
       elif homeForm.data['endSession']:
          return redirect('logout')
       else:
