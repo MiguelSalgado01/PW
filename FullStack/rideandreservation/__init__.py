@@ -22,7 +22,7 @@ def reservation():
         criarReserva = db.session.query(User).filter(User.id==activeUser.id).first()
         print(str(criarReserva.id))
         # return str(buscarid.local_destiny)
-        return criarReserva.id
+        return str(criarReserva.id)
        
 @rideandreservation.route('/boleia', methods=['GET', 'POST'])
 def ride():
