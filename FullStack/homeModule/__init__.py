@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask import redirect, render_template, url_for
 from forms import HomeForm
-from models import User, db
+from models import User, db, Ride, Reservation
 from flask_login import login_user, logout_user, current_user
 
 homeModule = Blueprint('homeModule', __name__)
@@ -14,6 +14,21 @@ def home():
       print("Noice")
    else:
       print("Not Noice")
+   
+   userRides = db.session.query(Ride).filter(Ride.user_id==activeUser.id).all()
+   userReservations = db.session.query(Reservation).filter(Reservation.passenger_id==activeUser.id).all()
+   
+   rideCount = 0
+   for ride in userRides:
+      rideCount+=1
+      print(ride)
+
+   reservationCount = 0
+   for reservation in userReservations:
+      reservationCount+=1
+      print(reservation)
+   
+   graf_data = [(rideCount,"Boleias Dadas"), (reservationCount,"Reservas Feitas")]
 
    if request.method == 'POST':
       if homeForm.data['verPerfil']:
@@ -33,4 +48,4 @@ def home():
       else:
          return render_template("home.html", title="Home")
 
-   return render_template("home.html", title="Home", frontHomeForm = homeForm, activeUser=activeUser)
+   return render_template("home.html", title="Home", frontHomeForm = homeForm, activeUser=activeUser, frontReservationCount = graf_data)
