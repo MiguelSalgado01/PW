@@ -4,19 +4,14 @@ from forms import AdminForm
 from models import db , Admin,User
 from datetime import datetime
 
-index = Blueprint('index', __name__)
+homeModule = Blueprint('homeModule', __name__)
 
 
-@index.route('/index', methods=['GET', 'POST'])
-
-def toIndex():
-    # Query para Buscar all users
+@homeModule.route('/homePage', methods=['GET', 'POST'])
+def toHomePage():
     get_Users = db.session.query(User).all()
     form = AdminForm()
-    print("teste")
-       
-    
-    return render_template("index.html", title="Login", formFront=form)
+    return render_template("index.html", title="Login", formFront=form, get_Users = get_Users)
 
 
 
