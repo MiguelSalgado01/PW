@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import redirect, render_template, url_for,request
+from flask import redirect, render_template, url_for,request,jsonify
 from flask_login import current_user
 from models import Reservation,Ride,db,User,Vehicle,ReservationState
 
@@ -18,16 +18,18 @@ def reservation():
         return render_template("reservas.html")
     if request.method =='POST':
         id = request.form.get("id")
-        buscarid = db.session.query(Ride).filter(Ride.id==id).first()
+        searchRide = db.session.query(Ride).filter(Ride.id==id).first()
         userIdActive = db.session.query(User).filter(User.id==activeUser.id).first()
         getreserva = '1'
         reserva_State =  db.session.query(ReservationState).filter(ReservationState.id==getreserva).first()
-        new_Reservation = Reservation(passenger_id=userIdActive.id,ride_id=buscarid.id,reservation_state_id=reserva_State.id)
+        new_Reservation = Reservation(passenger_id=userIdActive.id,ride_id=searchRide.id,reservation_state_id=reserva_State.id)
+        searchRide.number_of_available_seats -=1
         db.session.add(new_Reservation)
         db.session.commit()
+        
         # return str(buscarid.local_destiny)
         print (new_Reservation)
-        return str(userIdActive.id)
+        return jsonify(message="Adicionado com Suckcess",status=201)
        
 @rideandreservation.route('/boleia', methods=['GET', 'POST'])
 def ride():

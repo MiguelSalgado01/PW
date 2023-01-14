@@ -75,6 +75,7 @@
                 </thead>
                     <tbody>
                         {% for ride in getRideData %}
+                        {% if ride[7]!=0  %}
                        <tr>
                             <td>{{ride[0]}}</td>
                             <td>{{ride[1]}}</td>
@@ -86,6 +87,7 @@
                             <td>{{ride[7]}}</td>
                             <td><button class="reservar btn btn-primary" id="{{ride[0]}}">reservar</button></td>
                        </tr>
+                       {% endif %}
                        {% endfor %}
                 </tbody>
             </div>
