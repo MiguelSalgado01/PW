@@ -203,6 +203,50 @@
 					</ul>
 				</div>
 			</nav>
+
+		<main class="content">
+			<div class = "container-fluid p-0">
+				<div class = "row">
+					<table class="content table">
+				 		<thead>
+							<tr>
+								<th>Id</th>
+								<th>Student Number</th>
+								<th>Password</th>
+								<th>Active</th>
+								<th>Actions</th>
+							</tr>
+
+						</thead>
+						
+						<tbody>
+							{% for user in User %}
+							<tr>
+								<td> {{user.id}} </td>
+								<td> {{user.student_number}}</td>
+								<td> {{user.password}} </td>
+								<td> {% if user.active==True %}
+									<span >{{ admin.active }}</span>
+									{% else %}
+									<span>{{ admin.active }}</span>
+									{% endif %}
+								</td> 
+									<buttom><a name="{{user.id}}" onclick = "getDeleteUser(this.name)">  
+									</a></buttom>
+								<td>
+
+								</td> 	
+
+							</tr>
+							{% endfor %}
+						</tbody>		
+				</div>
+			</div>
+			</table>
+		<main>
+
+
+	
 			<footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
