@@ -2,6 +2,7 @@ from flask import Blueprint,request
 from flask import redirect, render_template, url_for
 from forms import AdminForm
 from models import db , Admin,User
+from datetime import datetime
 
 login_module = Blueprint('login', __name__)
 
@@ -22,13 +23,19 @@ def doLogin():
       
           
     if form.validate_on_submit() and form.login.data == True:
+       
         verifyStudentNumb = db.session.query(Admin).filter(Admin.student_number == form.student_number.data).first()
+        user = db.session.query(User).filter(User.student_number == verifyStudentNumb.student_number).first()
+        print(user)
         
         if (verifyStudentNumb == None):
             form.student_number.errors.append("Incorrect Student Number")
         else:
             if(verifyStudentNumb.password == form.password.data):
                 try:
+                    user.active = True
+                    user.last_login_date = datetime.now()
+                    db.session.commit()
                     return render_template ('index.html',get_Users=get_Users)
                 except:
                     return 'error'
