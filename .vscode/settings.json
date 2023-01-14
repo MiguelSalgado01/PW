@@ -2,7 +2,8 @@
     "python.analysis.extraPaths": [
         "./FullStack",
         "./FullStack",
-        "./FullStack"
+        "./FullStack",
+        "./BackOffice"
     ],
     "liveServer.settings.port": 5501
 }

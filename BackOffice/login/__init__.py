@@ -29,20 +29,19 @@ def doLogin():
             print(user)
             print(admin_id)
            
-            # if (admin_id == None):
-            #     form.student_number.errors.append("Incorrect Student Number")
-            # else:
-            #     if(admin_id.password == form.password.data):
-            #         try:
-            #             user.active = True
-            #             user.last_login_date = datetime.now()
-            #             db.session.commit()
-            #             return render_template ('index.html',get_Users=get_Users)
-            #         except:
-            #             return 'error'
-            
-            #     else:
-            #         form.password.errors.append("Incorrect Password")
+            if (admin_id == None):
+                 form.student_number.errors.append("Incorrect Student Number")
+            else:
+                 if(user.password == form.password.data):
+                    #try:
+                        user.active = True
+                        user.last_login_date = datetime.now()
+                        db.session.commit()
+                        return redirect('index')
+                    #except:
+                        # return 'error'
+                 else:
+                    form.password.errors.append("Incorrect Password")
     
     return render_template("pages-sign-in.html", title="Login", formFront=form)
 

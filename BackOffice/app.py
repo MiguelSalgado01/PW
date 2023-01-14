@@ -3,7 +3,7 @@ from flask_login import LoginManager
 from models import db, Admin
 
 from login import login_module
-
+from index import index
    
 def create_app(config_filename):
     run = Flask(__name__)
@@ -16,6 +16,7 @@ def create_app(config_filename):
         #Admin.__table__.drop()
 
     run.register_blueprint(login_module)
+    run.register_blueprint(index)
 
     return run
 
