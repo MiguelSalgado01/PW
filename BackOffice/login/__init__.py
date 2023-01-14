@@ -1,7 +1,7 @@
 from flask import Blueprint,request
 from flask import redirect, render_template, url_for
 from forms import AdminForm
-from models import db , Admin
+from models import db , Admin,User
 
 login_module = Blueprint('login', __name__)
 
@@ -11,7 +11,10 @@ def index():
 
 
 @login_module.route('/pages-sign-in', methods=['GET', 'POST'])
+
 def doLogin():
+    # Query para Buscar all users
+    get_Users = db.session.query(User).all()
     form = AdminForm()
        
     if request.method == 'POST':
@@ -26,7 +29,7 @@ def doLogin():
         else:
             if(verifyStudentNumb.password == form.password.data):
                 try:
-                    return render_template ('index.html')
+                    return render_template ('index.html',get_Users=get_Users)
                 except:
                     return 'error'
            
