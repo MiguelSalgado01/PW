@@ -67,17 +67,17 @@
                     </tr>
                 </thead>
                     <tbody>
-                        {% for getRides in getRides %}
+                        {% for Rides in getRides %}
                         <tr>
-                        <td>{{getRides.id}}</td>
-                        <td>{{getRides.user_id}}</td>
-                        <td>{{getRides.vehicle_id}}</td>
-                        <td>{{getRides.ride_date}}</td>
-                        <td>{{getRides.ride_scheduled_time}}</td>
-                        <td>{{getRides.local_destiny}}</td>
-                        <td>{{getRides.local_origin}}</td>
-                        <td>{{getRides.number_of_available_seats}}</td>
-                        <td><button class="cancelar btn btn-primary text-white" id="{{getRides.id}}">Cancelar</button></td>
+                        <td>{{Rides.id}}</td>
+                        <td>{{Rides.user_id}}</td>
+                        <td>{{Rides.vehicle_id}}</td>
+                        <td>{{Rides.ride_date}}</td>
+                        <td>{{Rides.ride_scheduled_time}}</td>
+                        <td>{{Rides.local_destiny}}</td>
+                        <td>{{Rides.local_origin}}</td>
+                        <td>{{Rides.number_of_available_seats}}</td>
+                        <td><button class="cancelar btn btn-primary text-white" id="{{Rides.id}}">Cancelar</button></td>
                     </tr>
                         {% endfor%}
                 </tbody>
@@ -113,7 +113,7 @@
 
             let DadosReserva={
                 id: $(this).attr("id"),
-                
+                action: "cancelar"
             }
             console.log(DadosReserva);
             $.ajax({

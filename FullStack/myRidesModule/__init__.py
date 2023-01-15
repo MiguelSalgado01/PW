@@ -16,8 +16,7 @@ def myrides():
         print("Not Noice")
     
     if request.method == 'GET':  
-        getRides = db.session.query(Ride).all()
-
+        getRides = db.session.query(Ride).filter(Ride.user_id==activeUser.id)
         return render_template("myRides.html", goBack = goBack,getRides=getRides)
 
     elif request.method =='POST':
@@ -26,8 +25,9 @@ def myrides():
             # Cancelar Reserva
         if request.form.get("action")== "cancelar":
             idReserva = request.form.get("id")
-            specify_Reservation = db.session.query(Ride).filter(Ride.id==idReserva).first()
-            
-            db.session.delete(specify_Reservation)
-            db.session.commit()
+            print(idReserva)
+            # specify_Ride = db.session.query(Ride).filter(Ride.id==idReserva).first()
+            # print(specify_Ride)
+            # db.session.delete(specify_Ride)
+            # db.session.commit()
             return jsonify(message="Cancelado",status=201)
