@@ -38,12 +38,17 @@ def reservation():
         if request.form.get("action")=="reservar":
             id = request.form.get("id")
             searchRide = db.session.query(Ride).filter(Ride.id==id).first()
-            userIdActive = db.session.query(User).filter(User.id==activeUser.id).first()
-            getreserva = '1'
-            reserva_State =  db.session.query(ReservationState).filter(ReservationState.id==getreserva).first()
-            addReservation = db.session.query(Reservation,Ride,User).filter(Ride.id==Reservation.ride_id).filter(Reservation.passenger_id==activeUser.id).filter(User.id==Ride.user_id).order_by(Ride.ride_scheduled_time.desc()).limit(4).all()
-            #new_Reservation = Reservation(passenger_id=userIdActive.id,ride_id=searchRide.id,reservation_state_id=reserva_State.id)
-            new_Reservation = Reservation(addReservation)
+
+            vehicle = db.session.query(Vehicle).filter(Vehicle.id == Ride.vehicle_id).first()
+            user = db.session.query(User).filter(User.id == Ride.user_id).first()
+            
+            # userIdActive = db.session.query(User).filter(User.id==activeUser.id).first()
+            # getreservaStatus = '1'
+            # reserva_State =  db.session.query(ReservationState).filter(ReservationState.id==getreservaStatus).first()
+            # addReservation = db.session.query(Reservation,Ride,User).filter(Ride.id==Reservation.ride_id).filter(Reservation.passenger_id==activeUser.id).filter(User.id==Ride.user_id).order_by(Ride.ride_scheduled_time.desc()).limit(4).all()
+            # #new_Reservation = Reservation(passenger_id=userIdActive.id,ride_id=searchRide.id,reservation_state_id=reserva_State.id)
+            new_Reservation = Reservation(user.name,vehicle.license_plate,searchRide.ride_date,
+            searchRide.ride_scheduled_time,searchRide.local_destiny,searchRide.local_origin)
             searchRide.number_of_available_seats -=1
             db.session.add(new_Reservation)
             db.session.commit()
