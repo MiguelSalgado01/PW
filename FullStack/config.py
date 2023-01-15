@@ -7,7 +7,7 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///database/rides.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///../DataBase/rides.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
