@@ -98,21 +98,23 @@
                                             
                                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
-                                                  <div class="modal-content">
-                                                    <div class="modal-header">
-                                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Reserva</h1>
-                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Reserva</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body"> 
+                                                            <ul>Condutor: {{reserva.User.name}}</ul>
+                                                            <ul>Veiculo: {{reserva.Vehicle.license_plate}}</ul>
+                                                            <ul>Dia: {{reserva.Ride.ride_date}}</ul>
+                                                            <ul>Hora: {{reserva.Ride.ride_scheduled_time}}</ul> 
+                                                            <ul>Origem: {{reserva.Ride.local_origin}}</ul>  
+                                                            <ul>Destino: {{reserva.Ride.local_destiny}}</ul> 
+                                                            <ul>Estado: {{reserva.ReservationState.state}}</ul>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body"> 
-                                                        <ul>Condutor: {{reserva.User.name}}</ul>
-                                                        <ul>Dia: {{reserva.Ride.ride_date}}</ul>
-                                                        <ul>Hora: {{reserva.Ride.ride_scheduled_time}}</ul>
-                                                        <ul>Dia: {{reserva.Ride.ride_date}}</ul>
-                                                        <ul>Hora: {{reserva.Ride.ride_scheduled_time}}</ul>
-                                                    </div>
-                                                  </div>
                                                 </div>
-                                              </div>
+                                            </div>
                                         </a>
                                     </div>
                                 </div>
