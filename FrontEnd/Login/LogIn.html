@@ -34,7 +34,6 @@
                         </span>
                         <input type="text" class="form-control" id="username" placeholder="ex: Nikola Tesla" maxlength="50" required>
                         <div class="invalid-feedback"></div>
-                    
                     </div>
                 </div>
                 <div class="my-4">Password
@@ -49,7 +48,7 @@
                         </div>
                     
                     </div>
-                    <a href="http://127.0.0.1:5500/FrontEnd/ForgotPass/ForgotPass.html">
+                    <a href="../ForgotPass/ForgotPass.html">
                         <h6><dt> Esqueces-te a Password ?</dt></h6>
                     </a>
                 
@@ -72,6 +71,32 @@
         var userNameNumb = document.getElementById("username");
         var userPass = document.getElementById("userPassword");
         var rePassVal = 0, user = new Array();
+
+        $( document ).ready(
+            getData('../JsonFiles/profile.json').then(
+                function(dataFromJson){ //success function
+                    array = dataFromJson.user;
+                    localStorage.setItem('users', JSON.stringify(array));
+                },  
+                function(err){ //error function
+                    var error = [];
+                    error.push({
+                        "idErro" : err.status,
+                        "ErroMessage" : err.statusText
+                    });
+
+                    console.log(err ); 
+                    console.log(err.statusText, err.status); 
+                    localStorage.setItem('error', JSON.stringify(error));
+                    errorPage();
+                }
+                ),
+                 btn.addEventListener("click", clicarBotao)
+            );
+            
+        function getData(path){
+            return $.getJSON(path);
+        }
 
         function clicarBotao(){
             console.log(userPass.value)
@@ -192,10 +217,10 @@
     }
 
     function homePage(){
-        window.location.href = "http://127.0.0.1:5501/FrontEnd/dashboard/Home.html";
+        window.location.href = "..//dashboard/Home.html";
     }   
     function RegisterPage(){
-                window.location.href = "http://127.0.0.1:5500/FrontEnd/RegisterPage/Register.html";
+                window.location.href = "..//RegisterPage/Register.html";
             }
 
     </script>
