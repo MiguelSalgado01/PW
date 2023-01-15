@@ -7,7 +7,7 @@
                 <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Home</span>
             </a>
         </li>
-        <li class="sidebar-item  active">
+        <li class="sidebar-item  ">
             <a class="sidebar-link" href="{{url_for('userModule.toUsersPage')}}">
                 <i class="align-middle" data-feather="user"></i> <span class="align-middle">Utilzadores</span>
             </a>
@@ -17,7 +17,7 @@
                 <i class="align-middle" data-feather="book"></i> <span class="align-middle">Boleias</span>
             </a>
         </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item  active">
             <a class="sidebar-link" href="{{url_for('reservasModule.toReservaPage')}}">
                 <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservas</span>
             </a>
@@ -31,24 +31,23 @@
         <table class="table display nowrap" id="tabela">
             <thead class="bg-primary text-white">
                 <tr>
-                    <th>Id</th>
-                    <th>Student Name</th>
-                    <th>Student Number</th>
-                    <th>Password</th>
-                    <th>Active</th>
-                    <th>Actions</th>
+                    <th>reservation_state_id</th>
+                    <th>reservation_state</th>
+                    <th>createdAt</th>
+                    <th>updatedAt</th>
+                    <th>ride_id</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- GetUsers vem do teu init  -->
-                {% for user in get_Users %}
+                {% for reserva in get_Reserva %}
                 <tr>
-                <td>{{user.id}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.student_number}}</td>
-                <td>{{user.password}}</td>
-                <td>{{user.active}}</td>
-                <td><button class="Apagar btn btn-primary" id="{{user.id}}">Apagar User</button></td>
+                <td>{{reserva.reservation_state_id}}</td>
+                <td>{{reserva.reservation_state}}</td>
+                <td>{{reserva.createdAt}}</td>
+                <td>{{reserva.updatedAt}}</td>
+                <td>{{reserva.ride_id}}</td>
+                <td><button class="Apagar btn btn-primary" id="{{reserva.id}}">Apagar User</button></td>
             </tr>
             {% endfor %}
             </tbody>
