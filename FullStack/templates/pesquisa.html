@@ -98,11 +98,85 @@
         </div>
     </body>
     <!--DataTable Creation Script // Details-->
-    <script type="text/javascript" src="{{url_for('static', filename='javascript/script.js')}}"></script>
+    <!-- <script type="text/javascript" src="{{url_for('static', filename='javascript/script.js')}}"></script> -->
     <script>
          function HomePage(){
             window.location.href = "http://127.0.0.1:5500/FrontEnd/dashboard/Home.html";
         }
+
+        $(document).ready(function() {
+   
+   $('#tabela').DataTable({
+           language: {
+               searchPanes: {
+                   clearMessage: 'Delete',
+                   collapse: {0: 'Search Options', _: 'Search Options (%d)'}
+   
+               }
+           },
+           responsive:{
+               details: {
+                   display:  $.fn.dataTable.Responsive.display.modal({
+                       // Headers: function (row){
+                       //     var data = row.data();
+                       //     return 'Detalhes de '+ data[0] ;//+ '' + data[1];
+                       // }
+                       
+                   }),
+                   renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+               }
+           } , 
+           buttons: [      
+               'searchPanes'
+           ],
+           columnDefs: [
+               {
+                   target: 0,
+                   visible: false,
+               }],
+           dom: 'Bfrtip',
+           
+           select: true,
+           
+           
+       });
+        
+           $(".reservar").click(function(e){
+               e.preventDefault();
+   
+               let DadosReserva={
+                   id: $(this).attr("id"),
+                   action: "reservar"
+               }
+               console.log(DadosReserva);
+               $.ajax({
+                   url: '/reserva',
+                   type: 'POST',
+                   data: DadosReserva,
+                   async: false,
+                   success: function(data){
+                       alert(data.message);
+                       if(data.status===201){
+                           alert("Parabens sabes Registar")
+                       }
+                       else
+                       {
+                           alert("Erro es um merdas")
+                       }
+                       console.log(data.message)
+                       window.location.reload()
+                   },
+                   error: function(data){
+                       alert(data);
+                   }
+               })
+           })
+          
+   });
+   
+   //https://datatables.net/examples/ajax/null_data_source.html
+   //https://datatables.net/examples/api/select_single_row.html
+   //https://datatables.net/extensions/select/examples/api/events.html
     </script>
       
 </html>

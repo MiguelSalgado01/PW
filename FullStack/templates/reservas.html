@@ -55,17 +55,25 @@
         <table class="cell-border display nowrap" id="tabela" style="width: 100%;">
             <thead class="bg-primary text-white">
                 <tr>
+                    <th>id</th>
                     <th>Origem</th>
                     <th>Destino</th>
                     <th>Data\Hora</th>
                     <th>Detalhes</th>
+                    <th class="all">CancelarBoleia</th>
                     </tr>
                 </thead>
                     <tbody>
-                        <td>Ismat</td>
-                        <td>Lagoa</td>
-                        <td>14:30 20/10/2000</td>
-                        <td>teste</td>
+                        {% for reservation in get_Reservas %}
+                        <tr>
+                        <td>{{reservation.id}}</td>
+                        <td>{{reservation.passenger_id}}</td>
+                        <td>{{reservation.ride_id}}</td>
+                        <td>{{reservation.createdAt}}</td>
+                        <td>{{reservation.updatedAt}}</td>
+                        <td><button class="cancelar btn btn-primary text-white" id="{{reservation.id}}">Cancelar</button></td>
+                    </tr>
+                        {% endfor%}
                 </tbody>
             </div>
         </div>
@@ -78,31 +86,45 @@
                 responsive:{
                     details: {
                         display:  $.fn.dataTable.Responsive.display.modal({
-                            Headers: function (row){
-                                var data = row.data();
-                                return 'Detalhes de '+ data[0] + '' + data[1];
-                            }
                         }),
                         renderer: $.fn.dataTable.Responsive.renderer.tableAll()
                     }
-                }  
+                } ,
+                columnDefs: [
+            {
+                target: 0,
+                visible: false,
+            }], 
             });
-
-            
-            //Insert em JS de dados ficticios
-            
-            //for(let i= 0;i<10;i++){
-            //var rowNode = table.row.add([ 'Silves', 'Ismat', '10:00 21/10/2022', 'teste', 22 ]).draw()
-            //.node()
-            //}  
-            /*.DataTable({
-                
-            }) */
         })
 
         function HomePage(){
             window.location.href = "http://127.0.0.1:5500/FrontEnd/dashboard/Home.html";
         }
+
+        $(".cancelar").click(function(e){
+            e.preventDefault();
+
+            let DadosReserva={
+                id: $(this).attr("id"),
+                action: "cancelar"
+            }
+            console.log(DadosReserva);
+            $.ajax({
+                url: '/reserva',
+                type: 'POST',
+                data: DadosReserva,
+                async: false,
+                success: function(data){
+                    alert(data.message);
+                    console.log(data.message)
+                    window.location.reload()
+                },
+                error: function(data){
+                    alert(data);
+                }
+            })
+        })
     </script>
 </html>
 <!-- https://datatables.net/examples/api/row_details.html
