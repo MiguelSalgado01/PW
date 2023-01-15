@@ -7,6 +7,7 @@ from login import login_module
 from userModule import userModule
 from homeModule import homeModule
 from boleiasModule import rideModule
+from ReservasModule import reservasModule
 
 
 def create_app(config_filename):
@@ -32,6 +33,7 @@ def create_app(config_filename):
     run.register_blueprint(homeModule)
     run.register_blueprint(userModule)
     run.register_blueprint(rideModule)
+    run.register_blueprint(reservasModule)
 
     return run
 
