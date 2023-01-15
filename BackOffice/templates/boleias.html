@@ -7,12 +7,12 @@
                 <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Home</span>
             </a>
         </li>
-        <li class="sidebar-item  active">
+        <li class="sidebar-item ">
             <a class="sidebar-link" href="{{url_for('userModule.toUsersPage')}}">
                 <i class="align-middle" data-feather="user"></i> <span class="align-middle">Utilzadores</span>
             </a>
         </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item active">
             <a class="sidebar-link" href="{{url_for('rideModule.toRidePage')}}">
                 <i class="align-middle" data-feather="book"></i> <span class="align-middle">Boleias</span>
             </a>
@@ -27,23 +27,25 @@
             <thead class="bg-primary text-white">
                 <tr>
                     <th>Id</th>
-                    <th>Student Name</th>
-                    <th>Student Number</th>
-                    <th>Password</th>
-                    <th>Active</th>
-                    <th>Actions</th>
+                    <th>vehicle_id</th>
+                    <th>ride_date</th>
+                    <th>local_destiny</th>
+                    <th>local_origin</th>
+                    <th>number_of_available_seats</th>
+                    <th>apagar boleia</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- GetUsers vem do teu init  -->
-                {% for user in get_Users %}
+                {% for ride in get_Ride %}  <!-- n sei se get_Ride  -->
                 <tr>
-                <td>{{user.id}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.student_number}}</td>
-                <td>{{user.password}}</td>
-                <td>{{user.active}}</td>
-                <td><button class="Apagar btn btn-primary" id="{{user.id}}">Apagar User</button></td>
+                <td>{{ride.id}}</td>
+                <td>{{ride.vehicle_id}}</td>
+                <td>{{ride.ride_date}}</td>
+                <td>{{ride.local_destiny}}</td>
+                <td>{{ride.local_origin}}</td>
+                <td>{{ride.number_of_available_seats}}</td>
+                <td><button class="Apagar btn btn-primary" id="{{ride.id}}">Apagar Boleia</button></td>
             </tr>
             {% endfor %}
             </tbody>

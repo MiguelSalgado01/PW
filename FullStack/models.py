@@ -1,9 +1,10 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_bcrypt import Bcrypt
 	
 db = SQLAlchemy()
-
+bcrypt = Bcrypt()
 	
 class UserRideRole(db.Model):
 	__tablename__ = 'user_ride_role'
@@ -19,7 +20,7 @@ class User(db.Model, UserMixin):
 	name = db.Column(db.String(80), unique=True, nullable=False)
 	student_number = db.Column(db.String(9), unique=True, nullable=False)
 	phone_number = db.Column(db.Integer(), nullable=False)
-	password = db.Column(db.Unicode(30), nullable=False)
+	password = db.Column(db.String(60), nullable=False)
 	gender = db.Column(db.String(10), nullable=False)
 	registration_date = db.Column(db.DateTime, default=datetime.now)
 	last_login_date = db.Column(db.DateTime, default=datetime.now)
@@ -87,27 +88,4 @@ class Reservation(db.Model):
 	updatedAt = db.Column(db.DateTime, default=datetime.now)
 
 	def __repr__(self) -> str:
-		return '<User %r>' % self.id
-
-
-
-
-
-# class Admin (db.Model):
-# 	email = db.Column (('user_id'))
-# if __name__ == "__main__":
-# 	with app.app_context():
-# 		print("few")
-# 		print(db.session.query(User).filter_by(student_number = "a2434235245").first())
-	
-		# db.create_all()
-		# db.drop_all()
-
-	# 	# UserRideRole.query.filter_by(name='Condutor').delete() #delete a row
-	# 	############################################
-		# useRideRole1 = UserRideRole(name='Condut')
-		# db.session.add(useRideRole1) # add a row
-	# 	############################################
-
-	# 	db.session.commit()
-
+		return f"Reservation('{self.id}','{self.passenger_id}','{self.ride_id}')"

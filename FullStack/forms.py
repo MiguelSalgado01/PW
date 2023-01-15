@@ -52,7 +52,7 @@ class RideForm(FlaskForm):
 class EditUserForm(FlaskForm):
     username = StringField(label="Nome Utilizador", validators=[DataRequired(), Length(min=6, max=30)])
     phone_number = StringField(label="Contacto", validators=[DataRequired(), Length(min=9, max=9)])
-    currentPsassword = PasswordField(label="Password Atual")
+    currentPassword = PasswordField(label="Password Atual")
     password = PasswordField(label="Password Nova")
     confirm_password = PasswordField(label="Confirmar Password", validators=[EqualTo("password")])
     user_gender =  SelectField(label="Genero",  validators=[InputRequired()], choices=[("0","Feminino"), ("1","Masculino")])

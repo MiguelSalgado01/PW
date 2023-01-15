@@ -1,27 +1,20 @@
 from flask import Blueprint, request
 from flask import redirect, render_template, url_for
 from forms import VehicleForm
-from models import User, db, Vehicle
-from flask_login import login_user, logout_user, current_user
+from models import db, Vehicle
+from flask_login import current_user
 
 addVehicleModule = Blueprint('addVehicleModule', __name__)
 
 @addVehicleModule.route('/addVehicle', methods=['GET', 'POST'])
 def adicionarVeiculo():
    vehicleForm = VehicleForm()
-
    activeUser = current_user
    userId = activeUser.id
-   # print(userId)
-   if activeUser.is_authenticated:
-      print("Noice in add Vehicle")
-   else:
-      print("Not Noice")
 
    if request.method == 'POST' and activeUser.is_authenticated:
       print(userId)
       if vehicleForm.data['goBack']:
-         print(2)
          return redirect('verPerfilPage')
       
       if vehicleForm.validate_on_submit() and vehicleForm.regist.data == True:

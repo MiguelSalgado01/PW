@@ -1,22 +1,21 @@
 from flask import Blueprint,request
 from flask import redirect, render_template, url_for
 from forms import AdminForm
-from models import db , Admin,User
+from models import db , Admin,Ride
 from datetime import datetime
 from flask_login import current_user
 
-userModule = Blueprint('userModule', __name__)
+rideModule = Blueprint('rideModule', __name__)
 
-
-@userModule.route('/usersPage', methods=['GET', 'POST'])
-def toUsersPage():
+@rideModule.route('/ridePage', methods=['GET', 'POST'])
+def toRidePage():
     if current_user.is_authenticated:
         print("Noice")
     else:
         print("Not Noice")
-    get_Users = db.session.query(User).all()
+    get_Ride= db.session.query(Ride).all()
     form = AdminForm()
-    return render_template("users.html", title="Login", get_Users = get_Users)
+    return render_template("boleias.html", title="Login", get_Ride = get_Ride)
 
 
 
