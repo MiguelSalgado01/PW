@@ -10,7 +10,6 @@ from boleiasModule import rideModule
 
 
 def create_app(config_filename):
-    
     run = Flask(__name__)
     run.config.from_object(config_filename)
 

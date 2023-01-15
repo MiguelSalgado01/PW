@@ -1,7 +1,7 @@
 from flask import Blueprint,request
 from flask import redirect, render_template, url_for
 from forms import AdminForm
-from models import db , Admin, User, bcrypt
+from models import db, User, bcrypt, Admin
 from flask_login import login_user, logout_user, current_user
 from datetime import datetime
 

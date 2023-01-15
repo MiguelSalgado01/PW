@@ -88,13 +88,11 @@ class Reservation(db.Model):
 		return f"Reservation('{self.id}','{self.passenger_id}','{self.ride_id}')"
 
 
-class Admin (db.Model,UserMixin ):
+class Admin (db.Model,UserMixin):
     __tablename__= 'Admin'
     id =  db.Column(db.Integer, primary_key=True)
     user_id = db.Column('user_id', db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', backref='Admin')
-    
-    
     def __repr__(self) -> str:
         return '<Admin %r>' % self.id  
 
