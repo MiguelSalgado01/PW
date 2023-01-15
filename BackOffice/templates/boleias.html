@@ -13,7 +13,7 @@
             </a>
         </li>
         <li class="sidebar-item active">
-            <a class="sidebar-link" href="{{url_for('boleiasModule.toRidePage')}}">
+            <a class="sidebar-link" href="{{url_for('rideModule.toRidePage')}}">
                 <i class="align-middle" data-feather="book"></i> <span class="align-middle">Boleias</span>
             </a>
         </li>
@@ -40,7 +40,7 @@
                 <tr>
                 <td>{{ride.id}}</td>
                 <td>{{ride.vehicle_id}}</td>
-                <td>{{ride.ride_date}}</td>
+                <td>{{"ride.ride_date"}}</td>
                 <td>{{ride.local_destiny}}</td>
                 <td>{{ride.local_origin}}</td>
                 <td>{{ride.number_of_available_seats}}</td>
