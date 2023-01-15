@@ -11,7 +11,7 @@ rideandreservation = Blueprint('rideandreservation', __name__)
 def reservation():
     activeUser = current_user
     
-    get_Reservas = db.session.query(Reservation).filter(Reservation.passenger_id==activeUser.id)
+    
     goBack = BackButton()
     if activeUser.is_authenticated:
         print("Noice")
@@ -19,7 +19,13 @@ def reservation():
         print("Not Noice")
     
     if request.method == 'GET':  
-        return render_template("reservas.html", goBack = goBack,get_Reservas=get_Reservas)
+        addReservation = db.session.query(Vehicle, Ride, User, Reservation, ReservationState).filter(
+        Reservation.ride_id == Ride.id).filter(Reservation.passenger_id == activeUser.id).filter(
+        Reservation.reservation_state_id == ReservationState.id).filter(Ride.vehicle_id == Vehicle.id).filter(
+            User.id== Ride.user_id
+        ).all()
+      
+        return render_template("reservas.html", goBack = goBack,addReservation=addReservation)
 
     elif request.method =='POST':
         if goBack.data['goBack']:
@@ -28,8 +34,10 @@ def reservation():
         if request.form.get("action")== "cancelar":
             idReserva = request.form.get("id")
             specify_Reservation = db.session.query(Reservation).filter(Reservation.id==idReserva).first()
+            print(idReserva)
             #ADD seat extra
             seatsID = db.session.query(Ride).filter(Ride.id==specify_Reservation.ride_id).first()
+            print(seatsID)
             seatsID.number_of_available_seats +=1  
             db.session.delete(specify_Reservation)
             db.session.commit()
@@ -42,9 +50,10 @@ def reservation():
            
             vehicle = db.session.query(Vehicle).filter(Vehicle.id == Ride.vehicle_id).first()
             user = db.session.query(User).filter(User.id == Ride.user_id).first()
-            reserva_State =  db.session.query(ReservationState).filter(ReservationState.id==getreservaStatus).first()
-            userIdActive = db.session.query(User).filter(User.id==activeUser.id).first()
-            new_Reservation = Reservation(passenger_id=userIdActive.id,ride_id=searchRide.id,reservation_state_id=reserva_State.id)
+            reserva_State1 =  db.session.query(ReservationState).filter(ReservationState.id==getreservaStatus).first()
+            userIdActive1 = db.session.query(User).filter(User.id==activeUser.id).first()
+
+            new_Reservation = Reservation(passenger_id=userIdActive1.id,ride_id=searchRide.id,reservation_state_id=reserva_State1.id)
             searchRide.number_of_available_seats -=1
             db.session.add(new_Reservation)
             db.session.commit()
