@@ -56,10 +56,11 @@
             <thead class="bg-primary text-white">
                 <tr>
                     <th>id</th>
+                    <th>Condutor</th>
+                    <th>Data</th>
                     <th>Origem</th>
                     <th>Destino</th>
-                    <th>Data\Hora</th>
-                    <th>Detalhes</th>
+                    <th>StatusReserva</th>
                     <th class="all">CancelarBoleia</th>
                     </tr>
                 </thead>
@@ -71,6 +72,7 @@
                         <td>{{reservation.ride_id}}</td>
                         <td>{{reservation.createdAt}}</td>
                         <td>{{reservation.updatedAt}}</td>
+                        <td>teste</td>
                         <td><button class="cancelar btn btn-primary text-white" id="{{reservation.id}}">Cancelar</button></td>
                     </tr>
                         {% endfor%}
