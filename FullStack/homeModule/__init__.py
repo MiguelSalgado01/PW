@@ -20,7 +20,7 @@ def home():
    nextReservations = db.session.query(Vehicle, Ride, User, Reservation, ReservationState).filter(
         Reservation.ride_id == Ride.id).filter(Reservation.passenger_id == activeUser.id).filter(
         Reservation.reservation_state_id == ReservationState.id).filter(Ride.vehicle_id == Vehicle.id).filter(
-         User.id== Ride.user_id).order_by(Ride.ride_scheduled_time.desc()).limit(4).all()
+         User.id== Ride.user_id).order_by(Ride.ride_scheduled_time.desc()).limit(3).all()
 
    graf_data = [(rideCount,"Boleias Dadas"), (reservationCount,"Reservas Feitas")]
 
@@ -36,6 +36,9 @@ def home():
 
       elif homeForm.data['reservas']:
          return redirect('reserva')
+      
+      elif homeForm.data['minhasBoleias']:
+         return redirect('minhasRides')
 
       elif homeForm.data['endSession']:
          return redirect('logout')

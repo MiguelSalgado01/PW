@@ -23,6 +23,7 @@ class HomeForm(FlaskForm):
     criarBoleia = SubmitField(label="Criar Boleia")
     pesquisar = SubmitField(label="Pesquisar Boleia")
     reservas = SubmitField(label="Minhas Reservas")
+    minhasBoleias = SubmitField(label="Minhas Boleias")
     endSession = SubmitField(label="Terminar Sessão")
 
 class ProfileForm(FlaskForm):

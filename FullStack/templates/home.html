@@ -43,7 +43,7 @@
                             <h4 class="px-3">{{activeUser.name}}</h4>
                             <h5 class="px-3">{{activeUser.student_number}}</h5>
                         </div>
-                        <div class="px-3" tyle="padding-top: 30%;">
+                        <div class="px-3" style="z-index: 1;">
                             {{frontHomeForm.verPerfil(class="btn btn-primary btn-sm w-100", id="verProf")}}
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                             <button class="fa-solid fa-arrow-right text-light" type="submit" name="criarBoleia" value="criarRide" style=" background-color: transparent; border: none;"></button>
                         </div>
                     </li>
-                    <li class="row nav-item px-3" style="padding-top: 15%;">
+                    <li class="row nav-item px-3" style="padding-top: 5%;">
                         <div class="col-9 text-light">
                             <h5>{{frontHomeForm.pesquisar.label()}}</h5>
                         </div>
@@ -67,13 +67,22 @@
                             <button class="fa-solid fa-arrow-right text-light" type="submit" name="pesquisar" value="searchRide" style=" background-color: transparent; border: none;"></button>
                         </div>
                     </li>
-                    <li class="row nav-item px-3" style="padding-top: 15%;">
+                    <li class="row nav-item px-3" style="padding-top: 5%;">
                         <div class="col-9 text-light">
                             <h5>{{frontHomeForm.reservas.label()}}</h5>
                         </div>
                         <div class="col-3"  style="cursor:pointer">
                             {{frontHomeForm.hidden_tag()}}
                             <button class="fa-solid fa-arrow-right text-light" type="submit" name="reservas" value="reserveRide" style=" background-color: transparent; border: none;"></button>
+                        </div>
+                    </li>
+                    <li class="row nav-item px-3" style="padding-top: 5%;">
+                        <div class="col-9 text-light">
+                            <h5>{{frontHomeForm.minhasBoleias.label()}}</h5>
+                        </div>
+                        <div class="col-3"  style="cursor:pointer">
+                            {{frontHomeForm.hidden_tag()}}
+                            <button class="fa-solid fa-arrow-right text-light" type="submit" name="minhasBoleias" value="reserveRide" style=" background-color: transparent; border: none;"></button>
                         </div>
                     </li>
                 </ul>
