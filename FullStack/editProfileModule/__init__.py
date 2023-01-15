@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask import redirect, render_template, url_for
 from forms import EditUserForm
-from models import User, db
+from models import User, db, bcrypt
 from flask_login import login_user, logout_user, current_user
 
 editProfileModule = Blueprint('editProfileModule', __name__)
@@ -30,15 +30,42 @@ def home():
             try:
                if request.form['username'] != '':
                   userData.name = editUserForm.data['username'] 
-               
+
                if request.form['phone_number'] != '':
                   userData.phone_number =  editUserForm.data['phone_number']
+               
+               print(userData.password)
+               
 
-               if request.form['currentPsassword'] != '' and request.form['password'] != '' and request.form['confirm_password'] != '' :
-                  if(userData.password != request.form['currentPsassword']):
-                     editUserForm.currentPsassword.errors.append("Incorrect Password")
-                  print(request.form['currentPsassword']  + " " + request.form['password']  + " " + request.form['confirm_password'])
-                  userData.password = editUserForm.data['confirm_password']
+
+               if(bcrypt.check_password_hash(userData.password, request.form['currentPassword'])):
+                  print(userData.password)
+                  print(request.form['currentPassword'])
+                  
+               
+               if(request.form['currentPassword'] != ''):  
+                  if bcrypt.check_password_hash(userData.password, request.form['currentPassword']) == True:
+                     if request.form['password'] != '' and request.form['confirm_password'] != '' :
+                        print(request.form['currentPassword']  + " " + request.form['password']  + " " + request.form['confirm_password'])
+
+                        if(len(request.form['password']) < 8 or len(request.form['password']) > 20):
+                           editUserForm.password.errors.append("Field must be between 8 and 20 characters long")
+
+                        elif(len(request.form['confirm_password']) < 8 or len(request.form['confirm_password']) > 20):
+                           editUserForm.password.errors.append("Field must be between 8 and 20 characters long")
+                        
+                        elif(request.form['password'] == request.form['confirm_password']):
+                           encrypted_password = bcrypt.generate_password_hash(request.form['confirm_password']).decode('UTF-8')
+                           userData.password = encrypted_password
+
+                     else:
+                        editUserForm.password.errors.append("Field must be filled")
+                        editUserForm.confirm_password.errors.append("Field must be filled")
+
+                  elif(bcrypt.check_password_hash(userData.password, request.form['currentPassword']) != True):
+                     editUserForm.currentPassword.errors.append("Incorrect Password")
+
+                     
 
                if request.form['user_gender'] != '':
                   userData.gender = editUserForm.data['user_gender']
@@ -47,9 +74,10 @@ def home():
                return render_template("editorPerfil.html", title="Editar Perfil", frontEditUserForm = editUserForm, FrontUserData = userData)
 
             except:
-               print("error")
+               print("erro")
                return render_template("editorPerfil.html", title="Editar Perfil", frontEditUserForm = editUserForm, FrontUserData = userData)
         
+         return render_template("editorPerfil.html", title="Editar Perfil", frontEditUserForm = editUserForm, FrontUserData = userData)
          
          
          

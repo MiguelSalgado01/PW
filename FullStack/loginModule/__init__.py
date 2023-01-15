@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask import redirect, render_template, url_for
 from forms import UserLoginForm
-from models import User, db
+from models import User, db, bcrypt
 from flask_login import login_user, logout_user, current_user
 from datetime import datetime
 
@@ -29,7 +29,7 @@ def doLogin():
          if(user==None):
             form.student_number.errors.append("Incorrect Student Number")
          else:
-            if(user.password == form.password.data):
+            if(bcrypt.check_password_hash(user.password, form.password.data)):
                try:
                   user.active = True
                   user.last_login_date = datetime.now()

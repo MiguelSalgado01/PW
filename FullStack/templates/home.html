@@ -84,19 +84,21 @@
             <div class="container position-absolute" style="top: 10%; height: 75%;">
                 <div class="row justify-content-center" >
                     <div class="col-9">
-                        <h2  class="text-center">Reserva</h2>
-                        <div class="container bg-light border border-dark  p-1 my-1 rounded-2">
-                            <div class="row align-items-center">
-                                <div class="col-10 text-start">
-                                    <h7 >User Reserva </h7>
-                                </div>
-                                <div class="col-2 ">
-                                    <a style="cursor:pointer" onclick="">
-                                        <i class="fa fa-arrow-right "></i>
-                                    </a>
+                        <h2  class="text-center">Reserva</h2> 
+                        {% for reserva in frontReservations %}
+                            <div class="container bg-light border border-dark p-1 my-2 rounded-2">
+                                <div class="row align-items-center">
+                                    <div class="col-10 text-start">
+                                        <h7> Dia: {{reserva.Ride.ride_date}}, as: {{reserva.Ride.ride_scheduled_time}}, Condutor: {{reserva.User.name}}</h7>
+                                    </div>
+                                    <div class="col-2 ">
+                                        <a style="cursor:pointer" onclick="">
+                                            <i class="fa fa-arrow-right "></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

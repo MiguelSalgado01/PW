@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_login import LoginManager
-from models import db
+from models import db, bcrypt
 
 from loginModule import loginModule
 from registerModule import registerModule
@@ -18,6 +18,7 @@ def create_app(config_filename):
 	app.config.from_object(config_filename)
 	
 	db.init_app(app)
+	bcrypt.init_app(app)
 
 	with app.app_context():
 		db.create_all()
@@ -38,7 +39,7 @@ def create_app(config_filename):
 	app.register_blueprint(editProfileModule)
 	app.register_blueprint(addVehicleModule)
 	app.register_blueprint(rides)
-	
+
 	return app
 
 

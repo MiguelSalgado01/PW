@@ -21,13 +21,18 @@ def home():
    rideCount = 0
    for ride in userRides:
       rideCount+=1
-      print(ride)
 
    reservationCount = 0
    for reservation in userReservations:
       reservationCount+=1
-      print(reservation)
+
+   nextReservations = db.session.query(Reservation,Ride,User).filter(Ride.id==Reservation.ride_id).filter(Reservation.passenger_id==activeUser.id).filter(User.id==Ride.user_id).order_by(Ride.ride_scheduled_time.desc()).limit(4).all()
+
+   for rese in nextReservations:
+      print(rese.Ride.ride_date)
    
+# userReservations.order_by(Reservation)
+
    graf_data = [(rideCount,"Boleias Dadas"), (reservationCount,"Reservas Feitas")]
 
    if request.method == 'POST':
@@ -48,4 +53,4 @@ def home():
       else:
          return render_template("home.html", title="Home")
 
-   return render_template("home.html", title="Home", frontHomeForm = homeForm, activeUser=activeUser, frontReservationCount = graf_data)
+   return render_template("home.html", title="Home", frontHomeForm = homeForm, activeUser=activeUser, frontReservations = nextReservations, frontReservationCount = graf_data)

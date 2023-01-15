@@ -1,9 +1,10 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_bcrypt import Bcrypt
 	
 db = SQLAlchemy()
-
+bcrypt = Bcrypt()
 	
 class UserRideRole(db.Model):
 	__tablename__ = 'user_ride_role'
@@ -19,7 +20,7 @@ class User(db.Model, UserMixin):
 	name = db.Column(db.String(80), unique=True, nullable=False)
 	student_number = db.Column(db.String(9), unique=True, nullable=False)
 	phone_number = db.Column(db.Integer(), nullable=False)
-	password = db.Column(db.Unicode(30), nullable=False)
+	password = db.Column(db.String(60), nullable=False)
 	gender = db.Column(db.String(10), nullable=False)
 	registration_date = db.Column(db.DateTime, default=datetime.now)
 	last_login_date = db.Column(db.DateTime, default=datetime.now)
@@ -87,7 +88,7 @@ class Reservation(db.Model):
 	updatedAt = db.Column(db.DateTime, default=datetime.now)
 
 	def __repr__(self) -> str:
-		return '<User %r>' % self.id
+		return f"Reservation('{self.id}','{self.passenger_id}','{self.ride_id}')"
 
 
 

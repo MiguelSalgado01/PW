@@ -80,19 +80,19 @@
                     <fieldset>
                         <div class="my-3">
                             <div class="from-group">
-                                {{frontEditUserForm.currentPsassword.label(class="form-control-label")}}
+                                {{frontEditUserForm.currentPassword.label(class="form-control-label")}}
                                 <div class="input-group my-1" >
                                     <span class="input-group-text bg-secondary" id="basic-addon1">                    
                                         <i class="fa fa-key text-white"></i>
                                     </span>
-                                    {% if frontEditUserForm.currentPsassword.errors %}
-                                    {{frontEditUserForm.currentPsassword(class="form-control is-invalid", id="userPassword", placeholder="Insira Password Atual")}}
+                                    {% if frontEditUserForm.currentPassword.errors %}
+                                    {{frontEditUserForm.currentPassword(class="form-control is-invalid", id="userPassword", placeholder="Insira Password Atual")}}
                                     {% else %}
-                                    {{frontEditUserForm.currentPsassword(class="form-control", id="userPassword", placeholder="Insira Password Atual")}}
+                                    {{frontEditUserForm.currentPassword(class="form-control", id="userPassword", placeholder="Insira Password Atual")}}
                                 {% endif %}
                             </div>
-                            {% if frontEditUserForm.currentPsassword.errors %}
-                            {% for error in frontEditUserForm.currentPsassword.errors %}
+                            {% if frontEditUserForm.currentPassword.errors %}
+                            {% for error in frontEditUserForm.currentPassword.errors %}
                                 <span>{{error}}</span>
                             {% endfor %}
                             {% else %}
