@@ -31,7 +31,6 @@ def doLogin():
                   return redirect('/homePage')
                except:
                      return 'error'
-               
             else:
                form.password.errors.append("Incorrect Password")
       
