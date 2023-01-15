@@ -12,7 +12,6 @@ def index():
 
 
 @login_module.route('/pages-sign-in', methods=['GET', 'POST'])
-
 def doLogin():
     # Query para Buscar all users
     get_Users = db.session.query(User).all()
