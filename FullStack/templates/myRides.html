@@ -55,29 +55,29 @@
         <table class="cell-border display nowrap" id="tabela" style="width: 100%;">
             <thead class="bg-primary text-white">
                 <tr>
-                    <th>id</th>
-                    <th>StatusReserva</th>
-                    <th>Condutor</th>
-                    <th>License Plate</th>
-                    <th>Data</th>
-                    <th>Horas</th>
-                    <th>Destino</th>
-                    <th>Origem</th>
-                    <th class="all">CancelarBoleia</th>
+                    <td>id</td>
+                    <td>user</td>
+                    <td>vehicle</td>
+                    <td>date</td>
+                    <td>scheduled_time</td>
+                    <td>destiny</td>
+                    <td>origin</td>
+                    <td>seats</td>
+                    <th class="all">Cancelar Boleia</th>
                     </tr>
                 </thead>
                     <tbody>
-                        {% for reservation in addReservation %}
+                        {% for Rides in getRides %}
                         <tr>
-                        <td>{{reservation.Reservation.id}}</td>
-                        <td>{{reservation.ReservationState.state}}</td>
-                        <td>{{reservation.User.name}}</td>
-                        <td>{{reservation.Vehicle.license_plate}}</td>
-                        <td>{{reservation.Ride.ride_date}}</td>
-                        <td>{{reservation.Ride.ride_scheduled_time}}</td>
-                        <td>{{reservation.Ride.local_destiny}}</td>
-                        <td>{{reservation.Ride.local_origin}}</td>
-                        <td><button class="cancelar btn btn-primary text-white" id="{{reservation.Reservation.id}}">Cancelar</button></td>
+                        <td>{{Rides.id}}</td>
+                        <td>{{Rides.user_id}}</td>
+                        <td>{{Rides.vehicle_id}}</td>
+                        <td>{{Rides.ride_date}}</td>
+                        <td>{{Rides.ride_scheduled_time}}</td>
+                        <td>{{Rides.local_destiny}}</td>
+                        <td>{{Rides.local_origin}}</td>
+                        <td>{{Rides.number_of_available_seats}}</td>
+                        <td><button class="cancelar btn btn-primary text-white" id="{{Rides.id}}">Cancelar</button></td>
                     </tr>
                         {% endfor%}
                 </tbody>
@@ -117,7 +117,7 @@
             }
             console.log(DadosReserva);
             $.ajax({
-                url: '/reserva',
+                url: '/minhasRides',
                 type: 'POST',
                 data: DadosReserva,
                 async: false,
