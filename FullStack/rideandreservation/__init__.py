@@ -17,7 +17,7 @@ def reservation():
         print("Noice")
     else:
         print("Not Noice")
-    
+    # Show Reservation with all correct columns
     if request.method == 'GET':  
         addReservation = db.session.query(Vehicle, Ride, User, Reservation, ReservationState).filter(
         Reservation.ride_id == Ride.id).filter(Reservation.passenger_id == activeUser.id).filter(
