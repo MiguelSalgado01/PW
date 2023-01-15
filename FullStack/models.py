@@ -89,26 +89,3 @@ class Reservation(db.Model):
 
 	def __repr__(self) -> str:
 		return f"Reservation('{self.id}','{self.passenger_id}','{self.ride_id}')"
-
-
-
-
-
-# class Admin (db.Model):
-# 	email = db.Column (('user_id'))
-# if __name__ == "__main__":
-# 	with app.app_context():
-# 		print("few")
-# 		print(db.session.query(User).filter_by(student_number = "a2434235245").first())
-	
-		# db.create_all()
-		# db.drop_all()
-
-	# 	# UserRideRole.query.filter_by(name='Condutor').delete() #delete a row
-	# 	############################################
-		# useRideRole1 = UserRideRole(name='Condut')
-		# db.session.add(useRideRole1) # add a row
-	# 	############################################
-
-	# 	db.session.commit()
-

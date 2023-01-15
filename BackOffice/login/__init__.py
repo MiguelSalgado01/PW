@@ -1,7 +1,8 @@
 from flask import Blueprint,request
 from flask import redirect, render_template, url_for
 from forms import AdminForm
-from models import db , Admin,User
+from models import db , Admin, User, bcrypt
+from flask_login import login_user, logout_user, current_user
 from datetime import datetime
 
 login_module = Blueprint('login', __name__)
@@ -14,6 +15,11 @@ def index():
 @login_module.route('/pages-sign-in', methods=['GET', 'POST'])
 def doLogin():
     # Query para Buscar all users
+    if current_user.is_authenticated:
+        print("Noice")
+    else:
+        print("Not Noice")
+
     get_Users = db.session.query(User).all()
     form = AdminForm()
        
@@ -25,11 +31,12 @@ def doLogin():
             if (admin_id == None):
                  form.student_number.errors.append("Incorrect Student Number")
             else:
-                 if(user.password == form.password.data):
+                 if(bcrypt.check_password_hash(user.password, form.password.data)):
                     #try:
                         user.active = True
                         user.last_login_date = datetime.now()
                         db.session.commit()
+                        login_user(user)
                         return redirect('usersPage')
                     #except:
                         # return 'error'
@@ -39,4 +46,8 @@ def doLogin():
     return render_template("pages-sign-in.html", title="Login", formFront=form)
 
 
+@login_module.route('/logout')
+def logOut():
+   logout_user()
+   return redirect('pages-sign-in')
 
