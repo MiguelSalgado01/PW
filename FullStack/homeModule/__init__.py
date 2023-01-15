@@ -10,28 +10,14 @@ homeModule = Blueprint('homeModule', __name__)
 def home():
    homeForm = HomeForm()
    activeUser = current_user
-   if current_user.is_authenticated:
-      print("Noice")
-   else:
-      print("Not Noice")
    
    userRides = db.session.query(Ride).filter(Ride.user_id==activeUser.id).all()
    userReservations = db.session.query(Reservation).filter(Reservation.passenger_id==activeUser.id).all()
    
-   rideCount = 0
-   for ride in userRides:
-      rideCount+=1
-
-   reservationCount = 0
-   for reservation in userReservations:
-      reservationCount+=1
-
+   rideCount = len(userRides)
+   reservationCount = len(userReservations)
    nextReservations = db.session.query(Reservation,Ride,User).filter(Ride.id==Reservation.ride_id).filter(Reservation.passenger_id==activeUser.id).filter(User.id==Ride.user_id).order_by(Ride.ride_scheduled_time.desc()).limit(4).all()
 
-   for rese in nextReservations:
-      print(rese.Ride.ride_date)
-   
-# userReservations.order_by(Reservation)
 
    graf_data = [(rideCount,"Boleias Dadas"), (reservationCount,"Reservas Feitas")]
 
