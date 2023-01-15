@@ -1,7 +1,7 @@
 from flask import Blueprint,request
 from flask import redirect, render_template, url_for
 from forms import AdminForm
-from models import db , Admin,User
+from models import db , Admin,User, Ride, Reservation
 from datetime import datetime
 from flask_login import current_user
 
@@ -16,8 +16,10 @@ def toHomePage():
         print("Not Noice")
 
     get_Users = db.session.query(User).all()
+    allRides = db.session.query(Ride).all()
+    allReservations = db.session.query(Reservation).all()
     form = AdminForm()
-    return render_template("home.html", title="Login", get_Users = get_Users)
+    return render_template("home.html", title="Login", get_Users = get_Users, allRides = allRides, allReservations = allReservations)
 
 
 
