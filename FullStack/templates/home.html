@@ -93,7 +93,27 @@
                                     </div>
                                     <div class="col-2 ">
                                         <a style="cursor:pointer" onclick="">
-                                            <i class="fa fa-arrow-right "></i>
+                                            <button type="button" class="btn btn-primary fa fa-arrow-right text-black" data-bs-toggle="modal" data-bs-target="#exampleModal" style=" background-color: transparent; border: none; padding-left: 10%;">
+                                            </button>
+                                            
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Reserva</h1>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body"> 
+                                                        <ul>Condutor: {{reserva.User.name}}</ul>
+                                                        <ul>Dia: {{reserva.Ride.ride_date}}</ul>
+                                                        <ul>Hora: {{reserva.Ride.ride_scheduled_time}}</ul>
+                                                        <ul>Dia: {{reserva.Ride.ride_date}}</ul>
+                                                        <ul>Hora: {{reserva.Ride.ride_scheduled_time}}</ul>
+                                                      
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
                                         </a>
                                     </div>
                                 </div>
