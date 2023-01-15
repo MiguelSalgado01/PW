@@ -5,8 +5,11 @@ from models import db, Admin
 from login import login_module
 from userModule import userModule
 from homeModule import homeModule
-   
+from boleiasModule import rideModule
+
+
 def create_app(config_filename):
+    
     run = Flask(__name__)
     run.config.from_object(config_filename)
 
@@ -19,6 +22,7 @@ def create_app(config_filename):
     run.register_blueprint(login_module)
     run.register_blueprint(homeModule)
     run.register_blueprint(userModule)
+    run.register_blueprint(rideModule)
 
     return run
 
