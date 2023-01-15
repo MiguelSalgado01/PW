@@ -9,8 +9,9 @@ rideandreservation = Blueprint('rideandreservation', __name__)
 
 @rideandreservation.route('/reserva', methods=['GET', 'POST'])
 def reservation():
-    get_Reservas = db.session.query(Reservation).all()
     activeUser = current_user
+    
+    get_Reservas = db.session.query(Reservation).filter(Reservation.passenger_id==activeUser.id)
     goBack = BackButton()
     if activeUser.is_authenticated:
         print("Noice")
@@ -27,7 +28,9 @@ def reservation():
         if request.form.get("action")== "cancelar":
             idReserva = request.form.get("id")
             specify_Reservation = db.session.query(Reservation).filter(Reservation.id==idReserva).first()
-            print(str(specify_Reservation))
+            #ADD seat extra
+            seatsID = db.session.query(Ride).filter(Ride.id==specify_Reservation.ride_id).first()
+            seatsID.number_of_available_seats +=1  
             db.session.delete(specify_Reservation)
             db.session.commit()
             return jsonify(message="Cancelado",status=201)
@@ -38,7 +41,9 @@ def reservation():
             userIdActive = db.session.query(User).filter(User.id==activeUser.id).first()
             getreserva = '1'
             reserva_State =  db.session.query(ReservationState).filter(ReservationState.id==getreserva).first()
-            new_Reservation = Reservation(passenger_id=userIdActive.id,ride_id=searchRide.id,reservation_state_id=reserva_State.id)
+            addReservation = db.session.query(Reservation,Ride,User).filter(Ride.id==Reservation.ride_id).filter(Reservation.passenger_id==activeUser.id).filter(User.id==Ride.user_id).order_by(Ride.ride_scheduled_time.desc()).limit(4).all()
+            #new_Reservation = Reservation(passenger_id=userIdActive.id,ride_id=searchRide.id,reservation_state_id=reserva_State.id)
+            new_Reservation = Reservation(addReservation)
             searchRide.number_of_available_seats -=1
             db.session.add(new_Reservation)
             db.session.commit()
