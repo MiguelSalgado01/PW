@@ -56,24 +56,28 @@
             <thead class="bg-primary text-white">
                 <tr>
                     <th>id</th>
-                    <th>Condutor</th>
-                    <th>Data</th>
-                    <th>Origem</th>
-                    <th>Destino</th>
                     <th>StatusReserva</th>
+                    <th>Condutor</th>
+                    <th>License Plate</th>
+                    <th>Data</th>
+                    <th>Horas</th>
+                    <th>Destino</th>
+                    <th>Origem</th>
                     <th class="all">CancelarBoleia</th>
                     </tr>
                 </thead>
                     <tbody>
-                        {% for reservation in get_Reservas %}
+                        {% for reservation in addReservation %}
                         <tr>
-                        <td>{{reservation.id}}</td>
-                        <td>{{reservation.passenger_id}}</td>
-                        <td>{{reservation.ride_id}}</td>
-                        <td>{{reservation.createdAt}}</td>
-                        <td>{{reservation.updatedAt}}</td>
-                        <td>teste</td>
-                        <td><button class="cancelar btn btn-primary text-white" id="{{reservation.id}}">Cancelar</button></td>
+                        <td>{{reservation.Reservation.id}}</td>
+                        <td>{{reservation.ReservationState.state}}</td>
+                        <td>{{reservation.User.name}}</td>
+                        <td>{{reservation.Vehicle.license_plate}}</td>
+                        <td>{{reservation.Ride.ride_date}}</td>
+                        <td>{{reservation.Ride.ride_scheduled_time}}</td>
+                        <td>{{reservation.Ride.local_destiny}}</td>
+                        <td>{{reservation.Ride.local_origin}}</td>
+                        <td><button class="cancelar btn btn-primary text-white" id="{{reservation.Reservation.id}}">Cancelar</button></td>
                     </tr>
                         {% endfor%}
                 </tbody>
