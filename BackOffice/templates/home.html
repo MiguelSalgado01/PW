@@ -26,6 +26,148 @@
 {% endblock navOptions %}
 
 
+{% block profile %}
+<img src="{{url_for('static', filename='img/avatars/avatar.jpg')}}" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{activeUser.name}}</span>
+{% endblock profile %}
+						
+
 {% block content %}
 
+<div class="row">
+    <div class="col-xl-6 col-xxl-5 d-flex">
+        <div class="w-100">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mt-0">
+                                    <h5 class="card-title">Utilizadores Totais</h5>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="stat text-primary">
+                                        <i class="fa fa-users"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h1 class="mt-5 mb-3">{{allUsersCount}}</h1>
+                            <div class="mb-0">
+                                <span class="text-muted">Desde o Lançamento</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mt-0">
+                                    <h5 class="card-title">Reservas Totais</h5>
+                                </div>
+    
+                                <div class="col-auto">
+                                    <div class="stat text-primary">
+                                        <i class="fa fa-calendar-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h1 class="mt-5 mb-3">{{allRidesCount}}</h1> 
+                            <div class="mb-0">
+                                <span class="text-muted">Desde o Lançamento</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mt-0">
+                                    <h5 class="card-title">Boleias Totais</h5>
+                                </div>
+    
+                                <div class="col-auto">
+                                    <div class="stat text-primary">
+                                        <i class="fa fa-car-burst"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h1 class="mt-5 mb-3">{{allReservationsCount}}</h1>
+                            <div class="mb-0">
+                                <span class="text-muted">Desde o Lançamento</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mt-0">
+                                    <h5 class="card-title">Veiculos Totais</h5>
+                                </div>
+    
+                                <div class="col-auto">
+                                    <div class="stat text-primary">
+                                        <i class="fa fa-car"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h1 class="mt-5 mb-3">{{allVehiclesCount}}</h1>
+                            <div class="mb-0">
+                                <span class="text-muted">Desde o Lançamento</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card flex-fill w-50">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Boleias pelo Ano</h5>
+        </div>
+        <div class="card-body">
+            <div class="position-absolute col-sm-4" style="left: 30%">
+                <canvas id="chartBoleiaAno"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('chartBoleiaAno');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["bread", "onion"],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [0.2,0.8],
+                    backgroundColor: [
+                        'rgb(17,117,124)',
+                        'rgb(70,300,227)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+        });</script>
+
+    <!-- <div class="col-xl-6 col-xxl-7">
+        <div class="card flex-fill w-100">
+            <div class="card-header">
+                <div class="float-end">
+                    <form class="row g-2">
+                        <div class="col-auto">
+                            <input type="text" class="form-control form-control-sm bg-light rounded-2 border-0" style="width: 100px;" placeholder="Search..">
+                        </div>
+                    </form>
+                </div>
+                <h5 class="card-title mb-0">Recent Movement</h5>
+            </div>
+            <div class="card-body pt-2 pb-3">
+                <div class="chart chart-sm"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <canvas id="chartjs-dashboard-line" style="display: block; width: 534px; height: 250px;" class="chartjs-render-monitor" width="534" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>
 {% endblock content %}
