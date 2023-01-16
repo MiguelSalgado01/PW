@@ -56,28 +56,24 @@
             <thead class="bg-primary text-white">
                 <tr>
                     <td>id</td>
-                    <td>user</td>
-                    <td>vehicle</td>
-                    <td>date</td>
-                    <td>scheduled_time</td>
-                    <td>destiny</td>
-                    <td>origin</td>
+                    <td>Data</td>
+                    <td>Hora</td>
+                    <td>Destino</td>
+                    <td>Origem</td>
                     <td>seats</td>
                     <th class="all">Cancelar Boleia</th>
                     </tr>
                 </thead>
                     <tbody>
-                        {% for Rides in getRides %}
+                        {% for  ridelist in getRides_User %}
                         <tr>
-                        <td>{{Rides.id}}</td>
-                        <td>{{Rides.user_id}}</td>
-                        <td>{{Rides.vehicle_id}}</td>
-                        <td>{{Rides.ride_date}}</td>
-                        <td>{{Rides.ride_scheduled_time}}</td>
-                        <td>{{Rides.local_destiny}}</td>
-                        <td>{{Rides.local_origin}}</td>
-                        <td>{{Rides.number_of_available_seats}}</td>
-                        <td><button class="cancelar btn btn-primary text-white" id="{{Rides.id}}">Cancelar</button></td>
+                                    <td>{{ridelist.id}}</td>
+                                    <td>{{ridelist.ride_date}}</td>
+                                    <td>{{ridelist.ride_scheduled_time}}</td>
+                                    <td>{{ridelist.local_destiny}}</td>
+                                    <td>{{ridelist.local_origin}}</td>
+                                    <td>{{ridelist.number_of_available_seats}}</td>
+                        <td><button class="cancelar btn btn-primary text-white" id="{{ridelist.id}}">Cancelar</button></td>
                     </tr>
                         {% endfor%}
                 </tbody>
