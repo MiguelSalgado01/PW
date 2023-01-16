@@ -1,5 +1,5 @@
 from flask import Blueprint,request
-from flask import redirect, render_template, url_for
+from flask import redirect, render_template, url_for,jsonify
 from forms import AdminForm
 from models import db , Reservation, User, bcrypt, ReservationState
 from flask_login import login_user, logout_user, current_user
@@ -17,6 +17,15 @@ def toReservaPage():
         print("Noice")
     else:
         print("Not Noice")
-    get_Reserva= db.session.query(Reservation, ReservationState).filter(Reservation.reservation_state_id == ReservationState.id).all()
-    form = AdminForm()
-    return render_template("reservas.html", title="Login", get_Reserva = get_Reserva)
+    if request.method == 'GET':
+        get_Reserva= db.session.query(Reservation, ReservationState).filter(Reservation.reservation_state_id == ReservationState.id).all()
+        return render_template("reservas.html", title="Login", get_Reserva = get_Reserva)
+    elif request.method == 'POST':
+        id = request.form.get("id")
+        print(id)
+        specify_Reservation = db.session.query(Reservation).filter(Reservation.id==id).first()
+        print(specify_Reservation)
+        db.session.delete(specify_Reservation)
+        db.session.commit()
+        
+    return  jsonify(message="Apagado",status=201)
