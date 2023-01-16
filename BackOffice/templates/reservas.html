@@ -31,6 +31,7 @@
         <table class="table display nowrap" id="tabela">
             <thead class="bg-primary text-white">
                 <tr>
+                    <th>reserva id</th>
                     <th>reservation_state_id</th>
                     <th>reservation_state</th>
                     <th>createdAt</th>
@@ -43,12 +44,13 @@
                 <!-- GetUsers vem do teu init  -->
                 {% for reserva in get_Reserva %}
                 <tr>
+                <td>{{reserva.Reservation.id}}</td>
                 <td>{{reserva.Reservation.reservation_state_id}}</td>
                 <td>{{reserva.ReservationState.state}}</td>
                 <td>{{reserva.Reservation.createdAt}}</td>
                 <td>{{reserva.Reservation.updatedAt}}</td>
                 <td>{{reserva.Reservation.ride_id}}</td>
-                <td><button class="ApagarR btn btn-primary" id="{{reserva.id}}">Apagar User</button></td>
+                <td><button class="ApagarR btn btn-primary" id="{{reserva.Reservation.id}}">Apagar Reserva</button></td>
             </tr>
             {% endfor %}
             </tbody>
