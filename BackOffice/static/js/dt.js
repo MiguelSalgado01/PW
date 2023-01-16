@@ -4,16 +4,15 @@
  } );
 
 //  funcao butao
-$(".apagar").click(function(e){
+$(".Apagar").click(function(e){
    e.preventDefault();
-
    let DadosReserva={
-       id: $(this).attr("id"),
-       action: "apagar"
+       id: $(this).attr("id")
+       
    }
    console.log(DadosReserva);
    $.ajax({
-       url: '/reserva',
+       url: '/usersPage',
        type: 'POST',
        data: DadosReserva,
        async: false,
@@ -27,3 +26,4 @@ $(".apagar").click(function(e){
        }
    })
 })
+
