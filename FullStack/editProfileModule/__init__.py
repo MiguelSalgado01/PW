@@ -31,7 +31,6 @@ def home():
                if(request.form['currentPassword'] != ''):  
                   if bcrypt.check_password_hash(userData.password, request.form['currentPassword']) == True:
                      if request.form['password'] != '' and request.form['confirm_password'] != '' :
-                        print(request.form['currentPassword']  + " " + request.form['password']  + " " + request.form['confirm_password'])
 
                         if(len(request.form['password']) < 8 or len(request.form['password']) > 20):
                            editUserForm.password.errors.append("Field must be between 8 and 20 characters long")

@@ -13,13 +13,13 @@ def adicionarVeiculo():
    userId = activeUser.id
 
    if request.method == 'POST' and activeUser.is_authenticated:
-      print(userId)
+      
       if vehicleForm.data['goBack']:
          return redirect('verPerfilPage')
       
       if vehicleForm.validate_on_submit() and vehicleForm.regist.data == True:
          vehicle = db.session.query(Vehicle).filter(Vehicle.license_plate == vehicleForm.plate.data).first()
-         print(vehicle)
+         
          if(vehicle == None):
             try:
                new_vehicle = Vehicle(owner_id = activeUser.id, license_plate=vehicleForm.plate.data, 

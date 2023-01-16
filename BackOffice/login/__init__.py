@@ -14,12 +14,6 @@ def index():
 
 @login_module.route('/pages-sign-in', methods=['GET', 'POST'])
 def doLogin():
-    # Query para Buscar all users
-    if current_user.is_authenticated:
-        print("Noice")
-    else:
-        print("Not Noice")
-
     get_Users = db.session.query(User).all()
     form = AdminForm()
        
@@ -32,14 +26,11 @@ def doLogin():
                  form.student_number.errors.append("Incorrect Student Number")
             else:
                  if(bcrypt.check_password_hash(user.password, form.password.data)):
-                    #try:
-                        user.active = True
-                        user.last_login_date = datetime.now()
-                        db.session.commit()
-                        login_user(user)
-                        return redirect('usersPage')
-                    #except:
-                        # return 'error'
+                    user.active = True
+                    user.last_login_date = datetime.now()
+                    db.session.commit()
+                    login_user(user)
+                    return redirect('usersPage')
                  else:
                     form.password.errors.append("Incorrect Password")
     

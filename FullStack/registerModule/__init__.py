@@ -11,15 +11,12 @@ def register():
     form = UserRegisterForm()
     
     if request.method == 'POST':
-        print(form.submitRegist.data)
-        print(form.login.data)
-
         if form.validate_on_submit() and form.submitRegist.data == True:
             verifyStudentNumb = db.session.query(User).filter(User.student_number == form.student_number.data).first()
             verifyUsername = db.session.query(User).filter(User.name == form.username.data).first()
 
             encrypted_password = bcrypt.generate_password_hash(form.password.data).decode('UTF-8')
-            print(encrypted_password)
+            
             
             if(verifyStudentNumb == None and verifyUsername == None):
                 try:

@@ -45,7 +45,7 @@ def toMakeRides():
                         ride_date=str(rideForm.date.raw_data)[2:12],ride_scheduled_time=str(rideForm.hora.data)[0:5],
                         local_origin=switchValue[0], local_destiny = switchValue[1], number_of_available_seats= vehicle.number_of_seats)
                     db.session.add(new_ride)
-                    print(new_ride)
+                    
                     db.session.commit()
                     return redirect('homePage')
 
@@ -67,7 +67,6 @@ def defineComeAndGo(place):
     else:
          comeGo_list=[(place), ('ISMAT')]
     
-    print(comeGo_list)
     return comeGo_list
 
 def processString(value):

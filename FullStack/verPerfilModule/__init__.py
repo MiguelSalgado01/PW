@@ -16,16 +16,15 @@ def verPerfil():
       print("Not Noice")
 
    if request.method == 'POST':
-      print(1)
       if profileForm.data['goBack']:
-         print(2)
          return redirect('homePage')
+
       if profileForm.data['editarPerfil']:
-         print(2)
          return redirect('editProfile')
+
       if profileForm.data['adicionarVeiculo']:
-         print(2)
          return redirect('addVehicle')
+         
       else:
          return render_template("verPerfil.html", title="Ver Perfil")
 

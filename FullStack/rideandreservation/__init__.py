@@ -10,13 +10,8 @@ rideandreservation = Blueprint('rideandreservation', __name__)
 @rideandreservation.route('/reserva', methods=['GET', 'POST'])
 def reservation():
     activeUser = current_user
-    
-    
     goBack = BackButton()
-    if activeUser.is_authenticated:
-        print("Noice")
-    else:
-        print("Not Noice")
+
     # Show Reservation with all correct columns
     if request.method == 'GET':  
         addReservation = db.session.query(Vehicle, Ride, User, Reservation, ReservationState).filter(
@@ -34,10 +29,10 @@ def reservation():
         if request.form.get("action")== "cancelar":
             idReserva = request.form.get("id")
             specify_Reservation = db.session.query(Reservation).filter(Reservation.id==idReserva).first()
-            print(idReserva)
+            
             #ADD seat extra
             seatsID = db.session.query(Ride).filter(Ride.id==specify_Reservation.ride_id).first()
-            print(seatsID)
+            
             seatsID.number_of_available_seats +=1  
             db.session.delete(specify_Reservation)
             db.session.commit()
@@ -58,7 +53,7 @@ def reservation():
             db.session.add(new_Reservation)
             db.session.commit()
             print (new_Reservation)
-            return jsonify(message="Adicionado com Suckcess",status=201)
+            return jsonify(message="Adicionado com Success",status=201)
         return  jsonify(message="Açao Nao encontrada",status=404)
     return render_template("reservas.html", goBack = goBack)
        
