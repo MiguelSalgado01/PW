@@ -1,3 +1,4 @@
+import json
 from flask import Blueprint, request
 from flask import redirect, render_template, url_for
 from forms import HomeForm
@@ -8,6 +9,7 @@ homeModule = Blueprint('homeModule', __name__)
 
 @homeModule.route('/homePage', methods=['GET', 'POST'])
 def home():
+   reservasList = []
    homeForm = HomeForm()
    activeUser = current_user
    
@@ -21,6 +23,11 @@ def home():
         Reservation.ride_id == Ride.id).filter(Reservation.passenger_id == activeUser.id).filter(
         Reservation.reservation_state_id == ReservationState.id).filter(Ride.vehicle_id == Vehicle.id).filter(
          User.id== Ride.user_id).order_by(Ride.ride_scheduled_time.desc()).limit(3).all()
+
+   for rese in nextReservations:
+      reservasList.append([("condutor",rese.User.name), ("matricula",rese.Vehicle.license_plate),
+         ("dia",rese.Ride.ride_date),("hora",rese.Ride.ride_scheduled_time),("origem",rese.Ride.local_origin),
+         ("destino",rese.Ride.local_destiny),("estado",rese.ReservationState.state), ("id", rese.Reservation.id)])
 
    graf_data = [(rideCount,"Boleias Dadas"), (reservationCount,"Reservas Feitas")]
 
@@ -45,4 +52,5 @@ def home():
       else:
          return render_template("home.html", title="Home")
 
-   return render_template("home.html", title="Home", frontHomeForm = homeForm, activeUser=activeUser, frontReservations = nextReservations, frontReservationCount = graf_data)
+   return render_template("home.html", title="Home", frontHomeForm = homeForm, activeUser=activeUser, 
+      frontReservations = nextReservations, frontReservationCount = graf_data, reservasList = reservasList)

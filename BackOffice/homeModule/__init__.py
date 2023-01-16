@@ -57,12 +57,9 @@ def toHomePage():
                 reservs.append(rsState.ReservationState.state)
 
             graf_reservationStatus = [("Confirmada", reservs.count("Confirmada")),("Concluida", reservs.count("Concluida")),("Cancelada", reservs.count("Cancelada"))]
-            
-        except:
-            print("Erro")
 
-    
-
+        except Exception as e:
+            print(str(e))
 
     return render_template("home.html", title="Login", allRidesCount = allRidesCount, allReservationsCount = allReservationsCount, 
         allVehiclesCount = allVehiclesCount, allUsersCount = allUsersCount, activeUser = activeUser, 

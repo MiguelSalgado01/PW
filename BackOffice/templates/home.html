@@ -179,137 +179,137 @@
 
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="text/javascript">
-        const ctx = document.getElementById('chartBoleiaAno');
-        const ctxVeiculos = document.getElementById('chartVeiculosMaisUsados');
-        const ctxGender = document.getElementById('charGenders');
-        const ctxStatusReservas = document.getElementById('charStatusReservas');
-        
-        dadosGrafico = {{ graf_dataBoleias | tojson }};
-        dadosGraficoVeiclo = {{ graf_topVehicles  | tojson }};
-        dadosGraficoGenders = {{ graf_genders  | tojson }};
-        dadosGraficoReservas = {{ graf_reservationStatus  | tojson }};
+    <script type=text/javascript>
+    const ctx = document.getElementById('chartBoleiaAno');
+    const ctxVeiculos = document.getElementById('chartVeiculosMaisUsados');
+    const ctxGender = document.getElementById('charGenders');
+    const ctxStatusReservas = document.getElementById('charStatusReservas');
 
-        new Chart(ctx, {
-            type: 'bar',
-            options: {
-                responsive: true
-            },
-            data: {
-                labels: [dadosGrafico[0][0], dadosGrafico[1][0],dadosGrafico[2][0],dadosGrafico[3][0],dadosGrafico[4][0], 
-                    dadosGrafico[5][0],dadosGrafico[6][0], dadosGrafico[7][0],dadosGrafico[8][0],dadosGrafico[9][0],
-                    dadosGrafico[10][0], dadosGrafico[11][0]],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [dadosGrafico[0][1], dadosGrafico[1][1],dadosGrafico[2][1],dadosGrafico[3][1],dadosGrafico[4][1], 
-                    dadosGrafico[5][1],dadosGrafico[6][1], dadosGrafico[7][1],dadosGrafico[8][1],dadosGrafico[9][1],
-                    dadosGrafico[10][1], dadosGrafico[11][1],],
-                    backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(25, 152, 192, 0.2)',
-                    'rgba(75, 19, 92, 0.2)',
-                    'rgba(154, 12, 245, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(201, 203, 207, 0.2)'
-                    ],
-                    borderWidth: 0
-                }]
-            },
-        });
+    dadosGrafico = {{ graf_dataBoleias | tojson }};
+    dadosGraficoVeiclo = {{ graf_topVehicles  | tojson }};
+    dadosGraficoGenders = {{ graf_genders  | tojson }};
+    dadosGraficoReservas = {{ graf_reservationStatus  | tojson }};
 
-        new Chart(ctxVeiculos, {
-            type: 'bar', 
-            options: {
-                indexAxis: 'y',
-                elements: {
-                    bar: {
-                        borderWidth: 2,
-                    }
-                },
-                responsive: true,
-                plugins: {
-                legend: {
-                    position: 'right',
-                }}
-            },
-            data: {
-                labels: [dadosGraficoVeiclo[0][0], dadosGraficoVeiclo[1][0],dadosGraficoVeiclo[2][0]],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [dadosGraficoVeiclo[0][1], dadosGraficoVeiclo[1][1],dadosGraficoVeiclo[2][1]],
-                    backgroundColor: [
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(54, 162, 235, 0.2)'
-                    ],
-                    borderWidth: 0
-                }]
-            },
-        });    
+    new Chart(ctx, {
+        type: 'bar',
+        options: {
+            responsive: true
+        },
+        data: {
+            labels: [dadosGrafico[0][0], dadosGrafico[1][0],dadosGrafico[2][0],dadosGrafico[3][0],dadosGrafico[4][0], 
+                dadosGrafico[5][0],dadosGrafico[6][0], dadosGrafico[7][0],dadosGrafico[8][0],dadosGrafico[9][0],
+                dadosGrafico[10][0], dadosGrafico[11][0]],
+            datasets: [{
+                label: '# of Votes',
+                data: [dadosGrafico[0][1], dadosGrafico[1][1],dadosGrafico[2][1],dadosGrafico[3][1],dadosGrafico[4][1], 
+                dadosGrafico[5][1],dadosGrafico[6][1], dadosGrafico[7][1],dadosGrafico[8][1],dadosGrafico[9][1],
+                dadosGrafico[10][1], dadosGrafico[11][1],],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(25, 152, 192, 0.2)',
+                'rgba(75, 19, 92, 0.2)',
+                'rgba(154, 12, 245, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+                ],
+                borderWidth: 0
+            }]
+        },
+    });
 
-        new Chart(ctxGender, {
-            type: 'pie', 
-            options: {
-                indexAxis: 'y',
-                elements: {
-                    bar: {
-                        borderWidth: 2,
-                    }
-                },
-                responsive: true,
-                plugins: {
-                legend: {
-                    position: 'right',
-                }}
+    new Chart(ctxVeiculos, {
+        type: 'bar', 
+        options: {
+            indexAxis: 'y',
+            elements: {
+                bar: {
+                    borderWidth: 2,
+                }
             },
-            data: {
-                labels: [dadosGraficoGenders[0][0], dadosGraficoGenders[1][0]],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [dadosGraficoGenders[0][1], dadosGraficoGenders[1][1]],
-                    backgroundColor: [
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(54, 162, 235, 0.2)'
-                    ],
-                    borderWidth: 0
-                }]
-            },
-        });    
+            responsive: true,
+            plugins: {
+            legend: {
+                position: 'right',
+            }}
+        },
+        data: {
+            labels: [dadosGraficoVeiclo[0][0], dadosGraficoVeiclo[1][0],dadosGraficoVeiclo[2][0]],
+            datasets: [{
+                label: '# of Votes',
+                data: [dadosGraficoVeiclo[0][1], dadosGraficoVeiclo[1][1],dadosGraficoVeiclo[2][1]],
+                backgroundColor: [
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+                ],
+                borderWidth: 0
+            }]
+        },
+    });    
 
-        new Chart(ctxStatusReservas, {
-            type: 'pie', 
-            options: {
-                indexAxis: 'y',
-                elements: {
-                    bar: {
-                        borderWidth: 2,
-                    }
-                },
-                responsive: true,
-                plugins: {
-                legend: {
-                    position: 'right',
-                }}
+    new Chart(ctxGender, {
+        type: 'pie', 
+        options: {
+            indexAxis: 'y',
+            elements: {
+                bar: {
+                    borderWidth: 2,
+                }
             },
-            data: {
-                labels: [dadosGraficoReservas[0][0], dadosGraficoReservas[1][0],dadosGraficoReservas[2][0]],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [dadosGraficoReservas[0][1], dadosGraficoReservas[1][1],dadosGraficoReservas[2][1]],
-                    backgroundColor: [
-                    'rgba(75, 19, 92, 0.2)',
-                    'rgba(154, 12, 245, 0.2)',
-                    'rgba(54, 162, 235, 0.2)'
-                    ],
-                    borderWidth: 0
-                }]
+            responsive: true,
+            plugins: {
+            legend: {
+                position: 'right',
+            }}
+        },
+        data: {
+            labels: [dadosGraficoGenders[0][0], dadosGraficoGenders[1][0]],
+            datasets: [{
+                label: '# of Votes',
+                data: [dadosGraficoGenders[0][1], dadosGraficoGenders[1][1]],
+                backgroundColor: [
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+                ],
+                borderWidth: 0
+            }]
+        },
+    });    
+
+    new Chart(ctxStatusReservas, {
+        type: 'pie', 
+        options: {
+            indexAxis: 'y',
+            elements: {
+                bar: {
+                    borderWidth: 2,
+                }
             },
-        });    
-        </script>
+            responsive: true,
+            plugins: {
+            legend: {
+                position: 'right',
+            }}
+        },
+        data: {
+            labels: [dadosGraficoReservas[0][0], dadosGraficoReservas[1][0],dadosGraficoReservas[2][0]],
+            datasets: [{
+                label: '# of Votes',
+                data: [dadosGraficoReservas[0][1], dadosGraficoReservas[1][1],dadosGraficoReservas[2][1]],
+                backgroundColor: [
+                'rgba(75, 19, 92, 0.2)',
+                'rgba(154, 12, 245, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+                ],
+                borderWidth: 0
+            }]
+        },
+    });    
+</script>
 
 {% endblock scripts %}
