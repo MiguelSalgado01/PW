@@ -1,7 +1,7 @@
 from flask import Blueprint,request
 from flask import redirect, render_template, url_for,jsonify
 from forms import AdminForm
-from models import db , Admin,Ride
+from models import db , Admin,Ride,Reservation
 from datetime import datetime
 from flask_login import current_user
 
@@ -20,8 +20,10 @@ def toRidePage():
         id = request.form.get("id")
         print(id)
         specify_Ride = db.session.query(Ride).filter(Ride.id==id).first()
-        print(specify_Ride)
+        specify_Resert = db.session.query(Reservation).filter(specify_Ride.id==Reservation.ride_id).first()
+        
         db.session.delete(specify_Ride)
+        db.session.delete(specify_Resert)
         db.session.commit()
     return  jsonify(message="Apagado",status=201)
 
