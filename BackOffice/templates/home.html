@@ -125,49 +125,92 @@
             <h5 class="card-title mb-0">Boleias pelo Ano</h5>
         </div>
         <div class="card-body">
-            <div class="position-absolute col-sm-4" style="left: 30%">
+            <div class="position-absolute w-75" style="left: 10%">
                 <canvas id="chartBoleiaAno"></canvas>
             </div>
         </div>
     </div>
-    
+</div>  
+
+<div class="card" style="height: 40%; width: 40%;">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Top 3 Veiculos mais Usados</h5>
+    </div>
+    <div class="card-body">
+        <div class="position-absolute w-75" style="left: 10%">
+            <canvas id="chartVeiculosMaisUsados"></canvas>
+        </div>
+    </div>
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const ctx = document.getElementById('chartBoleiaAno');
+        const ctxVeiculos = document.getElementById('chartVeiculosMaisUsados');
+
+        
+        dadosGrafico = {{ graf_dataBoleias | tojson }};
+        dadosGraficoVeiclo = {{ graf_topVehicles  | tojson }};
+
         new Chart(ctx, {
-            type: 'pie',
+            type: 'bar',
             data: {
-                labels: ["bread", "onion"],
+                labels: [dadosGrafico[0][0], dadosGrafico[1][0],dadosGrafico[2][0],dadosGrafico[3][0],dadosGrafico[4][0], 
+                    dadosGrafico[5][0],dadosGrafico[6][0], dadosGrafico[7][0],dadosGrafico[8][0],dadosGrafico[9][0],
+                    dadosGrafico[10][0], dadosGrafico[11][0]],
                 datasets: [{
                     label: '# of Votes',
-                    data: [0.2,0.8],
+                    data: [dadosGrafico[0][1], dadosGrafico[1][1],dadosGrafico[2][1],dadosGrafico[3][1],dadosGrafico[4][1], 
+                    dadosGrafico[5][1],dadosGrafico[6][1], dadosGrafico[7][1],dadosGrafico[8][1],dadosGrafico[9][1],
+                    dadosGrafico[10][1], dadosGrafico[11][1],],
                     backgroundColor: [
-                        'rgb(17,117,124)',
-                        'rgb(70,300,227)'
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(25, 152, 192, 0.2)',
+                    'rgba(75, 19, 92, 0.2)',
+                    'rgba(154, 12, 245, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
                     ],
                     borderWidth: 0
                 }]
             },
-        });</script>
+        });
 
-    <!-- <div class="col-xl-6 col-xxl-7">
-        <div class="card flex-fill w-100">
-            <div class="card-header">
-                <div class="float-end">
-                    <form class="row g-2">
-                        <div class="col-auto">
-                            <input type="text" class="form-control form-control-sm bg-light rounded-2 border-0" style="width: 100px;" placeholder="Search..">
-                        </div>
-                    </form>
-                </div>
-                <h5 class="card-title mb-0">Recent Movement</h5>
-            </div>
-            <div class="card-body pt-2 pb-3">
-                <div class="chart chart-sm"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <canvas id="chartjs-dashboard-line" style="display: block; width: 534px; height: 250px;" class="chartjs-render-monitor" width="534" height="250"></canvas>
-                </div>
-            </div>
-        </div>
-    </div> -->
-</div>
+        new Chart(ctxVeiculos, {
+            type: 'bar', 
+            options: {
+                indexAxis: 'y',
+                // Elements options apply to all of the options unless overridden in a dataset
+                // In this case, we are setting the border of each horizontal bar to be 2px wide
+                elements: {
+                    bar: {
+                        borderWidth: 2,
+                    }
+                },
+                responsive: true,
+                plugins: {
+                legend: {
+                    position: 'right',
+                }}
+            },
+            data: {
+                labels: [dadosGraficoVeiclo[0][0], dadosGraficoVeiclo[1][0],dadosGraficoVeiclo[2][0]],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [dadosGraficoVeiclo[0][1], dadosGraficoVeiclo[1][1],dadosGraficoVeiclo[2][1]],
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+        });    
+        </script>
+
 {% endblock content %}

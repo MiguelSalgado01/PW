@@ -43,11 +43,11 @@
                 <!-- GetUsers vem do teu init  -->
                 {% for reserva in get_Reserva %}
                 <tr>
-                <td>{{reserva.reservation_state_id}}</td>
-                <td>{{reserva.reservation_state}}</td>
-                <td>{{reserva.createdAt}}</td>
-                <td>{{reserva.updatedAt}}</td>
-                <td>{{reserva.ride_id}}</td>
+                <td>{{reserva.Reservation.reservation_state_id}}</td>
+                <td>{{reserva.ReservationState.state}}</td>
+                <td>{{reserva.Reservation.createdAt}}</td>
+                <td>{{reserva.Reservation.updatedAt}}</td>
+                <td>{{reserva.Reservation.ride_id}}</td>
                 <td><button class="Apagar btn btn-primary" id="{{reserva.id}}">Apagar User</button></td>
             </tr>
             {% endfor %}
