@@ -75,7 +75,7 @@ def ride():
     for ride in getRideData:
         vehicle = db.session.query(Vehicle).filter(Vehicle.id == ride.vehicle_id).first()
         user = db.session.query(User).filter(User.id == ride.user_id).first()
-        ridelist.append([(ride.id),(user.name),(vehicle.license_plate),(ride.ride_date),(ride.ride_scheduled_time),(ride.local_destiny),(ride.local_origin),(ride.number_of_available_seats)])
+        ridelist.append([(ride.id),(user.name),(vehicle.license_plate),(ride.ride_date),(ride.ride_scheduled_time),(ride.local_destiny),(ride.local_origin),(ride.number_of_available_seats),(vehicle.vehicle_specs)])
     return render_template("pesquisa.html",getRideData=ridelist, goBack=goBack)
     
 
