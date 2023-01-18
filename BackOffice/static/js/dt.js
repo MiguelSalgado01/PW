@@ -90,6 +90,7 @@ $(".ApagarB").click(function(e){
         data: DadosUser,
         async: false,
         success: function(data){
+<<<<<<< HEAD
             $('#id').val(data.id),
             $('#name').val(data.name),
             $('#usern').val(data.student_number),
@@ -125,6 +126,9 @@ $(".ApagarB").click(function(e){
         success: function(data){
             
             alert(data.message)
+=======
+            alert(data.message);
+>>>>>>> dcaf10b7268b1c40a7fa3f0011a7b1b6734acbec
             //console.log(data.message)
             window.location.reload()
         },
