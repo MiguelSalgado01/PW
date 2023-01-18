@@ -25,25 +25,19 @@ def toReservaPage():
                 id = request.form.get("id")
                 
                 specify_Reservation = db.session.query(Reservation).filter(Reservation.id==id).first()
+                seatsID = db.session.query(Ride).filter(Ride.id==specify_Reservation.ride_id).first()
+                seatsID.number_of_available_seats +=1  
                 
                 db.session.delete(specify_Reservation)
                 db.session.commit()
                 
             return  jsonify(message="Apagado",status=201)
         
-<<<<<<< HEAD
         except Exception as e:
             print(str(e))
 
     else:
         return redirect('/pages-sign-in')
-=======
-        specify_Reservation = db.session.query(Reservation).filter(Reservation.id==id).first()
-        seatsID = db.session.query(Ride).filter(Ride.id==specify_Reservation.ride_id).first()
-            
-        seatsID.number_of_available_seats +=1  
-        db.session.delete(specify_Reservation)
-        db.session.commit()
+      
+   
         
-    return  jsonify(message="Apagado",status=201)
->>>>>>> dcaf10b7268b1c40a7fa3f0011a7b1b6734acbec
