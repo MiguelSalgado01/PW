@@ -30,7 +30,7 @@ def doLogin():
                     user.last_login_date = datetime.now()
                     db.session.commit()
                     login_user(user)
-                    return redirect('usersPage')
+                    return redirect('homePage')
                  else:
                     form.password.errors.append("Incorrect Password")
     

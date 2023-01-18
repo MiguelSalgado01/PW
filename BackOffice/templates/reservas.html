@@ -35,28 +35,30 @@
         <table class="table display nowrap" id="tabela">
             <thead class="bg-primary text-white">
                 <tr>
-                    <th>reserva id</th>
-                    <th>reservation_state_id</th>
-                    <th>reservation_state</th>
-                    <th>createdAt</th>
-                    <th>updatedAt</th>
-                    <th>ride_id</th>
+                    <th>Id</th>
+                    <th>Estado</th>
+                    <th>Data Criação</th>
+                    <th>Data Update</th>
+                    <th>Id Boleia</th>
+                    <th>Condutor</th>
+                    <th>Passageiro</th>
                     <th>Apagar Reserva</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- GetUsers vem do teu init  -->
-                {% for reserva in get_Reserva %}
-                <tr>
-                <td>{{reserva.Reservation.id}}</td>
-                <td>{{reserva.Reservation.reservation_state_id}}</td>
-                <td>{{reserva.ReservationState.state}}</td>
-                <td>{{reserva.Reservation.createdAt}}</td>
-                <td>{{reserva.Reservation.updatedAt}}</td>
-                <td>{{reserva.Reservation.ride_id}}</td>
-                <td><button class="ApagarR btn btn-primary" id="{{reserva.Reservation.id}}">Apagar Reserva</button></td>
-            </tr>
-            {% endfor %}
+                {% for r in reserva %}
+                    <tr>
+                        <td>{{r[6]}}</td>
+                        <td>{{r[3]}}</td>
+                        <td>{{r[4]}}</td>
+                        <td>{{r[5]}}</td>
+                        <td>{{r[2]}}</td>
+                        <td>{{r[0]}}</td>
+                        <td>{{r[1]}}</td>
+                        <td><button class="ApagarR btn btn-primary" id="{{r[6]}}">Apagar Reserva</button></td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

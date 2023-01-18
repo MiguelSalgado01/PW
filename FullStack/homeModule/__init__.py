@@ -20,9 +20,9 @@ def home():
    reservationCount = len(userReservations)
   
    nextReservations = db.session.query(Vehicle, Ride, User, Reservation, ReservationState).filter(
-        Reservation.ride_id == Ride.id).filter(Reservation.passenger_id == activeUser.id).filter(
-        Reservation.reservation_state_id == ReservationState.id).filter(Ride.vehicle_id == Vehicle.id).filter(
-         User.id== Ride.user_id).order_by(Ride.ride_scheduled_time.desc()).limit(3).all()
+      Reservation.ride_id == Ride.id).filter(Reservation.passenger_id == activeUser.id).filter(
+      Reservation.reservation_state_id == ReservationState.id).filter(Ride.vehicle_id == Vehicle.id).filter(
+      User.id== Ride.user_id).order_by(Ride.ride_scheduled_time.desc()).limit(3).all()
 
    for rese in nextReservations:
       reservasList.append([("condutor",rese.User.name), ("matricula",rese.Vehicle.license_plate),
