@@ -1,7 +1,7 @@
 from flask import Blueprint, request
-from flask import redirect, render_template, url_for
-from forms import VehicleForm
-from models import db, Vehicle
+from flask import redirect, render_template, url_for,jsonify
+from forms import VehicleForm,BackButton
+from models import db, Vehicle,Ride,Reservation
 from flask_login import current_user
 
 addVehicleModule = Blueprint('addVehicleModule', __name__)
@@ -36,3 +36,29 @@ def adicionarVeiculo():
             vehicleForm.plate.errors.append("Plate already exists")
 
    return render_template("registarVeiculo.html", title="Associar Veiculo", frontVehicleForm = vehicleForm)
+
+
+@addVehicleModule.route('/seeVehicle', methods=['GET', 'POST'])
+def seeVehicle():
+   vehicleForm = VehicleForm()
+   activeUser = current_user
+   if request.method == 'POST':
+      
+      if vehicleForm.data['goBack']:
+            return redirect('verPerfilPage')
+      
+   queryVehicleUser = db.session.query(Vehicle).filter(Vehicle.owner_id==activeUser.id)
+
+   if request.form.get("action") == "apagar":
+                id = request.form.get("id")
+                
+                specify_Ride = db.session.query(Ride).filter(Ride.id==idRide).first()
+                specify_Resert = db.session.query(Reservation).filter(specify_Ride.id==Reservation.ride_id).first()
+               #  db.session.delete(specify_Ride)
+               #  if(specify_Resert != None):
+               #      db.session.delete(specify_Resert)
+
+               #  db.session.commit()
+                return jsonify(message="Viatura Apagado Com Sucesso",status=201)
+
+   return render_template("myVehicles.html",frontVehicleForm = vehicleForm,queryVehicleUser=queryVehicleUser)
