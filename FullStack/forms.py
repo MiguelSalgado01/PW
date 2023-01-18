@@ -30,6 +30,7 @@ class ProfileForm(FlaskForm):
     goBack = SubmitField(label="Ecrã Prévio")
     editarPerfil = SubmitField(label="Editar Perfil")
     adicionarVeiculo = SubmitField(label="Associar Veiculo")
+    seeVehicle = SubmitField(label="Ver Veiculos")
 
 class VehicleForm(FlaskForm):
     plate = StringField(label="Matricula", validators=[InputRequired(), Length(min=8, max=8)])

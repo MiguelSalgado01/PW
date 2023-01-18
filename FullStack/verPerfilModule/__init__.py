@@ -24,6 +24,9 @@ def verPerfil():
 
       if profileForm.data['adicionarVeiculo']:
          return redirect('addVehicle')
+      
+      if profileForm.data['seeVehicle']:
+         return redirect('seeVehicle')
          
       else:
          return render_template("verPerfil.html", title="Ver Perfil")
