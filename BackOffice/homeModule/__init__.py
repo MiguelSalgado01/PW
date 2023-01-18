@@ -15,6 +15,8 @@ def toHomePage():
     dates = []
     graf_topVehicles = []
 
+    print(current_user.is_authenticated)
+
     if current_user.is_authenticated:
         try:
             use_id = current_user.id
@@ -61,9 +63,9 @@ def toHomePage():
         except Exception as e:
             print(str(e))
 
-    return render_template("home.html", title="Login", allRidesCount = allRidesCount, allReservationsCount = allReservationsCount, 
-        allVehiclesCount = allVehiclesCount, allUsersCount = allUsersCount, activeUser = activeUser, 
-        graf_dataBoleias = graf_dataBoleias, graf_topVehicles = graf_topVehicles, graf_genders = graf_genders, graf_reservationStatus = graf_reservationStatus)
-
-
+        return render_template("home.html", title="Login", allRidesCount = allRidesCount, allReservationsCount = allReservationsCount, 
+            allVehiclesCount = allVehiclesCount, allUsersCount = allUsersCount, activeUser = activeUser, 
+            graf_dataBoleias = graf_dataBoleias, graf_topVehicles = graf_topVehicles, graf_genders = graf_genders, graf_reservationStatus = graf_reservationStatus)
+    else:
+        return redirect('/pages-sign-in')
 

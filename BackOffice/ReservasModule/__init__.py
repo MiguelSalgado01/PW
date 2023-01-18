@@ -13,15 +13,26 @@ def index():
 
 @reservaModule.route('/reservaPage', methods=['GET', 'POST'])
 def toReservaPage():
-    if request.method == 'GET':
-        get_Reserva= db.session.query(Reservation, ReservationState).filter(Reservation.reservation_state_id == ReservationState.id).all()
-        return render_template("reservas.html", title="Login", get_Reserva = get_Reserva)
-    elif request.method == 'POST':
-        id = request.form.get("id")
+    if current_user.is_authenticated:
+        try:
+            use_id = current_user.id
+            activeUser =  db.session.query(User).filter(User.id==use_id).first()
+
+            if request.method == 'GET':
+                get_Reserva= db.session.query(Reservation, ReservationState).filter(Reservation.reservation_state_id == ReservationState.id).all()
+                return render_template("reservas.html", title="Login", get_Reserva = get_Reserva, activeUser = activeUser)
+            elif request.method == 'POST':
+                id = request.form.get("id")
+                
+                specify_Reservation = db.session.query(Reservation).filter(Reservation.id==id).first()
+                
+                db.session.delete(specify_Reservation)
+                db.session.commit()
+                
+            return  jsonify(message="Apagado",status=201)
         
-        specify_Reservation = db.session.query(Reservation).filter(Reservation.id==id).first()
-        
-        db.session.delete(specify_Reservation)
-        db.session.commit()
-        
-    return  jsonify(message="Apagado",status=201)
+        except Exception as e:
+            print(str(e))
+
+    else:
+        return redirect('/pages-sign-in')

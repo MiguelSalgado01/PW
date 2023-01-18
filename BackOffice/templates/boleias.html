@@ -25,6 +25,10 @@
     </ul>
 {% endblock navOptions %}
 
+{% block profile %}
+<img src="{{url_for('static', filename='img/avatars/avatar.jpg')}}" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{activeUser.name}}</span>
+{% endblock profile %}
+
 {% block content %}
 <div class="container-md" id="table">
     <div class="table-responsive"> 
