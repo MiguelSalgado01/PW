@@ -24,11 +24,13 @@ def toRidePage():
                 specify_Ride = db.session.query(Ride).filter(Ride.id==id).first()
                 specify_Resert = db.session.query(Reservation).filter(specify_Ride.id==Reservation.ride_id).all()
 
+                if(specify_Ride != None):
+                    specify_Ride.deleted = True
+
                 if(specify_Resert != []):
                     for reserva in specify_Resert:
-                        db.session.delete(reserva)
-
-                db.session.delete(specify_Ride)
+                        reserva.deleted = True
+                        reserva.reservation_state_id = 3
                     
                 db.session.commit()
                 return  jsonify(message="Apagado",status=201)

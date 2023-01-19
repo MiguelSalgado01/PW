@@ -29,21 +29,21 @@ def toUsersPage():
                     specify_Vehicle = db.session.query(Vehicle).filter(Vehicle.owner_id==specify_User.id).all()
                     specify_Reservation = db.session.query(Reservation).filter(Reservation.passenger_id==specify_User.id).all()
 
-                    if(specify_Reservation != None):
-                        for reservation in specify_Reservation:
-                            db.session.delete(reservation)
-                  
+                    if(specify_Reservation != []):
+                        deleteReserva(specify_Reservation)
+                        
                     if(specify_Ride != None):
                         for ride in specify_Ride:
-                            db.session.delete(ride)
-
-                    if(specify_Vehicle != None):
-                        for vehicle in specify_Vehicle:
-                            db.session.delete(vehicle)
+                            ride.deleted = True
+                            rideWithReservation = db.session.query(Reservation).filter(Reservation.ride_id==ride.id).all()
+                            deleteReserva(rideWithReservation)
 
                     
+                    if(specify_Vehicle != None):
+                        for vehicle in specify_Vehicle:
+                            vehicle.deleted = True
 
-                    db.session.delete(specify_User)
+                    specify_User.deleted = True
                     db.session.commit()
 
                     return jsonify(message="Apagado", status=201)
@@ -85,3 +85,8 @@ def toUsersPage():
 
     else:
         return redirect('/pages-sign-in')
+
+def deleteReserva(reservas):
+    for reserva in reservas:
+        reserva.deleted = True
+        reserva.reservation_state_id = 3

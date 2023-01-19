@@ -25,6 +25,11 @@
     </ul>
 {% endblock navOptions %}
 
+
+{% block page %}
+<h3 class="position-absolute m-2 fw-bold text-">Boleias</h3>
+{% endblock page %}
+
 {% block profile %}
 <img src="{{url_for('static', filename='img/avatars/avatar.jpg')}}" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{activeUser.name}}</span>
 {% endblock profile %}
@@ -41,7 +46,8 @@
                     <th>Data</th>
                     <th>Destino</th>
                     <th>Origem</th>
-                    <th>Lugares Disponiveis</th>
+                    <th>Lugares</th>
+                    <th>Eliminada</th>
                     <th>Apagar Boleia</th>
                 </tr>
             </thead>
@@ -56,6 +62,7 @@
                 <td>{{ride.Ride.local_destiny}}</td>
                 <td>{{ride.Ride.local_origin}}</td>
                 <td>{{ride.Ride.number_of_available_seats}}</td>
+                <td>{{ride.Ride.deleted}}</td>
                 <td><button class="ApagarB btn btn-primary" id="{{ride.Ride.id}}">Apagar Boleia</button></td>
             </tr>
             {% endfor %}

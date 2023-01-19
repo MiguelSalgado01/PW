@@ -25,6 +25,10 @@
     </ul>
 {% endblock navOptions %}
 
+{% block page %}
+<h3 class="position-absolute m-2 fw-bold text-">Utilizadores</h3>
+{% endblock page %}
+
 {% block profile %}
 <img src="{{url_for('static', filename='img/avatars/avatar.jpg')}}" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{activeUser.name}}</span>
 {% endblock profile %}
@@ -40,7 +44,8 @@
                     <th>Student Number</th>
                     <th>Phone Number</th>
                     <th>Active</th>
-                    <th>Ediar</th>
+                    <th>Eliminado</th>
+                    <th>Editar</th>
                     <th>Apagar</th>
                 </tr>
             </thead>
@@ -53,6 +58,7 @@
                 <td>{{user.student_number}}</td>
                 <td>{{user.phone_number	}}</td>
                 <td>{{user.active}}</td>
+                <td>{{user.deleted}}</td>
                 <td><button class="Editar btn btn-secondary" id="{{user.id}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Editar</button></td>
                 <td><button class="Apagar btn btn-primary" id="{{user.id}}">Apagar User</button></td>
             </tr>
