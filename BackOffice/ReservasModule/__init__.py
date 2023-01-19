@@ -1,5 +1,5 @@
 from flask import Blueprint,request
-from flask import redirect, render_template, url_for,jsonify
+from flask import redirect, render_template, url_for, jsonify
 from forms import AdminForm
 from models import db , Reservation, User, bcrypt, ReservationState, Ride
 from flask_login import login_user, logout_user, current_user

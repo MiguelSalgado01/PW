@@ -21,7 +21,6 @@ def toMakeRides():
 
         rideForm.vehicle.choices = presets_group_list
         
-
         if(request.method == 'POST'):
 
             if(rideForm.vehicle.data == '0'):
@@ -32,7 +31,7 @@ def toMakeRides():
             
 
             if rideForm.validate_on_submit():
-                switchValue = defineComeAndGo(rideForm.place.data)
+                switchValue = defineComeAndGo(rideForm.destOrig.data, rideForm.place.data)
                 
                 for transport in rideForm.vehicle.choices:
                     if transport[0] == rideForm.vehicle.data:
@@ -59,19 +58,8 @@ def toMakeRides():
     
     return render_template("criaBoleia.html", title="Criar Boleia", frontRideForm=rideForm)
 
-def defineComeAndGo(place):
-    processedValue = processString(json.dumps(str(request.data)))
-
-    if(processedValue == 'Destino'):
-         comeGo_list=[('ISMAT'), (place)]
+def defineComeAndGo(destOrig,place):
+    if(destOrig == 'Destino'):
+        return [('ISMAT'), (place)]
     else:
-         comeGo_list=[(place), ('ISMAT')]
-    
-    return comeGo_list
-
-def processString(value):
-    value = value.replace('b', '')   
-    value = value.replace("'", '')
-    value = value.replace('"', '')
-    if value == '': value = 'Destino'
-    return value
+        return [(place), ('ISMAT')]
