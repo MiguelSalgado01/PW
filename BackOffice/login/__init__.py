@@ -19,6 +19,8 @@ def doLogin():
        
     if request.method == 'POST':
         if form.validate_on_submit() and form.login.data == True:
+
+
             user = db.session.query(User).filter(User.student_number == form.student_number.data).first()
             admin_id = db.session.query(Admin).filter(Admin.user_id == user.id).first()
            

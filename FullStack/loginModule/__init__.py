@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask import redirect, render_template, url_for
 from forms import UserLoginForm
-from models import User, db, bcrypt
+from models import User, db, bcrypt, Vehicle,Ride,Reservation, ReservationState
 from flask_login import login_user, logout_user, current_user
 from datetime import datetime
 
@@ -14,7 +14,7 @@ def index():
 @loginModule.route('/login', methods=['GET', 'POST'])
 def doLogin():
    form = UserLoginForm()
-   
+
    if request.method == 'POST':
 
       if form.validate_on_submit() and form.login.data == True:

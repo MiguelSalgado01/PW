@@ -23,7 +23,7 @@ def toRidePage():
                 
                 specify_Ride = db.session.query(Ride).filter(Ride.id==id).first()
                 specify_Resert = db.session.query(Reservation).filter(specify_Ride.id==Reservation.ride_id).all()
-                
+
                 if(specify_Resert != []):
                     for reserva in specify_Resert:
                         db.session.delete(reserva)

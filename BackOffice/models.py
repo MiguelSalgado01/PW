@@ -25,6 +25,7 @@ class User(db.Model, UserMixin):
 	registration_date = db.Column(db.DateTime, default=datetime.now)
 	last_login_date = db.Column(db.DateTime, default=datetime.now)
 	active = db.Column(db.Boolean())  
+	deleted = db.Column(db.Boolean(), default=False)  
 
 	def __repr__(self) -> str:
 		return f"User('{self.name}','{self.student_number}','{self.phone_number}',{self.password}','{self.gender}','{self.registration_date}')"
@@ -38,9 +39,9 @@ class Vehicle(db.Model):
 	color = db.Column(db.String(20), nullable=False)
 	number_of_seats = db.Column(db.Integer(), nullable=False)
 	vehicle_specs = db.Column(db.String(200), nullable=True)
-	is_deleted = db.Column(db.Boolean, default=False)
 	createdAt = db.Column(db.DateTime, default=datetime.now)
 	updatedAt = db.Column(db.DateTime, default=datetime.now)
+	deleted = db.Column(db.Boolean(), default=False)  
 
 	def __repr__(self) -> str:
 		return f"vehicle('{self.license_plate}','{self.color}','{self.owner_id}')"
@@ -60,6 +61,7 @@ class Ride(db.Model):
 	number_of_available_seats = db.Column(db.Integer(), nullable=False)	
 	createdAt = db.Column(db.DateTime, default=datetime.now)
 	updatedAt = db.Column(db.DateTime, default=datetime.now)
+	deleted = db.Column(db.Boolean(), default=False)  
 
 	def __repr__(self) -> str:
 		return f"Ride('{self.user_id}','{self.vehicle_id}','{self.ride_date}',{self.ride_scheduled_time}','{self.local_destiny}','{self.local_origin}','{self.number_of_available_seats}')"
@@ -83,6 +85,7 @@ class Reservation(db.Model):
 	reservation_state = db.relationship('ReservationState', backref='reservation')
 	createdAt = db.Column(db.DateTime, default=datetime.now)
 	updatedAt = db.Column(db.DateTime, default=datetime.now)
+	deleted = db.Column(db.Boolean(), default=False)  
 
 	def __repr__(self) -> str:
 		return f"Reservation('{self.id}','{self.passenger_id}','{self.ride_id}')"

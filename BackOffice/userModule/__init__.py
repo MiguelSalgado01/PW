@@ -21,25 +21,32 @@ def toUsersPage():
             elif request.method == 'POST':
                 if request.form.get("action")=="Apagar":
                     id = request.form.get("id")
+
+                    print(id)
                 
                     specify_User = db.session.query(User).filter(User.id==id).first()
-                    specify_Ride = db.session.query(Ride).filter(Ride.user_id==specify_User.id).first()
-                    specify_Vehicle = db.session.query(Vehicle).filter(Vehicle.owner_id==specify_User.id).first()
-                    specify_Reservation = db.session.query(Reservation).filter(Reservation.passenger_id==specify_User.id).first()
-
-                    if(specify_Ride != None):
-                        db.session.delete(specify_Ride)
-
-                    if(specify_Vehicle != None):
-                        db.session.delete(specify_Vehicle)
+                    specify_Ride = db.session.query(Ride).filter(Ride.user_id==specify_User.id).all()
+                    specify_Vehicle = db.session.query(Vehicle).filter(Vehicle.owner_id==specify_User.id).all()
+                    specify_Reservation = db.session.query(Reservation).filter(Reservation.passenger_id==specify_User.id).all()
 
                     if(specify_Reservation != None):
-                        db.session.delete(specify_Reservation)
+                        for reservation in specify_Reservation:
+                            db.session.delete(reservation)
+                  
+                    if(specify_Ride != None):
+                        for ride in specify_Ride:
+                            db.session.delete(ride)
+
+                    if(specify_Vehicle != None):
+                        for vehicle in specify_Vehicle:
+                            db.session.delete(vehicle)
+
+                    
 
                     db.session.delete(specify_User)
                     db.session.commit()
 
-                    return  jsonify(message="Apagado",status=201)
+                    return jsonify(message="Apagado", status=201)
 
                 if request.form.get("action")=="Editar":
                     idUser = request.form.get("id")
@@ -71,7 +78,7 @@ def toUsersPage():
                     db.session.add(userquery)
                     db.session.commit()
 
-                    return jsonify(message="atualizado")
+                    return jsonify(message="Atualizado")
 
         except Exception as e:
             print(str(e))
