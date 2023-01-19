@@ -67,7 +67,7 @@ def ride():
         
     goBack = BackButton()
     ridelist = []
-    getRideData = db.session.query(Ride).all()
+    getRideData = db.session.query(Ride).filter(Ride.user_id!=activeUser.id)
 
     if goBack.data['goBack']:
         return redirect('homePage')
