@@ -1,7 +1,7 @@
 from flask import Blueprint,request
 from flask import redirect, render_template, url_for,jsonify
 from forms import AdminForm
-from models import db , Admin,Ride,Reservation, User
+from models import db , Admin,Ride,Reservation, User, Vehicle
 from datetime import datetime
 from flask_login import current_user
 
@@ -16,7 +16,7 @@ def toRidePage():
             activeUser =  db.session.query(User).filter(User.id==use_id).first()
 
             if request.method == 'GET':
-                get_Ride= db.session.query(Ride).all()
+                get_Ride= db.session.query(Ride, Vehicle, User).filter(Ride.user_id == User.id).filter(Ride.vehicle_id == Vehicle.id).all()
                 return render_template("boleias.html", title="Login", get_Ride = get_Ride, activeUser = activeUser,)
             elif request.method == 'POST':
                 id = request.form.get("id")
