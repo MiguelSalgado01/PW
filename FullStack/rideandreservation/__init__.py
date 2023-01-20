@@ -61,21 +61,33 @@ def reservation():
 def ride():
     activeUser = current_user
     if activeUser.is_authenticated:
-        print("Noice")
-    else:
-        print("Not Noice")
-        
-    goBack = BackButton()
-    ridelist = []
-    getRideData = db.session.query(Ride).filter(Ride.user_id!=activeUser.id)
+        goBack = BackButton()
+        ridelist = []
 
-    if goBack.data['goBack']:
-        return redirect('homePage')
-    # Mostrar Dados na Table Boleia
-    for ride in getRideData:
-        vehicle = db.session.query(Vehicle).filter(Vehicle.id == ride.vehicle_id).first()
-        user = db.session.query(User).filter(User.id == ride.user_id).first()
-        ridelist.append([(ride.id),(user.name),(vehicle.license_plate),(ride.ride_date),(ride.ride_scheduled_time),(ride.local_destiny),(ride.local_origin),(ride.number_of_available_seats),(vehicle.vehicle_specs)])
+        getReservedRides = db.session.query(Ride, Reservation).filter(Ride.id == Reservation.ride_id, Ride.user_id!=activeUser.id, Reservation.passenger_id==activeUser.id).all() 
+        getRideData = db.session.query(Ride).filter(Ride.user_id!=activeUser.id, Ride.number_of_available_seats!=0).all()
+
+        if goBack.data['goBack']:
+            return redirect('homePage')
+        # Mostrar Dados na Table Boleia
+        for ride in getRideData:
+            vehicle = db.session.query(Vehicle).filter(Vehicle.id == ride.vehicle_id).first()
+            user = db.session.query(User).filter(User.id == ride.user_id).first()
+            ridelist.append([(ride.id),(user.name),(vehicle.license_plate),(ride.ride_date),(ride.ride_scheduled_time),(ride.local_destiny),(ride.local_origin),(ride.number_of_available_seats),(vehicle.vehicle_specs)])
+
+        # duble for loop to pop rides in which active user is already on
+        for ride in ridelist:
+            for reservedRide in getReservedRides:
+                if(reservedRide.Ride.id == ride[0]):
+                    index= ridelist.index(ride)
+                    ridelist.pop(index)
+        
+        print(ridelist)
+
+    else:
+        return redirect('login')
+        
+   
     return render_template("pesquisa.html",getRideData=ridelist, goBack=goBack)
     
 

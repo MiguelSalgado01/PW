@@ -64,7 +64,7 @@ class Ride(db.Model):
 	deleted = db.Column(db.Boolean(), default=False)  
 
 	def __repr__(self) -> str:
-		return f"Ride('{self.user_id}','{self.vehicle_id}','{self.ride_date}',{self.ride_scheduled_time}','{self.local_destiny}','{self.local_origin}','{self.number_of_available_seats}')"
+		return f"Ride('{self.id}','{self.user_id}','{self.vehicle_id}','{self.ride_date}',{self.ride_scheduled_time}','{self.local_destiny}','{self.local_origin}','{self.number_of_available_seats}')"
 
 class ReservationState(db.Model): 
 	__tablename__ = 'reservation_state' 
