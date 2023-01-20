@@ -3,6 +3,7 @@
         "./FullStack",
         "./FullStack",
         "./FullStack",
+        "./BackOffice",
         "./BackOffice"
     ],
     "liveServer.settings.port": 5501

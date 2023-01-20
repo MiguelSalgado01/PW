@@ -18,11 +18,10 @@ def toUsersPage():
             if request.method == 'GET':
                 get_Users = db.session.query(User).all()
                 return render_template("users.html", title="Login", get_Users = get_Users, activeUser = activeUser)
+
             elif request.method == 'POST':
                 if request.form.get("action")=="Apagar":
                     id = request.form.get("id")
-
-                    print(id)
                 
                     specify_User = db.session.query(User).filter(User.id==id).first()
                     specify_Ride = db.session.query(Ride).filter(Ride.user_id==specify_User.id).all()
