@@ -36,7 +36,22 @@ def myrides():
 
                 db.session.commit()
                 return jsonify(message="Cancelado",status=201)
+            
+            if request.form.get("action") == "concluir":
+                idRide = request.form.get("id")
+                
+                specify_Ride = db.session.query(Ride).filter(Ride.id==idRide).first()
+                specify_Resert = db.session.query(Reservation).filter(specify_Ride.id==Reservation.ride_id).all()
 
+                if(specify_Ride != None):
+                    specify_Ride.deleted = True
+
+                if(specify_Resert != []):
+                    for reserva in specify_Resert:
+                        reserva.reservation_state_id = 2
+
+                db.session.commit()
+                return jsonify(message="Boleia Concluida",status=201)
     else:
         print("Not Noice")
     
