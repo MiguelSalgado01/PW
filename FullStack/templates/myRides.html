@@ -56,11 +56,12 @@
             <thead class="bg-primary text-white">
                 <tr>
                     <td>id</td>
-                    <td>Data</td>
+                    <td class="all">Data</td>
                     <td>Hora</td>
                     <td>Destino</td>
                     <td>Origem</td>
                     <td>seats</td>
+                    <th class="all">Concluir Boleia</th>
                     <th class="all">Cancelar Boleia</th>
                     </tr>
                 </thead>
@@ -73,6 +74,7 @@
                                     <td>{{ridelist.local_destiny}}</td>
                                     <td>{{ridelist.local_origin}}</td>
                                     <td>{{ridelist.number_of_available_seats}}</td>
+                        <td><button class="concluir btn btn-primary text-white" id="{{ridelist.id}}">Concluir</button></td>
                         <td><button class="cancelar btn btn-primary text-white" id="{{ridelist.id}}">Cancelar</button></td>
                     </tr>
                         {% endfor%}
@@ -110,6 +112,30 @@
             let DadosReserva={
                 id: $(this).attr("id"),
                 action: "cancelar"
+            }
+            console.log(DadosReserva);
+            $.ajax({
+                url: '/minhasRides',
+                type: 'POST',
+                data: DadosReserva,
+                async: false,
+                success: function(data){
+                    alert(data.message);
+                    console.log(data.message)
+                    window.location.reload()
+                },
+                error: function(data){
+                    alert(data);
+                }
+            })
+        })
+
+        $(".concluir").click(function(e){
+            e.preventDefault();
+
+            let DadosReserva={
+                id: $(this).attr("id"),
+                action: "concluir"
             }
             console.log(DadosReserva);
             $.ajax({
