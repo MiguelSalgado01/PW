@@ -2,9 +2,11 @@ from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_bcrypt import Bcrypt
+from flask_mail import Mail
 	
 db = SQLAlchemy()
 bcrypt = Bcrypt()
+mail = Mail()
 	
 class UserRideRole(db.Model):
 	__tablename__ = 'user_ride_role'

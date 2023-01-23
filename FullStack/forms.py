@@ -18,6 +18,11 @@ class UserLoginForm(FlaskForm):
     login = SubmitField(label="Login")
     toRegist = SubmitField(label="Cria Conta")
 
+class ForgotPassForm(FlaskForm):
+    student_number = StringField(label="Numero Estudante", validators=[InputRequired(), Length(min=9, max=9)])
+    sendMail = SubmitField(label="Confirmar Redifinição")
+    toLogin = SubmitField(label="Voltar para Login")
+
 class HomeForm(FlaskForm):
     verPerfil = SubmitField(label="Ver Perfil")
     criarBoleia = SubmitField(label="Criar Boleia")

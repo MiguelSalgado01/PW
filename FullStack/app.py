@@ -1,8 +1,8 @@
 from flask import Flask
 from flask_login import LoginManager
-from models import db, bcrypt
+from models import db, bcrypt, mail
 
-from loginModule import loginModule
+from loginModule import loginModule, jwtMang
 from registerModule import registerModule
 from rideandreservation import rideandreservation
 from homeModule import homeModule
@@ -12,6 +12,7 @@ from addVehicleModule import addVehicleModule
 from myRidesModule import myRidesModule
 from rides import rides
 
+
 from models import User
 
 def create_app(config_filename):
@@ -20,7 +21,9 @@ def create_app(config_filename):
 	
 	db.init_app(app)
 	bcrypt.init_app(app)
-
+	mail.init_app(app)
+	jwtMang.init_app(app)
+	
 	with app.app_context():
 		db.create_all()
 

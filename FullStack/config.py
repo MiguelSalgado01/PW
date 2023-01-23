@@ -9,6 +9,11 @@ class Config(object):
     SECRET_KEY = 'this-really-needs-to-be-changed'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///../DataBase/rides.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = 'ismatridesapp@gmail.com'
+    MAIL_PASSWORD = 'boleiasdoismat'
 
 
 class ProductionConfig(Config):

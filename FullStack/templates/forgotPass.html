@@ -12,42 +12,57 @@
          <link rel="stylesheet" href="{{url_for('static', filename='css/comum.css')}}"> 
     </head>
     <body class="bg-secondary">
-        <h1 class="py-4 text-white text-center fw-bold">Redifinir Password</h1>
-        <div class="position-absolute start-50 translate-middle" style="top: 25%; z-index: 1;">
-            <div class="d-flex justify-content-center">
-                <img
-                        src="{{url_for('static', filename='Logo.png')}}"
-                        alt=""
-                        class="border border-2 rounded-circle"
-                        width="160px"
-                        height="160px"
-                />
+        <header class="py-4">
+            <h1 class="text-center text-white fw-bold">Redifinir Password</h1>
+        </header>
+        <div style="width: 90%; padding-top: 15%; padding-bottom: 5%; margin-top: 20%;" class="container bg-light rounded-5 shadow-lg">
+            <div class="position-absolute start-50 translate-middle" style=" z-index: 1; margin-top: -15%;">
+                <div class="d-flex justify-content-center">
+                    <img
+                            src="{{url_for('static', filename='Logo.png')}}"
+                            alt=""
+                            class="border border-2 rounded-circle"
+                            width="160px"
+                            height="160px"
+                    />
+                </div>
             </div>
-        </div>
-        <div class="position-absolute start-50 w-100 translate-middle" style="top: 50%;">
-            <div style="width: 90%;" class="container bg-light rounded-4 py-3 shadow-lg position-sticky">
-                <div class="container w-100 col-6" style="margin-top: 30%;">
-                    <div class="container">
-                        <h5 class="py-2">Insire o teu numero de aluno, será enviado um mail para o teu email universitario para redefinires a tua password</h5>
-                    </div>
-                    <div class="my-3">Numero Estudante
-                        <div class="input-group my-1 needs-validation" id="groupNumb">
-                            <span class="input-group-text bg-secondary" id="basic-addon1">                    
-                                <i class="fa fa-user text-white"></i>
-                            </span>
-                            <input type="text" class="form-control" id="numEstudante" placeholder="ex: a22331289" minlength="9" maxlength="9" required>
-                            <div class="invalid-feedback"></div>
-                            <div class="valid-feedback"></div>
-                        
+            <form class="py-5 w-100 col-6" method="POST" action="" novalidate>
+                {{formFront.hidden_tag()}}
+                <div class="container">
+                    <h5>Insire o teu numero de aluno, será enviado um mail para o teu email universitario para redefinires a tua password</h5>
+                </div>
+                    <fieldset class="my-4">
+                        <div class="from-group">
+                            {{formFront.student_number.label(class="form-control-label")}}
+                            <div class="input-group my-1" id="groupNumb">
+                                <span class="input-group-text bg-secondary" id="basic-addon1">                    
+                                    <i class="fa fa-user text-white"></i>
+                                </span>
+                                {% if formFront.student_number.errors %}
+                                    {{formFront.student_number(class="form-control is-invalid", id="studentNumber", placeholder="ex: a35465575")}}
+                                    {% else %}
+                                    {{formFront.student_number(class="form-control", id="studentNumber",  placeholder="ex: a35465575")}}
+                                {% endif %}
+                            </div>
+                            {% if formFront.student_number.errors %}
+                            {% for error in formFront.student_number.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                            {% else %}
+                            {% endif %}
                         </div>
-                    </div>
+                    </fieldset>
                     <div class="container">
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <button class="btn btn-primary col-10 my-2" type="submit" id="submitBtn" >Iniciar redifinição de Password</button> <!--onclick="clicarBotao()"-->
-                            <div class="col-1"></div>
-                            <div class="col-1"></div>
-                            <button class="btn btn-outline-primary col-10 my-2" type="submit" id="goBackBtn" >Voltar para o LogIn</button> <!--onclick="LoginPage()"-->
+                        <div class="container">
+                            <div class="row"> 
+                                <div class="col-1"></div>
+                                {{formFront.sendMail(class="btn btn-primary col-10 my-2", id="sendMailBtn")}}
+                            </div>
+                            <div class="row"> 
+                                <div class="col-1"></div>
+                                {{formFront.toLogin(class="btn btn-outline-primary col-10 my-2", id="toLogBtn")}}
+                            </div>
                         </div>
                     </div>
                 </div>

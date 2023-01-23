@@ -69,6 +69,7 @@ def ride():
 
         if goBack.data['goBack']:
             return redirect('homePage')
+            
         # Mostrar Dados na Table Boleia
         for ride in getRideData:
             vehicle = db.session.query(Vehicle).filter(Vehicle.id == ride.vehicle_id).first()
