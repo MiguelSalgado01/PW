@@ -90,4 +90,25 @@
             </form>
         </div>
     </body>
+    <script>
+        var userNumb = document.getElementById("studentNumber");
+       
+        $( document ).ready(
+            event
+        );
+
+        function event($, undefined) {
+            "use strict";
+            $(function() {
+                userNumb.addEventListener( "keyup", function( event ) {
+                    var $this = $(this);
+                    var input = $this.val();
+                    var firstChar = input[0];
+                    var minusFirst = input.slice(1, input.size);
+                    userNumb.value = firstChar.replace(/[0-9\\s\._\-]+/g, '') + minusFirst.replace(/[A-Za-z\\s\._\-]+/g, '');
+                }); 
+            }); 
+        }
+    </script>
 </html>
+
